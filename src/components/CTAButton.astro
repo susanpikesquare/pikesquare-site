@@ -1,0 +1,34 @@
+---
+import { SCHEDULING_URL } from '../lib/site';
+
+interface Props {
+  href?: string;
+  label?: string;
+  variant?: 'primary' | 'ghost';
+}
+
+const {
+  href = SCHEDULING_URL,
+  label = 'Book a 30-min meeting',
+  variant = 'primary',
+} = Astro.props;
+
+const variantClasses =
+  variant === 'primary'
+    ? 'bg-deep text-white hover:bg-accent shadow-sm'
+    : 'bg-transparent text-deep underline-offset-4 hover:underline';
+
+const isExternal = href.startsWith('http');
+---
+
+<a
+  href={href}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+  class:list={[
+    'inline-flex items-center justify-center rounded-full px-7 py-3 text-base font-semibold transition',
+    variantClasses,
+  ]}
+>
+  {label}
+</a>

@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+---
+
+<BaseLayout title="Keynotes & Executive Speaking — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Service</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        A keynote from a multi-time CRO.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Steve Bamberger has led global sales organizations at Oracle, served as President of scale-ups, and held the CRO seat multiple times. He brings that experience to your sales kickoff, customer conference, or executive offsite — with prep, customization, and on-stage delivery.
+      </p>
+      <div class="mt-10">
+        <CTAButton label="Inquire about a keynote" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Topics -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">What he speaks on</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep">
+        Topics, customized to your audience.
+      </h2>
+      <ul class="mt-8 grid gap-5 md:grid-cols-2">
+        <li class="flex gap-4">
+          <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent"></span>
+          <div>
+            <p class="font-semibold text-ink">Sales excellence.</p>
+            <p class="mt-1 text-muted">What separates great revenue teams from average ones — beliefs, behaviors, and operating cadence.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent"></span>
+          <div>
+            <p class="font-semibold text-ink">AI in the revenue org.</p>
+            <p class="mt-1 text-muted">Where AI is actually moving the needle for modern sales teams — and the practical changes leaders should be making now.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent"></span>
+          <div>
+            <p class="font-semibold text-ink">Sales execution.</p>
+            <p class="mt-1 text-muted">Forecast accuracy, deal qualification, multi-thread, executive engagement — the disciplines a quarter actually turns on.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent"></span>
+          <div>
+            <p class="font-semibold text-ink">Building a GTM motion.</p>
+            <p class="mt-1 text-muted">The architecture of a repeatable revenue engine — ICP, channels, motion, comp, and the operating system that holds it together.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <CTAButton />
+    </div>
+  </section>
+</BaseLayout>

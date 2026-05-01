@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+import { SCHEDULING_URL } from '../../lib/site';
+
+const rows = [
+  {
+    service: 'AI Services',
+    href: '/services/ai',
+    bestWhen: 'You want AI in your GTM stack to actually move the needle — without another vendor.',
+    shape: 'Audit, build, train, or speak — sized to fit',
+  },
+  {
+    service: 'Advisory Retainer',
+    href: '/services/advisory',
+    bestWhen: 'You have a GTM lead in seat and need senior pattern-matching alongside them.',
+    shape: '4–8 hrs/month retainer, ongoing',
+  },
+  {
+    service: 'Fractional GTM Leadership',
+    href: '/services/fractional-leadership',
+    bestWhen: "You don't have a senior GTM exec, or your first hire isn't ready for the role.",
+    shape: '8–20 hrs/week, 3–6 months minimum',
+  },
+  {
+    service: 'Sales Kickoffs & Enablement',
+    href: '/services/sales-kickoff',
+    bestWhen: 'You need to ship a sales kickoff that changes behavior — content, exercises, venue, the whole thing.',
+    shape: '6–12 week build, fixed scope',
+  },
+  {
+    service: 'Keynotes & Executive Speaking',
+    href: '/services/keynotes',
+    bestWhen: 'You want a multi-time CRO on stage at your SKO, conference, or executive offsite.',
+    shape: 'Per-engagement, includes prep + delivery',
+  },
+  {
+    service: 'Sales Pitch Deck Build',
+    href: '/services/pitch-deck',
+    bestWhen: 'Your sales deck is a Frankenstein and your reps are losing the room. You need one that converts.',
+    shape: 'Project-based, 2–4 weeks',
+  },
+  {
+    service: 'GTM Diagnostics & Strategy',
+    href: '/services/diagnostics',
+    bestWhen: "You're heading into a board meeting, fundraise, or replan.",
+    shape: '4–6 weeks, fixed scope, fixed price',
+  },
+  {
+    service: 'RevOps & GTM Effectiveness',
+    href: '/services/revops',
+    bestWhen: 'Data, tools, comp, or process are getting in the way of growth.',
+    shape: 'Project-based or fractional',
+  },
+];
+---
+
+<BaseLayout title="Services — PikeSquare">
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-6xl px-6 pb-16 pt-20">
+      <h1 class="font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        Pick the engagement that fits the moment.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        PikeSquare offers seven ways in — from a single keynote to a multi-month fractional seat, plus AI services that span all of them. The right one depends on what you're trying to do in the next 90 days.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <div class="overflow-hidden rounded-2xl border border-ink/10">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-deep text-white">
+            <tr>
+              <th class="px-6 py-4 font-semibold">Service</th>
+              <th class="px-6 py-4 font-semibold">Best when…</th>
+              <th class="px-6 py-4 font-semibold">Engagement shape</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-ink/10 bg-white">
+            {
+              rows.map((r) => (
+                <tr>
+                  <td class="px-6 py-5 align-top">
+                    <a href={r.href} class="font-semibold text-deep hover:underline">{r.service}</a>
+                  </td>
+                  <td class="px-6 py-5 align-top text-muted">{r.bestWhen}</td>
+                  <td class="px-6 py-5 align-top text-muted">{r.shape}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-10 text-base text-muted">
+        Not sure which one? <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" class="font-semibold text-deep underline-offset-4 hover:underline">Book a 30-minute meeting</a> and we'll tell you.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <CTAButton />
+    </div>
+  </section>
+</BaseLayout>

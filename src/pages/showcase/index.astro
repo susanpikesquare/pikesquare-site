@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+
+// Custom apps PikeSquare has built — examples, not products you have to use.
+// They illustrate what we can build with you, for you, or alongside your team.
+const apps = [
+  {
+    name: 'PrismIQ',
+    tagline: 'Illuminate the value behind every decision.',
+    blurb: 'An app concept for helping sales and customer success teams quantify, visualize, and communicate measurable business impact — from the first pitch to every renewal. The kind of internal tool that replaces bespoke ROI spreadsheets with something a rep can actually use mid-cycle.',
+    bullets: [
+      'Build business cases in minutes instead of hours',
+      'AI-powered automation behind the math',
+      'Designed for every stage of the customer journey',
+    ],
+    url: 'https://calculator.pikesquare.co/',
+    image: '/showcase/prismiq-hero.jpg',
+    label: 'Example app — from our practice',
+  },
+  {
+    name: 'FormationIQ',
+    tagline: 'A central work hub for revenue teams.',
+    blurb: 'An app concept for a revenue-intelligence overlay on Salesforce — giving AEs, AMs, and CSMs a single starting point for the day with priorities, AI recommendations, and account intelligence pulled in from tools like Clay and 6sense.',
+    bullets: [
+      'Connect your CRM, get AI-driven recommendations',
+      'Role-based cockpits for AE, AM, and CSM',
+      'Account intelligence from Clay and 6sense',
+    ],
+    url: 'https://formationiq.pikesquare.co/',
+    image: null,
+    label: 'Example app — from our practice',
+  },
+];
+---
+
+<BaseLayout title="Showcase — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Showcase</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        Custom apps and AI come standard.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Every PikeSquare engagement includes custom-app and AI capability. We can use ours as <strong>examples</strong>, build new ones <strong>for you</strong>, or <strong>train your team</strong> to build their own. The apps below are our own work — illustrative of what's possible, not products you have to use.
+      </p>
+    </div>
+  </section>
+
+  <!-- Apps -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-16 space-y-20">
+      {
+        apps.map((app, i) => (
+          <article class={`grid gap-10 md:grid-cols-2 md:items-center ${i % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''}`}>
+            <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-ink/10 bg-bg">
+              {app.image ? (
+                <img
+                  src={app.image}
+                  alt={`${app.name} hero`}
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="flex h-full w-full flex-col items-center justify-center p-10 text-center">
+                  <p class="font-display text-3xl font-bold text-deep">{app.name}</p>
+                  <p class="mt-2 text-sm text-muted">Prototype — visit for a peek.</p>
+                  <a
+                    href={app.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mt-6 inline-flex items-center rounded-full bg-deep px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-accent"
+                  >
+                    Take a look →
+                  </a>
+                </div>
+              )}
+            </div>
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-wider text-accent">{app.label}</p>
+              <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+                {app.name}
+              </h2>
+              <p class="mt-4 text-lg font-semibold text-ink">{app.tagline}</p>
+              <p class="mt-3 text-base leading-relaxed text-ink">{app.blurb}</p>
+              {app.bullets.length > 0 && (
+                <ul class="mt-5 space-y-2">
+                  {app.bullets.map((b) => (
+                    <li class="flex gap-3 text-sm text-ink">
+                      <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div class="mt-8">
+                <a
+                  href={app.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+                >
+                  Take a look →
+                </a>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+        Want a custom app like one of these?
+      </h2>
+      <p class="mt-4 text-muted">
+        We'll build it, train your team to build it, or pair on the design — whichever fits the moment. Most of ours started as a Friday-afternoon prototype.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <CTAButton />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
