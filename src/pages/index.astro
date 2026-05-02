@@ -5,12 +5,8 @@ import FounderMomentCard from '../components/FounderMomentCard.astro';
 
 const moments = [
   {
-    quote: "We're moving into scale-up mode and the GTM playbook hasn't caught up.",
+    quote: "We're entering scale-up mode and the GTM playbook hasn't caught up.",
     resolution: 'Fractional leadership or a sharp project to redesign the motion before it breaks.',
-  },
-  {
-    quote: 'Our SKO is in eight weeks and the deck is still empty.',
-    resolution: 'A turnkey sales kickoff — content, training, exercises, venue, and a keynote that lands.',
   },
   {
     quote: 'Our new revenue leader is in seat — I want them to win.',
@@ -18,7 +14,19 @@ const moments = [
   },
   {
     quote: "Half our team's already using AI — and we have no idea what's working.",
-    resolution: 'A 2-week AI Stack Audit: where AI moves the needle, what to build vs. buy, sequenced 30/60/90 plan.',
+    resolution: 'A 2-week AI Stack Audit: where AI moves the needle, build vs. buy, sequenced 30/60/90 plan.',
+  },
+  {
+    quote: "Renewals are coming and our CS team can't see risk in time.",
+    resolution: 'CS risk and renewal plays — risk-factor definitions, signals from your existing tools, team structure.',
+  },
+  {
+    quote: 'Our pitch deck is a Frankenstein and reps are losing the room.',
+    resolution: 'A sales pitch deck build: story architecture, modular variants, and rep enablement.',
+  },
+  {
+    quote: 'Our SKO is in eight weeks and the deck is still empty.',
+    resolution: 'A turnkey sales kickoff — content, training, exercises, venue, and a keynote that lands.',
   },
 ];
 
@@ -139,14 +147,17 @@ const steps = [
   <section class="border-b border-ink/10 bg-white">
     <div class="mx-auto max-w-6xl px-6 py-20">
       <p class="text-sm font-semibold uppercase tracking-wider text-accent">
-        Four moments we're built for
+        Moments we're built for
       </p>
       <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
-        If one of these sounds like your quarter, we should talk.
+        If one of these sounds like your quarter — or anything close — we should talk.
       </h2>
-      <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {moments.map((m) => <FounderMomentCard quote={m.quote} resolution={m.resolution} />)}
       </div>
+      <p class="mt-8 max-w-2xl text-sm text-muted">
+        These are examples — if your moment looks different, we're probably built for that too.
+      </p>
     </div>
   </section>
 

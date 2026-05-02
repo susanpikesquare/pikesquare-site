@@ -3,102 +3,114 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTAButton from '../../components/CTAButton.astro';
 import { SCHEDULING_URL } from '../../lib/site';
 
-const rows = [
+// Five top-level engagement categories. Each has a one-line frame, an
+// engagement shape, and a list of concrete examples — most of which link
+// to a detail page.
+const categories = [
   {
-    service: 'AI Services',
-    href: '/services/ai',
-    bestWhen: 'You want AI in your GTM stack to actually move the needle — without another vendor.',
+    title: 'Advisory & Fractional Leadership',
+    blurb: 'Senior operators alongside or in seat of your revenue leadership — strategic pattern-matching for hard moments, or interim ownership of the function.',
+    shape: 'Retainer (4–8 hrs/month) or fractional seat (8–20 hrs/week, 3–6 months)',
+    items: [
+      { label: 'Advisory Retainer (Susan or Steve)', href: '/services/advisory' },
+      { label: 'Fractional GTM Leadership (CRO, VP Sales, VP CS, RevOps)', href: '/services/fractional-leadership' },
+      { label: 'CEO / board pattern-matching', href: '/services/advisory' },
+    ],
+  },
+  {
+    title: 'Strategy & Diagnostics',
+    blurb: 'Sharp planning and operational rebuilds when the moment demands a defensible answer — for the board, the bank, or the next quarter.',
+    shape: 'Fixed scope, 2–6 weeks',
+    items: [
+      { label: 'GTM Diagnostics & 90-day Plan', href: '/services/diagnostics' },
+      { label: 'Scale-up readiness reviews', href: '/services/diagnostics' },
+      { label: 'Board / fundraise GTM prep', href: '/services/diagnostics' },
+      { label: 'ICP and target-buyer redesign', href: '/services/diagnostics' },
+    ],
+  },
+  {
+    title: 'Programs & Builds',
+    blurb: 'Multi-week deliverables — content, exercises, processes, decks — built with your team and ready to run.',
+    shape: 'Project-based, 2–12 weeks',
+    items: [
+      { label: 'Sales Kickoffs & Enablement Programs', href: '/services/sales-kickoff' },
+      { label: 'Sales Pitch Deck Build', href: '/services/pitch-deck' },
+      { label: 'RevOps & GTM Effectiveness', href: '/services/revops' },
+      { label: 'Custom app builds', href: '/showcase' },
+    ],
+  },
+  {
+    title: 'AI Services',
+    blurb: 'AI applied to revenue work — surface insights from the systems you already own, build internal tools, train your team. Cuts across every other category.',
     shape: 'Audit, build, train, or speak — sized to fit',
+    items: [
+      { label: 'AI Stack Audit & Roadmap', href: '/services/ai' },
+      { label: 'AI Data Surfacing', href: '/services/ai' },
+      { label: 'AI Enablement & Training', href: '/services/ai' },
+      { label: 'AI for Sales Kickoffs', href: '/services/ai' },
+      { label: 'AI-Augmented Sales Pitch Decks', href: '/services/ai' },
+    ],
   },
   {
-    service: 'Advisory Retainer',
-    href: '/services/advisory',
-    bestWhen: 'You have a GTM lead in seat and need senior pattern-matching alongside them.',
-    shape: '4–8 hrs/month retainer, ongoing',
-  },
-  {
-    service: 'Fractional GTM Leadership',
-    href: '/services/fractional-leadership',
-    bestWhen: "You don't have a senior GTM exec, or your first hire isn't ready for the role.",
-    shape: '8–20 hrs/week, 3–6 months minimum',
-  },
-  {
-    service: 'Sales Kickoffs & Enablement',
-    href: '/services/sales-kickoff',
-    bestWhen: 'You need to ship a sales kickoff that changes behavior — content, exercises, venue, the whole thing.',
-    shape: '6–12 week build, fixed scope',
-  },
-  {
-    service: 'Keynotes & Executive Speaking',
-    href: '/services/keynotes',
-    bestWhen: 'You want a multi-time CRO on stage at your SKO, conference, or executive offsite.',
-    shape: 'Per-engagement, includes prep + delivery',
-  },
-  {
-    service: 'Sales Pitch Deck Build',
-    href: '/services/pitch-deck',
-    bestWhen: 'Your sales deck is a Frankenstein and your reps are losing the room. You need one that converts.',
-    shape: 'Project-based, 2–4 weeks',
-  },
-  {
-    service: 'GTM Diagnostics & Strategy',
-    href: '/services/diagnostics',
-    bestWhen: "You're heading into a board meeting, fundraise, or replan.",
-    shape: '4–6 weeks, fixed scope, fixed price',
-  },
-  {
-    service: 'RevOps & GTM Effectiveness',
-    href: '/services/revops',
-    bestWhen: 'Data, tools, comp, or process are getting in the way of growth.',
-    shape: 'Project-based or fractional',
+    title: 'Speaking & Workshops',
+    blurb: 'Steve on stage at your sales kickoff, conference, or executive offsite — and the prep behind it. Workshops for leadership teams who want to leave with conviction.',
+    shape: 'Per-engagement, prep + delivery included',
+    items: [
+      { label: 'Sales kickoff and conference keynotes', href: '/services/keynotes' },
+      { label: 'AI in the modern revenue org (keynote)', href: '/services/keynotes' },
+      { label: 'Executive workshops on GTM strategy', href: '/services/keynotes' },
+      { label: 'Panel and fireside facilitation', href: '/services/keynotes' },
+    ],
   },
 ];
 ---
 
 <BaseLayout title="Services — PikeSquare">
+  <!-- Hero -->
   <section class="border-b border-ink/10">
     <div class="mx-auto max-w-6xl px-6 pb-16 pt-20">
       <h1 class="font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
         Pick the engagement that fits the moment.
       </h1>
       <p class="mt-6 max-w-2xl text-lg text-muted">
-        PikeSquare offers seven ways in — from a single keynote to a multi-month fractional seat, plus AI services that span all of them. The right one depends on what you're trying to do in the next 90 days.
+        Five ways to engage — each with examples of the work we typically take on. If your moment looks different, we can probably shape something for it. The shortest path is a 30-minute conversation.
       </p>
     </div>
   </section>
 
+  <!-- Categories -->
   <section class="border-b border-ink/10 bg-white">
     <div class="mx-auto max-w-6xl px-6 py-16">
-      <div class="overflow-hidden rounded-2xl border border-ink/10">
-        <table class="w-full text-left text-sm">
-          <thead class="bg-deep text-white">
-            <tr>
-              <th class="px-6 py-4 font-semibold">Service</th>
-              <th class="px-6 py-4 font-semibold">Best when…</th>
-              <th class="px-6 py-4 font-semibold">Engagement shape</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-ink/10 bg-white">
-            {
-              rows.map((r) => (
-                <tr>
-                  <td class="px-6 py-5 align-top">
-                    <a href={r.href} class="font-semibold text-deep hover:underline">{r.service}</a>
-                  </td>
-                  <td class="px-6 py-5 align-top text-muted">{r.bestWhen}</td>
-                  <td class="px-6 py-5 align-top text-muted">{r.shape}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          categories.map((c) => (
+            <article class="flex h-full flex-col rounded-2xl border border-ink/10 bg-bg p-7">
+              <h2 class="font-display text-2xl font-bold text-deep">{c.title}</h2>
+              <p class="mt-3 text-base leading-relaxed text-ink">{c.blurb}</p>
+              <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-muted">Shape</p>
+              <p class="mt-1 text-sm text-muted">{c.shape}</p>
+              <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-muted">Examples</p>
+              <ul class="mt-2 space-y-2">
+                {c.items.map((it) => (
+                  <li class="flex gap-3 text-sm">
+                    <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
+                    <a href={it.href} class="text-deep underline-offset-4 hover:underline">
+                      {it.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
       </div>
-      <p class="mt-10 text-base text-muted">
-        Not sure which one? <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" class="font-semibold text-deep underline-offset-4 hover:underline">Book a 30-minute meeting</a> and we'll tell you.
+      <p class="mt-12 text-base text-muted">
+        Not sure which fits? <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" class="font-semibold text-deep underline-offset-4 hover:underline">Book a 30-minute meeting</a> and we'll tell you — and if we're not the right fit, we'll point you somewhere better.
       </p>
     </div>
   </section>
 
+  <!-- Closing CTA -->
   <section>
     <div class="mx-auto max-w-3xl px-6 py-20 text-center">
       <CTAButton />
