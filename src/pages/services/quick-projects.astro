@@ -157,6 +157,9 @@ const projects = [
         enctype="multipart/form-data"
         class="mt-10 space-y-6"
       >
+        <input type="hidden" name="_subject" value="Quick-turn project intake" />
+        <input type="hidden" name="source" value="pikesquare.co/services/quick-projects" />
+        <input type="hidden" name="submitted_at" id="qp-timestamp" value="" />
         <div class="grid gap-6 md:grid-cols-2">
           <div>
             <label for="qp-name" class="block text-sm font-semibold text-ink">Your name</label>
@@ -354,6 +357,10 @@ const projects = [
       successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
       return;
     }
+
+    // Stamp the submission so the dashboard always shows when it came in.
+    const ts = document.getElementById('qp-timestamp');
+    if (ts) ts.value = new Date().toISOString();
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
