@@ -12,7 +12,7 @@ type App = {
   url: string;
   label: string;
   image?: string;            // single hero image
-  gallery?: { src: string; caption: string }[]; // multi-image gallery
+  gallery?: { src: string; caption: string }[]; // multi-image carousel
 };
 
 const apps: App[] = [
@@ -65,68 +65,74 @@ const apps: App[] = [
 
   <!-- Apps -->
   <section class="border-b border-ink/10 bg-white">
-    <div class="mx-auto max-w-6xl px-6 py-16 space-y-24">
+    <div class="mx-auto max-w-6xl px-6 py-16 space-y-20">
       {
-        apps.map((app, i) =>
-          app.gallery && app.gallery.length > 0 ? (
-            <article>
-              <div class="max-w-3xl">
-                <p class="text-sm font-semibold uppercase tracking-wider text-accent">{app.label}</p>
-                <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
-                  {app.name}
-                </h2>
-                <p class="mt-4 text-lg font-semibold text-ink">{app.tagline}</p>
-                <p class="mt-3 text-base leading-relaxed text-ink">{app.blurb}</p>
-                {app.bullets.length > 0 && (
-                  <ul class="mt-5 space-y-2">
-                    {app.bullets.map((b) => (
-                      <li class="flex gap-3 text-sm text-ink">
-                        <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-
-              <div class="mt-10 space-y-10">
-                {app.gallery.map((shot) => (
-                  <figure class="overflow-hidden rounded-2xl border border-ink/10 bg-bg shadow-sm">
-                    <img
-                      src={shot.src}
-                      alt={`${app.name} — ${shot.caption}`}
-                      class="block w-full h-auto"
-                      loading="lazy"
-                    />
-                    <figcaption class="border-t border-ink/10 bg-white px-5 py-3 text-sm text-muted">
-                      {shot.caption}
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-
-              <div class="mt-10">
-                <a
-                  href={app.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+        apps.map((app, i) => (
+          <article class={`grid gap-10 md:grid-cols-2 md:items-center ${i % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''}`}>
+            <div>
+              {app.gallery && app.gallery.length > 0 ? (
+                <div
+                  class="relative"
+                  data-carousel
+                  data-captions={JSON.stringify(app.gallery.map((g) => g.caption))}
                 >
-                  Visit {app.name} →
-                </a>
-              </div>
-            </article>
-          ) : (
-            <article class={`grid gap-10 md:grid-cols-2 md:items-center ${i % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''}`}>
-              <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-ink/10 bg-bg">
-                {app.image ? (
+                  <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-ink/10 bg-bg relative">
+                    {app.gallery.map((shot, idx) => (
+                      <div
+                        class={`absolute inset-0 transition-opacity duration-300 ${idx === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                        data-slide
+                        data-index={idx}
+                      >
+                        <img
+                          src={shot.src}
+                          alt={`${app.name} — ${shot.caption}`}
+                          class="h-full w-full object-cover object-top"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
+                    <button
+                      type="button"
+                      data-prev
+                      aria-label="Previous slide"
+                      class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 text-deep shadow-md transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-accent"
+                    >
+                      <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 010 1.06L9.06 10l3.73 3.71a.75.75 0 11-1.06 1.06l-4.25-4.24a.75.75 0 010-1.06l4.25-4.24a.75.75 0 011.06 0z" clip-rule="evenodd" /></svg>
+                    </button>
+                    <button
+                      type="button"
+                      data-next
+                      aria-label="Next slide"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 text-deep shadow-md transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-accent"
+                    >
+                      <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.21 5.23a.75.75 0 011.06 0l4.25 4.24a.75.75 0 010 1.06l-4.25 4.24a.75.75 0 11-1.06-1.06L10.94 10 7.21 6.29a.75.75 0 010-1.06z" clip-rule="evenodd" /></svg>
+                    </button>
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                      {app.gallery.map((_, idx) => (
+                        <button
+                          type="button"
+                          data-dot
+                          data-index={idx}
+                          aria-label={`Go to slide ${idx + 1}`}
+                          aria-current={idx === 0 ? 'true' : 'false'}
+                          class="h-2 w-2 rounded-full bg-white/70 ring-1 ring-deep/30 transition-all aria-[current=true]:w-5 aria-[current=true]:bg-deep"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <p class="mt-3 text-sm text-muted" data-caption>{app.gallery[0].caption}</p>
+                </div>
+              ) : app.image ? (
+                <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-ink/10 bg-bg">
                   <img
                     src={app.image}
                     alt={`${app.name} hero`}
                     class="h-full w-full object-cover"
                     loading="lazy"
                   />
-                ) : (
+                </div>
+              ) : (
+                <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-ink/10 bg-bg">
                   <div class="flex h-full w-full flex-col items-center justify-center p-10 text-center">
                     <p class="font-display text-3xl font-bold text-deep">{app.name}</p>
                     <p class="mt-2 text-sm text-muted">Prototype — visit for a peek.</p>
@@ -139,39 +145,39 @@ const apps: App[] = [
                       Take a look →
                     </a>
                   </div>
-                )}
-              </div>
-              <div>
-                <p class="text-sm font-semibold uppercase tracking-wider text-accent">{app.label}</p>
-                <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
-                  {app.name}
-                </h2>
-                <p class="mt-4 text-lg font-semibold text-ink">{app.tagline}</p>
-                <p class="mt-3 text-base leading-relaxed text-ink">{app.blurb}</p>
-                {app.bullets.length > 0 && (
-                  <ul class="mt-5 space-y-2">
-                    {app.bullets.map((b) => (
-                      <li class="flex gap-3 text-sm text-ink">
-                        <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <div class="mt-8">
-                  <a
-                    href={app.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
-                  >
-                    Visit {app.name} →
-                  </a>
                 </div>
+              )}
+            </div>
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-wider text-accent">{app.label}</p>
+              <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+                {app.name}
+              </h2>
+              <p class="mt-4 text-lg font-semibold text-ink">{app.tagline}</p>
+              <p class="mt-3 text-base leading-relaxed text-ink">{app.blurb}</p>
+              {app.bullets.length > 0 && (
+                <ul class="mt-5 space-y-2">
+                  {app.bullets.map((b) => (
+                    <li class="flex gap-3 text-sm text-ink">
+                      <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div class="mt-8">
+                <a
+                  href={app.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+                >
+                  Visit {app.name} →
+                </a>
               </div>
-            </article>
-          )
-        )
+            </div>
+          </article>
+        ))
       }
     </div>
   </section>
@@ -191,3 +197,31 @@ const apps: App[] = [
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
+    const slides = root.querySelectorAll<HTMLElement>('[data-slide]');
+    const dots = root.querySelectorAll<HTMLElement>('[data-dot]');
+    const prev = root.querySelector<HTMLButtonElement>('[data-prev]');
+    const next = root.querySelector<HTMLButtonElement>('[data-next]');
+    const captionEl = root.querySelector<HTMLElement>('[data-caption]');
+    const captions: string[] = JSON.parse(root.dataset.captions || '[]');
+    let idx = 0;
+
+    const show = (n: number) => {
+      idx = (n + slides.length) % slides.length;
+      slides.forEach((s, i) => {
+        const active = i === idx;
+        s.classList.toggle('opacity-100', active);
+        s.classList.toggle('opacity-0', !active);
+        s.classList.toggle('pointer-events-none', !active);
+      });
+      dots.forEach((d, i) => d.setAttribute('aria-current', i === idx ? 'true' : 'false'));
+      if (captionEl && captions[idx]) captionEl.textContent = captions[idx];
+    };
+
+    prev?.addEventListener('click', () => show(idx - 1));
+    next?.addEventListener('click', () => show(idx + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
+  });
+</script>
