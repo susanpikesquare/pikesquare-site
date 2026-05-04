@@ -1,0 +1,387 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SCHEDULING_URL } from '../../lib/site';
+
+// Productized "quick-turn" projects — fixed scope, fixed turnaround, async delivery.
+// Each project lists what's in scope and a typical turnaround. Pricing is intentionally
+// "starting at" until Susan confirms — the form captures budget so we can quote precisely.
+const projects = [
+  {
+    name: 'Sales Pitch Deck Refresh',
+    blurb: 'A working pitch deck made sharper. Story, structure, and design pass — not a full rebuild.',
+    scope: ['Story arc & narrative tightening', 'Slide consolidation and order', 'Light visual / layout cleanup', 'One round of revisions'],
+    turnaround: '5–7 business days',
+    starting: 'from $2.5k',
+  },
+  {
+    name: 'Messaging Audit',
+    blurb: 'Honest read on whether your value prop, website, and pitch tell one consistent story.',
+    scope: ['Review of homepage, deck, one-pager', 'Persona / value-prop alignment check', '1-page findings + 5 specific recommendations', '30-minute walk-through'],
+    turnaround: '3–5 business days',
+    starting: 'from $1.5k',
+  },
+  {
+    name: 'Data Sheet / One-Pager',
+    blurb: 'A single PDF asset that travels well — for inbound, partner intros, or board updates.',
+    scope: ['Discovery call (30 min)', 'Copy + structure', 'Designed PDF (one round of revisions)', 'Editable source file'],
+    turnaround: '5–7 business days',
+    starting: 'from $1.8k',
+  },
+  {
+    name: 'GTM Tools Audit',
+    blurb: 'A focused look at your stack — what\'s working, what\'s redundant, what AI could replace.',
+    scope: ['Tool inventory (you provide list)', 'Overlap & redundancy analysis', 'AI / automation opportunity map', 'Written recommendations + 30-min walk-through'],
+    turnaround: '7–10 business days',
+    starting: 'from $3k',
+  },
+  {
+    name: 'Training Module / Course',
+    blurb: 'A self-contained training asset for one topic — onboarding, a new motion, or an AI workflow.',
+    scope: ['Topic scoping (60 min)', 'Outline + script', 'Slides + facilitator notes', 'Optional: recorded walkthrough'],
+    turnaround: '2–3 weeks',
+    starting: 'from $4k',
+  },
+  {
+    name: 'Custom — describe it',
+    blurb: 'You have something specific in mind that isn\'t on this list. Tell us what it is — we\'ll quote it or tell you we\'re not the right fit.',
+    scope: ['Whatever you describe in the form', 'We respond within 2 business days with scope, price, and timeline', 'No commitment until you accept the quote'],
+    turnaround: 'Quote within 2 business days',
+    starting: 'priced to scope',
+  },
+];
+---
+
+<BaseLayout title="Quick-turn Projects — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Quick-turn projects</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        Small, scoped, async — handled by senior operators.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Some work doesn't need a multi-month engagement — just one good operator and a clear deadline. Send us the brief; we'll quote it within two business days. If we can't do it well, we'll say so and point you somewhere better.
+      </p>
+      <div class="mt-8">
+        <a
+          href="#intake"
+          class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+        >
+          Submit a project →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects grid -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">What we take on</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep">
+        Six common shapes — pick one or describe your own.
+      </h2>
+      <div class="mt-10 grid gap-4 md:grid-cols-2">
+        {
+          projects.map((p) => (
+            <article class="flex h-full flex-col rounded-2xl border border-ink/10 bg-bg p-7">
+              <h3 class="font-display text-xl font-bold text-deep">{p.name}</h3>
+              <p class="mt-2 text-base text-ink">{p.blurb}</p>
+              <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-muted">In scope</p>
+              <ul class="mt-2 space-y-1.5">
+                {p.scope.map((s) => (
+                  <li class="flex gap-3 text-sm text-ink">
+                    <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-auto pt-6 grid grid-cols-2 gap-4 text-xs uppercase tracking-wider">
+                <div>
+                  <p class="font-semibold text-muted">Turnaround</p>
+                  <p class="mt-1 text-sm normal-case text-ink tracking-normal">{p.turnaround}</p>
+                </div>
+                <div>
+                  <p class="font-semibold text-muted">Starting</p>
+                  <p class="mt-1 text-sm normal-case text-ink tracking-normal">{p.starting}</p>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">How it works</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep">
+        Async by default. Three steps to get going.
+      </h2>
+      <ol class="mt-10 grid gap-8 md:grid-cols-3">
+        <li>
+          <span class="font-display text-5xl font-bold text-deep/20">01</span>
+          <h3 class="mt-3 font-display text-xl font-bold text-ink">Submit the brief</h3>
+          <p class="mt-2 text-muted">Pick a project type, describe what you need, attach anything that helps. Two minutes.</p>
+        </li>
+        <li>
+          <span class="font-display text-5xl font-bold text-deep/20">02</span>
+          <h3 class="mt-3 font-display text-xl font-bold text-ink">Get a quote in 2 days</h3>
+          <p class="mt-2 text-muted">A short reply with scope, fixed price, and turnaround. Or a referral if we're not the right fit.</p>
+        </li>
+        <li>
+          <span class="font-display text-5xl font-bold text-deep/20">03</span>
+          <h3 class="mt-3 font-display text-xl font-bold text-ink">Approve, kick off, deliver</h3>
+          <p class="mt-2 text-muted">One round of revisions included. Most projects ship within a week or two of kickoff.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Intake form -->
+  <section id="intake" class="border-b border-ink/10 bg-white scroll-mt-24">
+    <div class="mx-auto max-w-3xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Submit a project</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep">
+        Tell us what you need.
+      </h2>
+      <p class="mt-4 text-base text-muted">
+        We'll respond within two business days — usually same day.
+      </p>
+
+      <!--
+        NOTE FOR SUSAN: This form posts to Formspree. To activate:
+        1. Sign up at https://formspree.io (free tier supports a small monthly volume)
+        2. Create a new form, copy its ID
+        3. Replace YOUR_FORM_ID below with the real ID
+        4. Verify the destination email (susan.m.mcgovern@gmail.com or hello@pikesquare.co)
+        Until that's done, submissions go nowhere. The fallback message will appear instead.
+      -->
+      <form
+        id="quick-project-form"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+        enctype="multipart/form-data"
+        class="mt-10 space-y-6"
+      >
+        <div class="grid gap-6 md:grid-cols-2">
+          <div>
+            <label for="qp-name" class="block text-sm font-semibold text-ink">Your name</label>
+            <input
+              id="qp-name"
+              type="text"
+              name="name"
+              required
+              class="mt-2 w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-muted focus:border-deep focus:outline-none"
+            />
+          </div>
+          <div>
+            <label for="qp-email" class="block text-sm font-semibold text-ink">Email</label>
+            <input
+              id="qp-email"
+              type="email"
+              name="email"
+              required
+              class="mt-2 w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-muted focus:border-deep focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="qp-company" class="block text-sm font-semibold text-ink">
+            Company <span class="font-normal text-muted">(optional)</span>
+          </label>
+          <input
+            id="qp-company"
+            type="text"
+            name="company"
+            class="mt-2 w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-muted focus:border-deep focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="qp-type" class="block text-sm font-semibold text-ink">Project type</label>
+          <select
+            id="qp-type"
+            name="project_type"
+            required
+            class="mt-2 w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-base text-ink focus:border-deep focus:outline-none"
+          >
+            <option value="">Pick one…</option>
+            {projects.map((p) => <option value={p.name}>{p.name}</option>)}
+          </select>
+        </div>
+
+        <div>
+          <label for="qp-description" class="block text-sm font-semibold text-ink">
+            What do you need?
+          </label>
+          <textarea
+            id="qp-description"
+            name="description"
+            rows="6"
+            required
+            placeholder="A few sentences is fine. What it is, what good looks like, anyone who'll use it."
+            class="mt-2 w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-muted focus:border-deep focus:outline-none"
+          ></textarea>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div>
+            <label for="qp-timeline" class="block text-sm font-semibold text-ink">When do you need it?</label>
+            <select
+              id="qp-timeline"
+              name="timeline"
+              required
+              class="mt-2 w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-base text-ink focus:border-deep focus:outline-none"
+            >
+              <option value="">Pick one…</option>
+              <option value="ASAP (within a week)">ASAP — within a week</option>
+              <option value="In 1–2 weeks">In 1–2 weeks</option>
+              <option value="In 3–4 weeks">In 3–4 weeks</option>
+              <option value="Flexible">Flexible</option>
+            </select>
+          </div>
+          <div>
+            <label for="qp-budget" class="block text-sm font-semibold text-ink">
+              Budget range <span class="font-normal text-muted">(optional)</span>
+            </label>
+            <select
+              id="qp-budget"
+              name="budget"
+              class="mt-2 w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-base text-ink focus:border-deep focus:outline-none"
+            >
+              <option value="">Not sure yet</option>
+              <option value="< $2k">&lt; $2k</option>
+              <option value="$2k–$5k">$2k–$5k</option>
+              <option value="$5k–$10k">$5k–$10k</option>
+              <option value="$10k+">$10k+</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="qp-files" class="block text-sm font-semibold text-ink">
+            Attachments <span class="font-normal text-muted">(optional — deck, doc, screenshot, anything that helps)</span>
+          </label>
+          <input
+            id="qp-files"
+            type="file"
+            name="attachments"
+            multiple
+            class="mt-2 block w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-sm text-ink file:mr-4 file:rounded-md file:border-0 file:bg-deep file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-accent"
+          />
+        </div>
+
+        <div id="qp-error" class="hidden rounded-lg border border-rust/30 bg-rust/5 p-4 text-sm text-rust">
+          <!-- filled by JS -->
+        </div>
+
+        <div class="flex flex-col items-start gap-4 md:flex-row md:items-center">
+          <button
+            type="submit"
+            id="qp-submit"
+            class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent disabled:opacity-60"
+          >
+            Send the brief
+          </button>
+          <p class="text-sm text-muted">
+            We respond within 2 business days. No spam.
+          </p>
+        </div>
+      </form>
+
+      <div id="qp-success" class="mt-8 hidden rounded-2xl border border-deep/30 bg-deep/5 p-7">
+        <h3 class="font-display text-xl font-bold text-deep">Got it — thanks.</h3>
+        <p class="mt-2 text-base text-ink">
+          We'll reply within two business days with scope, price, and timeline. If we're not the right fit, we'll say so and point you to someone who is.
+        </p>
+        <p class="mt-4 text-sm text-muted">
+          In the meantime, <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" class="font-semibold text-deep underline-offset-4 hover:underline">book a 30-min meeting</a> if you'd rather talk live.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <p class="text-base text-muted">Bigger than a quick-turn project?</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+        See our full engagement shapes.
+      </h2>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+        <a
+          href="/services"
+          class="text-base font-semibold text-deep underline-offset-4 hover:underline"
+        >
+          Compare services →
+        </a>
+        <a
+          href={SCHEDULING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-base font-semibold text-deep underline-offset-4 hover:underline"
+        >
+          Book a 30-min meeting →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  const form = document.getElementById('quick-project-form');
+  const errorBox = document.getElementById('qp-error');
+  const successBox = document.getElementById('qp-success');
+  const submitBtn = document.getElementById('qp-submit');
+
+  function showError(msg) {
+    errorBox.textContent = msg;
+    errorBox.classList.remove('hidden');
+    errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox.classList.add('hidden');
+
+    if (!form.reportValidity()) return;
+
+    const action = form.getAttribute('action') || '';
+    if (action.includes('YOUR_FORM_ID')) {
+      // Formspree not yet wired up. Simulate success so the page can be tested,
+      // and surface a small note so Susan knows nothing actually sent.
+      form.classList.add('hidden');
+      successBox.classList.remove('hidden');
+      const note = document.createElement('p');
+      note.className = 'mt-4 text-xs italic text-muted';
+      note.textContent = 'Note: form backend not yet configured — submission was not sent.';
+      successBox.appendChild(note);
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    try {
+      const fd = new FormData(form);
+      const res = await fetch(action, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
+      if (res.ok) {
+        form.classList.add('hidden');
+        successBox.classList.remove('hidden');
+        successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        const body = await res.json().catch(() => ({}));
+        const msg = body?.errors?.[0]?.message || 'Something went wrong. Please try again, or email us directly.';
+        showError(msg);
+      }
+    } catch {
+      showError('Couldn\'t reach the form service. Please try again, or email us directly.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send the brief';
+    }
+  });
+</script>

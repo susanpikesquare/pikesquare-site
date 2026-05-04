@@ -1,0 +1,483 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+import { SCHEDULING_URL } from '../../lib/site';
+
+// Six GTM pillars — must stay in sync with the home-page pillars and services framing.
+// Each pillar has a brief, four maturity-stage descriptors, and a list of services
+// PikeSquare offers when this pillar is the gap. Stage descriptors are short and
+// concrete on purpose — vague descriptors make the assessment feel like a quiz.
+const pillars = [
+  {
+    key: 'strategy',
+    title: 'Strategy',
+    blurb: 'Right customers, right buyers, right stage of growth.',
+    stages: [
+      'No clear ICP — we sell to whoever shows up.',
+      'ICP exists but the team doesn\'t use it consistently.',
+      'ICP is documented and most pipeline reflects it.',
+      'ICP, target buyer, and 90-day plan are sharp and current.',
+    ],
+    services: [
+      { label: 'GTM Diagnostics & 90-day Plan', href: '/services/diagnostics' },
+      { label: 'Advisory Retainer', href: '/services/advisory' },
+    ],
+  },
+  {
+    key: 'motion',
+    title: 'Motion',
+    blurb: 'How we acquire, progress, and grow customers.',
+    stages: [
+      'Acquisition and renewal motions are ad-hoc.',
+      'A motion exists for one of {acquire, expand, renew}, not all.',
+      'Motions are defined, run, and reviewed quarterly.',
+      'Motions are tuned, instrumented, and predictable.',
+    ],
+    services: [
+      { label: 'Fractional GTM Leadership', href: '/services/fractional-leadership' },
+      { label: 'RevOps & GTM Effectiveness', href: '/services/revops' },
+    ],
+  },
+  {
+    key: 'message',
+    title: 'Message',
+    blurb: 'A repeatable story the team can actually tell.',
+    stages: [
+      'Every rep tells a different version of the story.',
+      'A pitch deck exists but reps go off-script.',
+      'A consistent narrative is in market and reps stick to it.',
+      'Modular variants by persona and vertical, refreshed regularly.',
+    ],
+    services: [
+      { label: 'Sales Pitch Deck Build', href: '/services/pitch-deck' },
+      { label: 'AI-Augmented Pitch Decks', href: '/services/ai' },
+    ],
+  },
+  {
+    key: 'process',
+    title: 'Process',
+    blurb: 'Repeatable rituals — forecast, deal review, pipeline.',
+    stages: [
+      'No reliable forecast or deal-review cadence.',
+      'A cadence exists but accuracy is inconsistent.',
+      'Forecast within ±10% and deal reviews are productive.',
+      'Discipline is a competitive advantage — board-ready every month.',
+    ],
+    services: [
+      { label: 'RevOps & GTM Effectiveness', href: '/services/revops' },
+      { label: 'Fractional GTM Leadership', href: '/services/fractional-leadership' },
+    ],
+  },
+  {
+    key: 'talent',
+    title: 'Talent',
+    blurb: 'Org design, hiring, comp, and enablement.',
+    stages: [
+      'Org is improvised; new hires ramp slowly or churn.',
+      'Roles are defined but enablement is light.',
+      'Onboarding and ongoing enablement are working.',
+      'Talent system is a hiring magnet and ramp is fast.',
+    ],
+    services: [
+      { label: 'Sales Kickoffs & Enablement', href: '/services/sales-kickoff' },
+      { label: 'AI Enablement & Training', href: '/services/ai' },
+    ],
+  },
+  {
+    key: 'operations',
+    title: 'Operations',
+    blurb: 'Systems, data, and AI that improve outcomes.',
+    stages: [
+      'CRM data is messy; dashboards aren\'t trusted.',
+      'Some dashboards exist; data quality is hit-or-miss.',
+      'Dashboards are trusted and used in operating rituals.',
+      'AI surfaces insights from existing systems; team acts on them.',
+    ],
+    services: [
+      { label: 'AI Stack Audit & Roadmap', href: '/services/ai' },
+      { label: 'AI Data Surfacing', href: '/services/ai' },
+    ],
+  },
+];
+
+// JSON-encoded for the client-side script. Astro renders this once at build time.
+const pillarsJson = JSON.stringify(pillars);
+---
+
+<BaseLayout title="GTM Readiness Assessment — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Free tool</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        GTM Readiness Assessment.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Five minutes. Six pillars. A snapshot of where your go-to-market function is today, where you want it to be, and the biggest gaps in between.
+      </p>
+      <p class="mt-4 max-w-2xl text-sm text-muted">
+        No email required to see your results. Want the report in your inbox? Optional, at the end.
+      </p>
+    </div>
+  </section>
+
+  <!-- Assessment form -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <form id="assessment-form" class="space-y-10" novalidate>
+        {
+          pillars.map((p, idx) => (
+            <fieldset class="rounded-2xl border border-ink/10 bg-bg p-7" data-pillar={p.key}>
+              <legend class="px-3 text-xs font-semibold uppercase tracking-wider text-accent">
+                Pillar {idx + 1} of 6
+              </legend>
+              <h2 class="font-display text-2xl font-bold text-deep">Go-to-Market {p.title}</h2>
+              <p class="mt-2 text-base text-ink">{p.blurb}</p>
+
+              <p class="mt-6 text-xs font-semibold uppercase tracking-wider text-muted">
+                Maturity stages
+              </p>
+              <ol class="mt-2 space-y-1 text-sm text-muted">
+                {p.stages.map((s, i) => (
+                  <li>
+                    <span class="font-semibold text-deep">{i + 1}.</span> {s}
+                  </li>
+                ))}
+              </ol>
+
+              <div class="mt-6 grid gap-6 md:grid-cols-2">
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-wider text-muted">
+                    Where you are today
+                  </p>
+                  <div class="mt-3 flex gap-2" role="radiogroup" aria-label={`${p.title}: current state`}>
+                    {[1, 2, 3, 4].map((n) => (
+                      <label class="group flex-1 cursor-pointer">
+                        <input
+                          type="radio"
+                          name={`${p.key}-current`}
+                          value={n}
+                          class="peer sr-only"
+                          required
+                        />
+                        <span
+                          class="flex h-12 items-center justify-center rounded-lg border border-ink/15 bg-white text-base font-semibold text-ink transition group-hover:border-deep peer-checked:border-deep peer-checked:bg-deep peer-checked:text-white"
+                        >
+                          {n}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-wider text-muted">
+                    Where you want to be in 12 months
+                  </p>
+                  <div class="mt-3 flex gap-2" role="radiogroup" aria-label={`${p.title}: target state`}>
+                    {[1, 2, 3, 4].map((n) => (
+                      <label class="group flex-1 cursor-pointer">
+                        <input
+                          type="radio"
+                          name={`${p.key}-target`}
+                          value={n}
+                          class="peer sr-only"
+                          required
+                        />
+                        <span
+                          class="flex h-12 items-center justify-center rounded-lg border border-ink/15 bg-white text-base font-semibold text-ink transition group-hover:border-accent peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white"
+                        >
+                          {n}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          ))
+        }
+
+        <div id="form-error" class="hidden rounded-lg border border-rust/30 bg-rust/5 p-4 text-sm text-rust">
+          Please answer every question — there's a row that's still blank.
+        </div>
+
+        <div class="flex flex-col items-start gap-4 md:flex-row md:items-center">
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+          >
+            See my results
+          </button>
+          <button
+            type="reset"
+            class="text-sm font-semibold text-muted underline-offset-4 hover:text-ink hover:underline"
+          >
+            Start over
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Results (hidden until submit) -->
+  <section id="results" class="hidden border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Your results</p>
+      <h2 id="results-headline" class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+        <!-- filled by JS -->
+      </h2>
+      <p id="results-summary" class="mt-4 max-w-2xl text-lg text-muted">
+        <!-- filled by JS -->
+      </p>
+
+      <!-- Pillar bars -->
+      <div id="results-pillars" class="mt-10 space-y-5">
+        <!-- filled by JS -->
+      </div>
+
+      <!-- Priority recommendations -->
+      <div class="mt-12 rounded-2xl border border-ink/10 bg-white p-7">
+        <p class="text-xs font-semibold uppercase tracking-wider text-accent">Where to focus first</p>
+        <h3 class="mt-2 font-display text-xl font-bold text-deep">Your biggest gaps — and what we'd suggest.</h3>
+        <ul id="results-recommendations" class="mt-5 space-y-5 text-base">
+          <!-- filled by JS -->
+        </ul>
+      </div>
+
+      <!-- Primary CTA: build the plan -->
+      <div class="mt-12 rounded-2xl border border-deep/20 bg-deep p-8 text-white">
+        <p class="text-xs font-semibold uppercase tracking-wider text-accent-soft">Next step</p>
+        <h3 class="mt-2 font-display text-2xl font-bold md:text-3xl">
+          Want help building the plan to close these gaps?
+        </h3>
+        <p class="mt-3 max-w-2xl text-deep-soft">
+          Our 4–6 week GTM Diagnostic turns this snapshot into a defensible 90-day operating plan — owners, milestones, and the cadence to ship it. Or start with a 30-minute call to figure out what shape of engagement fits.
+        </p>
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a
+            href={SCHEDULING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-base font-semibold text-deep shadow-sm transition hover:bg-accent hover:text-white"
+          >
+            Book a 30-min meeting
+          </a>
+          <a
+            href="/services/diagnostics"
+            class="inline-flex items-center justify-center rounded-full border border-white/30 px-7 py-3 text-base font-semibold text-white transition hover:bg-white/10"
+          >
+            See the GTM Diagnostic →
+          </a>
+        </div>
+      </div>
+
+      <!-- Optional email upgrade -->
+      <div class="mt-12 rounded-2xl border border-ink/10 bg-bg p-7">
+        <p class="text-xs font-semibold uppercase tracking-wider text-accent">Optional</p>
+        <h3 class="mt-2 font-display text-xl font-bold text-deep">Get the report in your inbox.</h3>
+        <p class="mt-2 text-base text-muted">
+          Drop your email and we'll send a copy of your results plus a short follow-up note. No newsletter, no drip — just this.
+        </p>
+        <!--
+          NOTE FOR SUSAN: This form posts to Formspree. To activate:
+          1. Sign up at https://formspree.io (free tier is fine)
+          2. Create a form, copy the form ID, replace YOUR_FORM_ID below
+          3. Verify your email so submissions arrive
+        -->
+        <form
+          id="email-results-form"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+          class="mt-5 flex flex-col gap-3 sm:flex-row"
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="you@company.com"
+            required
+            class="flex-1 rounded-full border border-ink/15 bg-white px-5 py-3 text-base text-ink placeholder:text-muted focus:border-deep focus:outline-none"
+          />
+          <input type="hidden" name="_subject" value="GTM Readiness Assessment results" />
+          <input type="hidden" name="report" id="email-results-payload" value="" />
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center rounded-full bg-deep px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+          >
+            Email me the report
+          </button>
+        </form>
+        <p id="email-results-success" class="mt-4 hidden text-sm font-semibold text-deep">
+          <!-- filled by JS -->
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom placeholder section so the closing CTA still works pre-submit -->
+  <section id="pre-results-cta">
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <p class="text-base text-muted">Prefer to talk to a human first?</p>
+      <div class="mt-6 flex justify-center">
+        <CTAButton />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline define:vars={{ pillarsJson }}>
+  const pillars = JSON.parse(pillarsJson);
+
+  const form = document.getElementById('assessment-form');
+  const errorBox = document.getElementById('form-error');
+  const results = document.getElementById('results');
+  const preResultsCta = document.getElementById('pre-results-cta');
+  const headline = document.getElementById('results-headline');
+  const summary = document.getElementById('results-summary');
+  const pillarsContainer = document.getElementById('results-pillars');
+  const recsContainer = document.getElementById('results-recommendations');
+  const emailPayload = document.getElementById('email-results-payload');
+  const emailForm = document.getElementById('email-results-form');
+  const emailSuccess = document.getElementById('email-results-success');
+
+  function maturityBand(avg) {
+    if (avg >= 3.5) return { tier: 'Optimized', message: 'You\'re running a tight GTM operation. Most of the lift now is in compounding the edge — sharper segmentation, better instrumentation, AI in the loop.' };
+    if (avg >= 3.0) return { tier: 'Established', message: 'Solid foundation. The next move is to convert "good enough" pillars into competitive advantages — usually two or three of them at once.' };
+    if (avg >= 2.0) return { tier: 'Developing', message: 'Fundamentals are coming together but inconsistently. Pick the two pillars holding the rest back and rebuild them with senior leadership.' };
+    return { tier: 'Forming', message: 'You\'re early — and that\'s fine. The risk is scaling the wrong motion. The right move is a tight diagnostic before any new hires or channels.' };
+  }
+
+  function renderResults(data) {
+    // data = [{key, title, current, target, gap, services}, ...]
+    const overallCurrent = data.reduce((s, p) => s + p.current, 0) / data.length;
+    const overallTarget = data.reduce((s, p) => s + p.target, 0) / data.length;
+    const band = maturityBand(overallCurrent);
+
+    headline.textContent = `Current state: ${band.tier} (${overallCurrent.toFixed(1)} / 4)`;
+    summary.textContent = `${band.message} Your aspiration averages ${overallTarget.toFixed(1)} / 4 across the six pillars — the gap below is where engagement starts.`;
+
+    // Pillar bars
+    pillarsContainer.innerHTML = '';
+    data.forEach((p) => {
+      const currentPct = (p.current / 4) * 100;
+      const targetPct = (p.target / 4) * 100;
+      const row = document.createElement('div');
+      row.className = 'rounded-xl border border-ink/10 bg-white p-5';
+      row.innerHTML = `
+        <div class="flex items-baseline justify-between gap-4">
+          <h4 class="font-display text-base font-bold text-deep">${p.title}</h4>
+          <p class="text-sm text-muted">
+            <span class="font-semibold text-deep">${p.current}</span>
+            <span class="mx-1 text-muted/60">→</span>
+            <span class="font-semibold text-accent">${p.target}</span>
+            <span class="ml-2 text-xs uppercase tracking-wider">${p.gap > 0 ? `gap ${p.gap}` : 'on target'}</span>
+          </p>
+        </div>
+        <div class="relative mt-3 h-3 w-full rounded-full bg-ink/10">
+          <div class="absolute left-0 top-0 h-3 rounded-full bg-accent/30" style="width: ${targetPct}%"></div>
+          <div class="absolute left-0 top-0 h-3 rounded-full bg-deep" style="width: ${currentPct}%"></div>
+        </div>
+      `;
+      pillarsContainer.appendChild(row);
+    });
+
+    // Top 2 gaps. If everything is on target, fall back to the lowest-current pillars.
+    const sorted = [...data].sort((a, b) => b.gap - a.gap || a.current - b.current);
+    const topGaps = sorted.slice(0, 2);
+
+    recsContainer.innerHTML = '';
+    topGaps.forEach((p) => {
+      const li = document.createElement('li');
+      li.className = 'flex flex-col gap-2 border-l-4 border-accent pl-5';
+      const servicesHtml = p.services
+        .map((s) => `<a href="${s.href}" class="text-deep underline-offset-4 hover:underline">${s.label}</a>`)
+        .join(' &middot; ');
+      li.innerHTML = `
+        <p class="font-display text-lg font-bold text-deep">${p.title}${p.gap > 0 ? ` — closing a ${p.gap}-stage gap` : ' — sharpen what you have'}</p>
+        <p class="text-sm text-ink">${p.blurb}</p>
+        <p class="text-sm text-muted">Where we'd start: ${servicesHtml}</p>
+      `;
+      recsContainer.appendChild(li);
+    });
+
+    // Build a plain-text summary the email-results form can submit alongside the email.
+    const lines = [
+      `Overall current: ${overallCurrent.toFixed(1)} / 4 (${band.tier})`,
+      `Overall target: ${overallTarget.toFixed(1)} / 4`,
+      '',
+      'Per-pillar (current → target, gap):',
+      ...data.map((p) => `- ${p.title}: ${p.current} → ${p.target} (gap ${p.gap})`),
+      '',
+      'Top focus areas:',
+      ...topGaps.map((p) => `- ${p.title}`),
+    ];
+    emailPayload.value = lines.join('\n');
+
+    preResultsCta.classList.add('hidden');
+    results.classList.remove('hidden');
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = pillars.map((p) => {
+      const cur = form.querySelector(`input[name="${p.key}-current"]:checked`);
+      const tgt = form.querySelector(`input[name="${p.key}-target"]:checked`);
+      if (!cur || !tgt) return null;
+      const current = parseInt(cur.value, 10);
+      const target = parseInt(tgt.value, 10);
+      return {
+        key: p.key,
+        title: p.title,
+        blurb: p.blurb,
+        services: p.services,
+        current,
+        target,
+        gap: Math.max(0, target - current),
+      };
+    });
+
+    if (data.some((d) => d === null)) {
+      errorBox.classList.remove('hidden');
+      errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    errorBox.classList.add('hidden');
+    renderResults(data);
+  });
+
+  form.addEventListener('reset', () => {
+    results.classList.add('hidden');
+    preResultsCta.classList.remove('hidden');
+    errorBox.classList.add('hidden');
+    emailSuccess.classList.add('hidden');
+    emailForm.reset();
+  });
+
+  function showSubmitMessage(message) {
+    emailSuccess.textContent = message;
+    emailSuccess.classList.remove('hidden');
+  }
+
+  // Submit the email form via fetch so we can show inline confirmation without leaving the results page.
+  emailForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const action = emailForm.getAttribute('action') || '';
+    if (action.includes('YOUR_FORM_ID')) {
+      // Formspree not yet wired up. Show a friendly fallback so testing doesn't error.
+      showSubmitMessage('Email delivery isn\'t wired up yet — but your results are right above.');
+      return;
+    }
+    try {
+      const fd = new FormData(emailForm);
+      const res = await fetch(action, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
+      if (res.ok) {
+        showSubmitMessage('Sent — check your inbox in a minute or two.');
+        emailForm.reset();
+      } else {
+        showSubmitMessage('Something went wrong sending the email. Try again, or grab your results from above.');
+      }
+    } catch {
+      showSubmitMessage('Couldn\'t reach the email service. Your results are still right above.');
+    }
+  });
+</script>
