@@ -152,14 +152,14 @@ const projects = [
 
       <form
         id="quick-project-form"
-        action="https://formspree.io/f/xnjwdndp"
+        action="/api/quick-project-intake"
         method="POST"
         enctype="multipart/form-data"
         class="mt-10 space-y-6"
       >
-        <input type="hidden" name="_subject" value="Quick-turn project intake" />
         <input type="hidden" name="source" value="pikesquare.co/services/quick-projects" />
         <input type="hidden" name="submitted_at" id="qp-timestamp" value="" />
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
         <div class="grid gap-6 md:grid-cols-2">
           <div>
             <label for="qp-name" class="block text-sm font-semibold text-ink">Your name</label>
@@ -345,20 +345,8 @@ const projects = [
     if (!form.reportValidity()) return;
 
     const action = form.getAttribute('action') || '';
-    if (action.includes('YOUR_FORM_ID')) {
-      // Formspree not yet wired up. Simulate success so the page can be tested,
-      // and surface a small note so Susan knows nothing actually sent.
-      form.classList.add('hidden');
-      successBox.classList.remove('hidden');
-      const note = document.createElement('p');
-      note.className = 'mt-4 text-xs italic text-muted';
-      note.textContent = 'Note: form backend not yet configured — submission was not sent.';
-      successBox.appendChild(note);
-      successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      return;
-    }
 
-    // Stamp the submission so the dashboard always shows when it came in.
+    // Stamp the submission so the inbox notification shows when it came in.
     const ts = document.getElementById('qp-timestamp');
     if (ts) ts.value = new Date().toISOString();
 
@@ -367,14 +355,13 @@ const projects = [
     try {
       const fd = new FormData(form);
       const res = await fetch(action, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
-      if (res.ok) {
+      const body = await res.json().catch(() => ({}));
+      if (res.ok && body.ok) {
         form.classList.add('hidden');
         successBox.classList.remove('hidden');
         successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
-        const body = await res.json().catch(() => ({}));
-        const msg = body?.errors?.[0]?.message || 'Something went wrong. Please try again, or email us directly.';
-        showError(msg);
+        showError(body.error || 'Something went wrong. Please try again, or email us directly.');
       }
     } catch {
       showError('Couldn\'t reach the form service. Please try again, or email us directly.');

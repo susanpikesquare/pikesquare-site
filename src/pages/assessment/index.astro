@@ -280,7 +280,7 @@ const pillarsJson = JSON.stringify(pillars);
         </p>
         <form
           id="email-results-form"
-          action="https://formspree.io/f/xwvyopok"
+          action="/api/email-assessment"
           method="POST"
           class="mt-5 flex flex-col gap-3 sm:flex-row"
         >
@@ -291,10 +291,10 @@ const pillarsJson = JSON.stringify(pillars);
             required
             class="flex-1 rounded-full border border-ink/15 bg-white px-5 py-3 text-base text-ink placeholder:text-muted focus:border-deep focus:outline-none"
           />
-          <input type="hidden" name="_subject" value="GTM Readiness Assessment results" />
           <input type="hidden" name="source" value="pikesquare.co/assessment" />
           <input type="hidden" name="submitted_at" id="email-results-timestamp" value="" />
           <input type="hidden" name="report" id="email-results-payload" value="(no report — user submitted email without completing the assessment)" />
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
           <button
             type="submit"
             class="inline-flex items-center justify-center rounded-full bg-deep px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
@@ -458,22 +458,18 @@ const pillarsJson = JSON.stringify(pillars);
   emailForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const action = emailForm.getAttribute('action') || '';
-    if (action.includes('YOUR_FORM_ID')) {
-      // Formspree not yet wired up. Show a friendly fallback so testing doesn't error.
-      showSubmitMessage('Email delivery isn\'t wired up yet — but your results are right above.');
-      return;
-    }
-    // Stamp the submission so we can tell when an empty payload came in.
+    // Stamp the submission so the inbox notification shows when it came in.
     const ts = document.getElementById('email-results-timestamp');
     if (ts) ts.value = new Date().toISOString();
     try {
       const fd = new FormData(emailForm);
       const res = await fetch(action, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
-      if (res.ok) {
+      const body = await res.json().catch(() => ({}));
+      if (res.ok && body.ok) {
         showSubmitMessage('Sent — check your inbox in a minute or two.');
         emailForm.reset();
       } else {
-        showSubmitMessage('Something went wrong sending the email. Try again, or grab your results from above.');
+        showSubmitMessage(body.error || 'Something went wrong sending the email. Your results are still right above.');
       }
     } catch {
       showSubmitMessage('Couldn\'t reach the email service. Your results are still right above.');
