@@ -101,6 +101,9 @@ export const POST: APIRoute = async ({ request }) => {
     return jsonResponse(500, { ok: false, error: 'Email service is not configured.' });
   }
 
+  const userStream = import.meta.env.POSTMARK_STREAM_ASSESSMENT_RESULTS || 'outbound';
+  const notifyStream = import.meta.env.POSTMARK_STREAM_ASSESSMENT_NOTIFY || 'outbound';
+
   // 1) Email the user their report.
   const userResult = await sendPostmarkEmail({
     From: fromEmail,
@@ -109,6 +112,7 @@ export const POST: APIRoute = async ({ request }) => {
     HtmlBody: buildUserEmailHtml(report),
     TextBody: buildUserEmailText(report),
     Tag: 'gtm-assessment-results',
+    MessageStream: userStream,
   });
 
   if (!userResult.ok) {
@@ -140,6 +144,7 @@ export const POST: APIRoute = async ({ request }) => {
       Subject: `[Assessment] New submission from ${email}`,
       TextBody: notifyText,
       Tag: 'gtm-assessment-notify',
+      MessageStream: notifyStream,
     });
   }
 

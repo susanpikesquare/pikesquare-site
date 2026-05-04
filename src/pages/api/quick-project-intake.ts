@@ -166,6 +166,8 @@ export const POST: APIRoute = async ({ request }) => {
     return jsonResponse(500, { ok: false, error: 'Email service is not configured.' });
   }
 
+  const intakeStream = import.meta.env.POSTMARK_STREAM_PROJECT_INTAKE || 'outbound';
+
   const result = await sendPostmarkEmail({
     From: fromEmail,
     To: intakeToEmail,
@@ -175,6 +177,7 @@ export const POST: APIRoute = async ({ request }) => {
     TextBody: buildIntakeText(fields, fileSummary),
     Tag: 'quick-project-intake',
     Attachments: attachments.length ? attachments : undefined,
+    MessageStream: intakeStream,
   });
 
   if (!result.ok) {
