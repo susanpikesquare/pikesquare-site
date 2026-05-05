@@ -1,9 +1,124 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTAButton from '../../components/CTAButton.astro';
+import FounderMomentCard from '../../components/FounderMomentCard.astro';
+
+const moments = [
+  {
+    quote: "Our pipeline data is messy and the team doesn't trust it.",
+    resolution: 'Pipeline & forecast diagnostic — clean inputs, conversion benchmarks, a forecast cadence the team will actually run.',
+  },
+  {
+    quote: 'We have a dozen GTM tools and no one knows what\'s working.',
+    resolution: "Tech-stack rationalization — what to consolidate, what to drop, what to keep. AI replaces some of it; we'll tell you which.",
+  },
+  {
+    quote: "Forecast was off by 30% last quarter and we don't know why.",
+    resolution: 'Forecast accuracy diagnostic — root-cause the inputs, the methodology, and the cadence that hides risk until quarter-end.',
+  },
+  {
+    quote: 'Comp plans are confusing and reps are gaming the wrong things.',
+    resolution: 'Comp plan rebuild — aligned to the motion, gaming-resistant, simple enough for reps to internalize.',
+  },
+  {
+    quote: 'Dashboards exist, but no one looks at them.',
+    resolution: '3–5 dashboards that drive the operating cadence — and a ritual that makes them load-bearing.',
+  },
+  {
+    quote: "We want AI in our motion but don't know where it actually moves the needle.",
+    resolution: 'AI Stack Audit & Roadmap — where AI helps, where it\'s hype, what to build, what to wait on.',
+  },
+];
+
+// What RevOps work covers, organized into the operating areas we touch.
+const areas = [
+  {
+    title: 'Pipeline & forecast',
+    bullets: [
+      'Pipeline coverage and conversion analysis',
+      'Forecast methodology and accuracy review',
+      'Deal stage definitions and qualification',
+      'Renewal and expansion forecasting',
+    ],
+  },
+  {
+    title: 'CRM & dashboards',
+    bullets: [
+      'Data hygiene and trust audit',
+      '3–5 dashboards that drive the operating cadence',
+      'Activity and outcome metrics that align',
+      'Reporting cadence and consumer roles',
+    ],
+  },
+  {
+    title: 'Tech stack',
+    bullets: [
+      'Inventory, overlap analysis, redundancy map',
+      'Consolidation recommendations',
+      'AI replacement opportunities for low-leverage tools',
+      'Integration points and data flow',
+    ],
+  },
+  {
+    title: 'Comp & quotas',
+    bullets: [
+      'Quota setting aligned to capacity and conversion',
+      'Plan structure aligned to motion (acquisition, expansion, renewal)',
+      'Gaming-resistance review',
+      'SPIFFs and accelerators that pay off the right behavior',
+    ],
+  },
+  {
+    title: 'Operating rhythm',
+    bullets: [
+      'Pipeline, deal review, and forecast cadence',
+      'QBR structure and inputs',
+      'Leadership 1:1 templates and rituals',
+      'Cross-functional rhythm with marketing, CS, and finance',
+    ],
+  },
+  {
+    title: 'AI surfacing',
+    bullets: [
+      'Where AI moves the needle in your stack',
+      'Custom GPTs and copilots wired to existing systems',
+      'AI-driven account intelligence and deal-health signals',
+      'Adoption plan with measurable milestones',
+    ],
+  },
+];
+
+const shapes = [
+  {
+    label: 'Project',
+    title: 'Fixed scope, fixed price.',
+    durationLabel: '4–8 weeks',
+    body: 'Best when you have a specific area to fix — pipeline, forecast, comp, dashboards, tech stack, or AI roadmap. We name the work, the price, and the deliverable up front. Walk away with the operating change in place.',
+    examples: [
+      'Pipeline & forecast diagnostic',
+      'Tech stack rationalization',
+      'Comp plan rebuild',
+      'Dashboard rebuild (3–5 that drive operating decisions)',
+      'AI Stack Audit & Roadmap',
+    ],
+  },
+  {
+    label: 'Fractional',
+    title: 'Fractional Head of RevOps.',
+    durationLabel: '8–16 hours/week, 3–6 months',
+    body: 'Best when RevOps needs ownership across multiple areas — and you want a senior operator in seat without hiring. We run the function, hire the permanent leader, and hand off a working system.',
+    examples: [
+      'Acts as your interim Head of RevOps',
+      'Cleans the data, builds the cadence',
+      'Hires and onboards your permanent person',
+      'Cross-links into Sales, CS, and Finance leadership',
+    ],
+  },
+];
 ---
 
 <BaseLayout title="RevOps & GTM Effectiveness — PikeSquare">
+  <!-- Hero -->
   <section class="border-b border-ink/10">
     <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
       <p class="text-sm font-semibold uppercase tracking-wider text-accent">Service</p>
@@ -13,23 +128,122 @@ import CTAButton from '../../components/CTAButton.astro';
       <p class="mt-6 text-lg text-muted">
         PikeSquare RevOps fixes the pipeline, the comp plan, the dashboards, and the AI-enabled motions you're actually trying to run — so the team operates on data, not memory.
       </p>
-    </div>
-  </section>
-
-  <section class="border-b border-ink/10 bg-white">
-    <div class="mx-auto max-w-4xl px-6 py-16">
-      <div class="rounded-2xl border border-amber-300 bg-amber-50 p-6 text-sm text-ink">
-        <p class="font-semibold">TODO for Claude Code</p>
-        <p class="mt-2">
-          Build out using Section 6.6 of the rewrite plan. Sections: When founders come to us, What we do, How we engage (project vs. fractional), CTA.
-        </p>
+      <div class="mt-10 flex flex-col items-start gap-4 md:flex-row md:items-center">
+        <CTAButton />
+        <a
+          href="/services/ai"
+          class="text-base font-semibold text-deep underline-offset-4 hover:underline"
+        >
+          See the AI services →
+        </a>
       </div>
     </div>
   </section>
 
+  <!-- When founders come to us -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">When founders come to us</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Six moments where RevOps gets in the way.
+      </h2>
+      <p class="mt-4 max-w-2xl text-muted">
+        If your team is making decisions on memory and feel — instead of clean data and a trusted forecast — that's the moment.
+      </p>
+      <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {moments.map((m) => <FounderMomentCard quote={m.quote} resolution={m.resolution} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">What we do</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Six operating areas — engage us in any one, or string several together.
+      </h2>
+      <p class="mt-4 max-w-2xl text-muted">
+        RevOps isn't one job. It's a stack of operating disciplines. We work the parts that matter for your stage.
+      </p>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          areas.map((a) => (
+            <article class="flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6">
+              <h3 class="font-display text-lg font-bold text-deep">{a.title}</h3>
+              <ul class="mt-4 space-y-2">
+                {a.bullets.map((b) => (
+                  <li class="flex gap-3 text-sm text-ink">
+                    <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- How we engage -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">How we engage</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Two shapes. Pick the one that fits the moment.
+      </h2>
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        {
+          shapes.map((s) => (
+            <article class="flex h-full flex-col rounded-2xl border border-ink/10 bg-bg p-7">
+              <p class="text-xs font-semibold uppercase tracking-wider text-accent">{s.label}</p>
+              <h3 class="mt-2 font-display text-2xl font-bold text-deep">{s.title}</h3>
+              <p class="mt-2 text-sm font-semibold uppercase tracking-wider text-muted">
+                {s.durationLabel}
+              </p>
+              <p class="mt-4 text-base text-ink">{s.body}</p>
+              <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-muted">Examples</p>
+              <ul class="mt-2 space-y-2">
+                {s.examples.map((ex) => (
+                  <li class="flex gap-3 text-sm text-ink">
+                    <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
+                    <span>{ex}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+      <p class="mt-10 text-base text-muted">
+        Not sure which fits?{' '}
+        <a href="/services" class="font-semibold text-deep underline-offset-4 hover:underline">
+          Compare engagement shapes
+        </a>
+        — or just book a call and we'll tell you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
   <section>
-    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
-      <CTAButton />
+    <div class="mx-auto max-w-3xl px-6 py-24 text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+        Want GTM that runs on signal?
+      </h2>
+      <p class="mt-4 text-lg text-muted">
+        30-minute call to scope the work. We'll tell you whether RevOps is the right starting point — and if a different engagement fits the moment, we'll point you to it.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
+        <CTAButton />
+        <a
+          href="/assessment"
+          class="text-base font-semibold text-deep underline-offset-4 hover:underline"
+        >
+          Or take the free 5-minute assessment first →
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>

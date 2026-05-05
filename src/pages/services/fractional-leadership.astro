@@ -1,9 +1,79 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTAButton from '../../components/CTAButton.astro';
+import FounderMomentCard from '../../components/FounderMomentCard.astro';
+
+const moments = [
+  {
+    quote: 'Our last revenue leader left and we need someone in seat now while we hire.',
+    resolution: 'Interim CRO or VP — running the team, the forecast, and the cadence while the search continues.',
+  },
+  {
+    quote: "We've outgrown the founder-led motion and the team needs a CRO.",
+    resolution: 'Fractional CRO who builds the operating system the next leader inherits.',
+  },
+  {
+    quote: "The new VP we hired isn't working out and we need to move fast.",
+    resolution: 'Step in, stabilize the team, manage the transition cleanly.',
+  },
+  {
+    quote: "We're between rounds and a permanent CRO is too expensive — we need someone now.",
+    resolution: 'Senior operator at a fraction of a permanent loaded cost — long enough to ship something, short enough to know when to hand off.',
+  },
+  {
+    quote: 'Customer success is becoming a function and we need a fractional CCO to design and stand it up.',
+    resolution: 'Fractional CCO who defines the motion, hires the first leaders, and works themselves out of the seat.',
+  },
+];
+
+const offerings = [
+  'Operate as the head of the function — CRO, VP Sales, VP CS, VP Marketing, or head of RevOps',
+  'Own the operating cadence — forecast, deal reviews, pipeline, leadership 1:1s',
+  'Build (or fix) the 90-day plan and ship it weekly',
+  'Hire and onboard the permanent leader — and transition cleanly',
+  'Show up where it matters — leadership team, board meetings, key customer escalations',
+];
+
+const stages = [
+  {
+    label: 'By day 30',
+    title: 'A working operating system.',
+    body: "A clean cadence is in place. The team knows what to do next week. Forecast inputs are being cleaned up. Early hire decisions are being made on real data.",
+  },
+  {
+    label: 'By day 60',
+    title: 'Forecast and pipeline you can defend.',
+    body: "Forecast accuracy is improving. Underperformers are being managed. Key hires are scoped and the search is in motion. The plan is showing up in the team's daily work.",
+  },
+  {
+    label: 'By day 90',
+    title: 'Working ourselves out of the seat.',
+    body: 'Permanent leader is hired or actively recruited. The plan is running on its own cadence. We start the handoff so the new leader inherits a working system, not a mess.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'How long does a typical fractional engagement run?',
+    a: '3–6 months. Long enough to ship something, short enough to avoid becoming furniture. Some extend; many wrap as planned when the permanent leader is in seat.',
+  },
+  {
+    q: 'Can a fractional engagement turn into a full-time hire?',
+    a: "Almost never. We're operators with multiple engagements, not job hunters. The goal is your permanent leader in seat — that's how we measure success.",
+  },
+  {
+    q: 'Which seats can you cover?',
+    a: 'CRO, VP Sales, VP Customer Success, VP Marketing, and head of RevOps. We match the partner to the seat — based on which of us has held the closest version of it.',
+  },
+  {
+    q: 'Will you help us hire the permanent person?',
+    a: 'Yes — recruiting and onboarding the permanent leader is part of the engagement. We help write the JD, screen candidates, and run the transition.',
+  },
+];
 ---
 
 <BaseLayout title="Fractional GTM Leadership — PikeSquare">
+  <!-- Hero -->
   <section class="border-b border-ink/10">
     <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
       <p class="text-sm font-semibold uppercase tracking-wider text-accent">Service</p>
@@ -13,32 +83,146 @@ import CTAButton from '../../components/CTAButton.astro';
       <p class="mt-6 text-lg text-muted">
         PikeSquare embeds an interim CRO, VP Sales, VP CS, or VP Marketing into your company — to own the GTM org while you decide who to hire next.
       </p>
-    </div>
-  </section>
-
-  <section class="border-b border-ink/10 bg-white">
-    <div class="mx-auto max-w-4xl px-6 py-16">
-      <div class="rounded-2xl border border-amber-300 bg-amber-50 p-6 text-sm text-ink">
-        <p class="font-semibold">TODO for Claude Code</p>
-        <p class="mt-2">
-          Build out the rest of this page using the home page (<code class="rounded bg-white px-1.5 py-0.5">src/pages/index.astro</code>) as a model and Section 6.3 of the rewrite plan in the parent folder.
-        </p>
-        <p class="mt-2">Pattern to follow:</p>
-        <ol class="mt-1 list-decimal pl-5">
-          <li>When founders come to us for this (3 trigger situations)</li>
-          <li>What we do (5 bullets)</li>
-          <li>How we engage (time, duration, pricing, team)</li>
-          <li>What changes in the first 30 / 60 / 90 days</li>
-          <li>FAQ (3 Q&amp;As)</li>
-          <li>CTA</li>
-        </ol>
+      <div class="mt-10 flex flex-col items-start gap-4 md:flex-row md:items-center">
+        <CTAButton />
+        <a
+          href="/services/advisory"
+          class="text-base font-semibold text-deep underline-offset-4 hover:underline"
+        >
+          Don't need a seat filled? See Advisory →
+        </a>
       </div>
     </div>
   </section>
 
+  <!-- When founders come to us -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">When founders come to us</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Five moments that call for someone in the seat.
+      </h2>
+      <p class="mt-4 max-w-2xl text-muted">
+        Fractional leadership is the right shape when you need ownership of the function — not just advice on it.
+      </p>
+      <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {moments.map((m) => <FounderMomentCard quote={m.quote} resolution={m.resolution} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">What we do</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Operate the function — for real, not as an advisor.
+      </h2>
+      <ul class="mt-10 space-y-4">
+        {
+          offerings.map((o) => (
+            <li class="flex gap-4">
+              <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent" />
+              <p class="text-base text-ink">{o}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- How we engage -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">How we engage</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Real ownership. Real cadence. Real exit.
+      </h2>
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-ink/10 bg-bg p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Hours</p>
+          <p class="mt-2 text-base text-ink">
+            8–20 hours per week, scoped to the seat and stage of the company. Day-to-day availability for deals, hires, and the operating cadence.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-ink/10 bg-bg p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Duration</p>
+          <p class="mt-2 text-base text-ink">
+            12-week minimum, typically 3–6 months. Long enough to ship the operating system the next leader inherits.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-ink/10 bg-bg p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Pricing</p>
+          <p class="mt-2 text-base text-ink">
+            Weekly rate priced as a fraction of a senior operator's loaded cost. No success fees, no equity. We quote precisely after the discovery call.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-ink/10 bg-bg p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Team</p>
+          <p class="mt-2 text-base text-ink">
+            One PikeSquare partner in the seat. No analyst layer, no offshore execution team. The operator who scopes the work runs the work.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 30 / 60 / 90 -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">What changes</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        First 30, 60, and 90 days.
+      </h2>
+      <p class="mt-4 max-w-2xl text-muted">
+        We measure ourselves on operating change, not deck-pages produced. This is the bar.
+      </p>
+      <ol class="mt-10 grid gap-6 md:grid-cols-3">
+        {
+          stages.map((s) => (
+            <li class="rounded-2xl border border-ink/10 bg-white p-7">
+              <p class="text-xs font-semibold uppercase tracking-wider text-accent">{s.label}</p>
+              <h3 class="mt-2 font-display text-xl font-bold text-deep">{s.title}</h3>
+              <p class="mt-3 text-muted">{s.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">FAQ</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Questions founders ask on the discovery call.
+      </h2>
+      <dl class="mt-10 space-y-8">
+        {
+          faqs.map((f) => (
+            <div>
+              <dt class="font-display text-lg font-bold text-deep">{f.q}</dt>
+              <dd class="mt-2 text-muted">{f.a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
   <section>
-    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
-      <CTAButton />
+    <div class="mx-auto max-w-3xl px-6 py-24 text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+        Need someone in seat?
+      </h2>
+      <p class="mt-4 text-lg text-muted">
+        30-minute call to scope the seat, the timeline, and the handoff. We'll tell you on the call whether a fractional engagement is the right shape.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <CTAButton />
+      </div>
     </div>
   </section>
 </BaseLayout>
