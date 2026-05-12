@@ -182,7 +182,7 @@ const moments = [
   const slides = document.querySelectorAll('.moment-slide');
   const indicators = document.querySelectorAll('[data-slide]');
 
-  function showSlide(index) {
+  function showSlide(index: number) {
     slides.forEach((slide, i) => {
       slide.classList.toggle('opacity-100', i === index);
       slide.classList.toggle('opacity-0', i !== index);
@@ -205,9 +205,13 @@ const moments = [
 
   // Manual navigation
   indicators.forEach((indicator) => {
-    indicator.addEventListener('click', (e) => {
-      currentSlide = parseInt(e.target.getAttribute('data-slide'));
-      showSlide(currentSlide);
+    indicator.addEventListener('click', (e: Event) => {
+      const target = e.target as HTMLElement;
+      const slideStr = target.getAttribute('data-slide');
+      if (slideStr !== null) {
+        currentSlide = parseInt(slideStr, 10);
+        showSlide(currentSlide);
+      }
     });
   });
 </script>
