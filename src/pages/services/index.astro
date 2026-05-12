@@ -107,9 +107,7 @@ const categories = [
                 {c.items.map((it) => (
                   <li class="flex gap-3 text-sm">
                     <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
-                    <a href={it.href} class="text-deep underline-offset-4 hover:underline">
-                      {it.label}
-                    </a>
+                    <span class="text-deep">{it.label}</span>
                   </li>
                 ))}
               </ul>
