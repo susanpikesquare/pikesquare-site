@@ -30,116 +30,9 @@ const moments = [
     resolution: 'A turnkey sales kickoff — content, training, exercises, venue, and a keynote that lands.',
   },
 ];
-
-// Six pillars of GTM — what we help with. Specific examples below the headline make it
-// concrete without limiting the conversation to a fixed set of products.
-// Inline SVG inner content for each pillar's icon. Lucide-style 24x24
-// outline; the wrapper <svg> sets stroke + sizing in the template.
-const pillarIcons: Record<string, string> = {
-  Strategy:
-    '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/>',
-  Motion:
-    '<polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/>',
-  Message:
-    '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
-  Process:
-    '<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>',
-  Talent:
-    '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
-  Operations:
-    '<line x1="6" y1="20" x2="6" y2="16"/><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/>',
-};
-
-const pillars = [
-  {
-    title: 'Strategy',
-    blurb: 'Right customers, right buyers, right growth stage.',
-    examples: [
-      'ICP and target-buyer definition',
-      'Defensible 90-day GTM plans',
-      'Scale-up readiness reviews',
-      'AI stack audit and roadmap',
-    ],
-  },
-  {
-    title: 'Motion',
-    blurb: 'Acquire, progress, and grow customers.',
-    examples: [
-      'Channel and acquisition design',
-      'Deal progression and qualification',
-      'Customer success risk and renewal plays',
-      'AI-driven account and deal-health signals',
-    ],
-  },
-  {
-    title: 'Message',
-    blurb: 'The story your team tells consistently.',
-    examples: [
-      'Sales pitch deck builds',
-      'Value narratives and positioning',
-      'Modular vertical & persona content',
-      'AI-augmented narrative variants',
-    ],
-  },
-  {
-    title: 'Process',
-    blurb: 'Repeatable rituals the whole team runs.',
-    examples: [
-      'Sales and CS operating cadence',
-      'Forecasting discipline',
-      'Deal reviews and pipeline rituals',
-      'AI copilots wired into the cadence',
-    ],
-  },
-  {
-    title: 'Talent',
-    blurb: 'Org design, hiring, compensation, enablement.',
-    examples: [
-      'Org design and compensation',
-      'Hiring senior GTM roles',
-      'Sales kickoffs and enablement programs',
-      'AI enablement: custom GPTs, internal apps, automations',
-    ],
-  },
-  {
-    title: 'Operations',
-    blurb: 'Systems, data, and analytics that drive outcomes.',
-    examples: [
-      'Pipeline coverage and dashboards',
-      'AI to surface data in existing tools',
-      'Comp plans and forecasting accuracy',
-      'Custom internal apps without buying more software',
-    ],
-  },
-];
-
-const whys = [
-  {
-    title: 'Senior, no analyst layers',
-    body: 'Every engagement is led by someone who has held the role — CRO, VP Sales, VP CS, VP Marketing, head of RevOps. The same senior operator who writes the plan executes it.',
-  },
-  {
-    title: 'Cross-functional, AI-fluent',
-    body: "GTM doesn't compound when sales, customer success, RevOps, and enablement live in four different rooms — and it doesn't compound when AI lives only in IT, either. We work the full stack as one formation, with AI in the loop where it actually moves the work.",
-  },
-  {
-    title: 'Strategy that ships',
-    body: "We don't hand you a deck and walk. Every engagement includes the operating cadence and behavior change that move pipeline, retention, and forecast — measured in 30 days, not 90.",
-  },
-  {
-    title: 'Right-sized to the moment',
-    body: "From a single keynote or kickoff build to a multi-month fractional seat. We size the engagement to the work, not to a retainer ladder.",
-  },
-];
-
-const steps = [
-  { n: 1, title: '30-minute meeting', body: "We listen, you talk. By the end we know if we're a fit and which engagement shape is right." },
-  { n: 2, title: 'Scoped engagement letter in 7 days', body: 'Outcomes, deliverables, weekly cadence, fixed price or fixed retainer.' },
-  { n: 3, title: 'Kickoff in 14 days', body: 'By day 30 you see a change in how GTM runs.' },
-];
 ---
 
-<BaseLayout title="PikeSquare — Senior GTM firepower for startups and scale-ups">
+<BaseLayout title="PikeSquare — Senior GTM operators for startups and scale-ups">
   <!-- Hero -->
   <section class="border-b border-ink/10">
     <div class="mx-auto max-w-6xl px-6 pb-24 pt-20 md:pt-28">
@@ -147,15 +40,15 @@ const steps = [
         Senior GTM operators for startups and scale-ups.
       </h1>
       <p class="mt-6 max-w-2xl text-lg text-muted md:text-xl">
-        Former CROs, VPs, and senior operators embedded with your revenue leaders. We bring the strategy, stay through the execution, and put AI to work across sales, customer success, RevOps, and enablement. Most at home with B2B SaaS from Series A through growth stage.
+        We embed with your revenue team. Strategy, execution, and AI — all from someone who's held the role.
       </p>
       <div class="mt-10 flex flex-col items-start gap-4 md:flex-row md:items-center">
         <CTAButton />
         <a
-          href="/how-we-work"
+          href="/services"
           class="text-base font-semibold text-deep underline-offset-4 hover:underline"
         >
-          See how we work →
+          See what we do →
         </a>
       </div>
     </div>
@@ -168,361 +61,29 @@ const steps = [
         Moments we're built for
       </p>
       <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
-        If one of these sounds like your quarter — or anything close — we should talk.
+        If one of these sounds like your quarter, we should talk.
       </h2>
       <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {moments.map((m) => <FounderMomentCard quote={m.quote} resolution={m.resolution} />)}
       </div>
-      <p class="mt-8 max-w-2xl text-sm text-muted">
-        These are examples — if your moment looks different, we're probably built for that too.
-      </p>
     </div>
   </section>
 
-  <!-- Where we help — the six pillars of GTM -->
-  <section class="border-b border-ink/10">
-    <div class="mx-auto max-w-6xl px-6 py-20">
-      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Where we help</p>
-      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
-        Six pillars of go-to-market. We work across all of them.
-      </h2>
-      <p class="mt-4 max-w-2xl text-muted">
-        Engage us for any one — or string several together. The shape of the engagement (advisor on retainer, fractional leader, kickoff build, keynote, scoped project) follows the work, not the other way around.
-      </p>
-      <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {
-          pillars.map((p) => (
-            <article class="flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6">
-              <span
-                aria-hidden="true"
-                class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.75"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  set:html={pillarIcons[p.title]}
-                />
-              </span>
-              <h3 class="mt-4 font-display text-lg font-bold text-deep">Go-to-Market {p.title}</h3>
-              <p class="mt-2 text-sm text-muted">{p.blurb}</p>
-              <ul class="mt-4 space-y-2">
-                {p.examples.map((ex) => (
-                  <li class="flex gap-3 text-sm text-ink">
-                    <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
-                    <span>{ex}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))
-        }
-      </div>
-      <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
-        <a
-          href="/services"
-          class="text-base font-semibold text-deep underline-offset-4 hover:underline"
-        >
-          See engagement shapes →
-        </a>
-        <a
-          href="/resources"
-          class="text-base font-semibold text-deep underline-offset-4 hover:underline"
-        >
-          Browse free resources →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- AI in GTM — integrated, not siloed -->
-  <section class="border-b border-ink/10 bg-white">
-    <div class="mx-auto max-w-6xl px-6 py-20">
-      <p class="text-sm font-semibold uppercase tracking-wider text-accent">AI in revenue work</p>
-      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
-        We've used it. We know what works. We'll help you figure it out.
-      </h2>
-      <p class="mt-4 max-w-2xl text-muted">
-        AI is one of the tools in our GTM toolkit — and we've applied it effectively across strategy, sales, customer success, and operations. We advise on where AI moves the needle in your stack, help you surface insights from tools you already own, and can train your team to build AI-augmented workflows.
-      </p>
-      <div class="mt-10 grid gap-8 md:grid-cols-2">
-        <div>
-          <h3 class="font-display text-lg font-bold text-deep">Real examples from our work</h3>
-          <ul class="mt-6 space-y-4">
-            <li class="flex gap-3">
-              <span aria-hidden="true" class="mt-1 inline-block h-2 w-2 flex-none bg-accent flex-shrink-0"></span>
-              <span class="text-sm text-ink"><strong>Employee recognition at scale:</strong> An AI-powered workflow that surfaces employee wins daily — genuine recognition moments that impact retention and culture.</span>
-            </li>
-            <li class="flex gap-3">
-              <span aria-hidden="true" class="mt-1 inline-block h-2 w-2 flex-none bg-accent flex-shrink-0"></span>
-              <span class="text-sm text-ink"><strong>Deal intelligence:</strong> Using AI to surface customer health signals and deal risk from your CRM — without buying another platform.</span>
-            </li>
-            <li class="flex gap-3">
-              <span aria-hidden="true" class="mt-1 inline-block h-2 w-2 flex-none bg-accent flex-shrink-0"></span>
-              <span class="text-sm text-ink"><strong>Enablement at speed:</strong> Custom GPTs and internal tools that train reps and reduce time-to-productivity.</span>
-            </li>
-          </ul>
-        </div>
-        <div class="rounded-2xl border border-accent/20 bg-accent/5 p-8">
-          <p class="text-sm font-semibold uppercase tracking-wider text-accent">Free consultation</p>
-          <h3 class="mt-3 font-display text-xl font-bold text-deep">Not sure where to start with AI in GTM?</h3>
-          <p class="mt-3 text-sm text-ink">
-            We offer a free initial consultation on your AI approach — where it moves the needle, where to skip the noise, and a sequenced plan to get started.
-          </p>
-          <div class="mt-6">
-            <CTAButton />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Free assessment + quick projects (deep navy block) -->
-  <section class="border-b border-ink/10 bg-deep text-white">
-    <div class="mx-auto max-w-6xl px-6 py-20">
-      <p class="text-sm font-semibold uppercase tracking-wider text-accent-soft">Two ways to start small</p>
-      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight md:text-4xl">
-        Not ready for a full engagement? Start here.
-      </h2>
-      <p class="mt-4 max-w-2xl text-deep-soft">
-        A free 5-minute self-assessment, or an async quick-turn project handled by a senior operator. Both are designed for the moments where a multi-month engagement is too much.
-      </p>
-      <div class="mt-10 grid gap-4 md:grid-cols-2">
-        <a
-          href="/assessment"
-          class="group flex h-full flex-col rounded-2xl border border-white/15 bg-white/5 p-7 transition hover:border-accent hover:bg-white/10"
-        >
-          <p class="text-xs font-semibold uppercase tracking-wider text-accent">Free tool</p>
-          <h3 class="mt-2 font-display text-xl font-bold text-white">GTM Readiness Assessment</h3>
-          <p class="mt-3 text-base text-deep-soft">Five minutes. Six pillars. A snapshot of where your GTM function is today, where you want it to be, and the biggest gaps in between. Ungated.</p>
-          <span class="mt-auto pt-5 text-sm font-semibold text-accent group-hover:underline">Take the assessment →</span>
-        </a>
-        <a
-          href="/services/quick-projects"
-          class="group flex h-full flex-col rounded-2xl border border-white/15 bg-white/5 p-7 transition hover:border-accent hover:bg-white/10"
-        >
-          <p class="text-xs font-semibold uppercase tracking-wider text-accent">Async, fixed price</p>
-          <h3 class="mt-2 font-display text-xl font-bold text-white">Quick-turn Projects</h3>
-          <p class="mt-3 text-base text-deep-soft">Pitch deck refresh, messaging audit, data sheet, tools audit, training module — handled by senior operators, async, with a quote in two business days.</p>
-          <span class="mt-auto pt-5 text-sm font-semibold text-accent group-hover:underline">See project types →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Showcase teaser -->
-  <section class="border-b border-ink/10 bg-white">
-    <div class="mx-auto max-w-6xl px-6 py-20">
-      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Custom tools when needed</p>
-      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
-        We can build custom apps. We teach you to build them too.
-      </h2>
-      <p class="mt-4 max-w-2xl text-muted">
-        Sometimes the right answer is a custom tool — a revenue dashboard, an AI-augmented workflow, or an internal app that your team owns. We've built several as proof of concept. If you need custom capability, we build it; if you want to build it yourself, we teach you.
-      </p>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <a
-          href="/showcase"
-          class="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-bg transition hover:border-deep/40 hover:shadow-md"
-        >
-          <div class="aspect-[16/10] overflow-hidden bg-white">
-            <img
-              src="/showcase/prismiq-business-case.png"
-              alt="PrismIQ app screenshot — business case builder"
-              class="h-full w-full object-cover object-top transition group-hover:scale-[1.02]"
-              loading="lazy"
-            />
-          </div>
-          <div class="flex flex-1 flex-col p-6">
-            <p class="text-xs font-semibold uppercase tracking-wider text-accent">Example app</p>
-            <h3 class="mt-2 font-display text-lg font-bold text-deep">PrismIQ</h3>
-            <p class="mt-2 text-sm text-muted">An app concept for helping sales and CS teams quantify and communicate measurable business impact — first pitch to every renewal.</p>
-            <span class="mt-auto pt-4 text-sm font-semibold text-deep group-hover:underline">See it →</span>
-          </div>
-        </a>
-        <a
-          href="/showcase"
-          class="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-bg transition hover:border-deep/40 hover:shadow-md"
-        >
-          <div class="aspect-[16/10] overflow-hidden bg-white">
-            <img
-              src="/showcase/formationiq-hub.png"
-              alt="FormationIQ app screenshot — sales leadership command center"
-              class="h-full w-full object-cover object-top transition group-hover:scale-[1.02]"
-              loading="lazy"
-            />
-          </div>
-          <div class="flex flex-1 flex-col p-6">
-            <p class="text-xs font-semibold uppercase tracking-wider text-accent">Example app</p>
-            <h3 class="mt-2 font-display text-lg font-bold text-deep">FormationIQ</h3>
-            <p class="mt-2 text-sm text-muted">An app concept for a revenue-intelligence overlay on Salesforce — priorities, AI recommendations, and account intel in one cockpit.</p>
-            <span class="mt-auto pt-4 text-sm font-semibold text-deep group-hover:underline">See it →</span>
-          </div>
-        </a>
-      </div>
-      <div class="mt-10">
-        <a href="/showcase" class="text-base font-semibold text-deep underline-offset-4 hover:underline">
-          See example apps we've built →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- By the numbers strip -->
-  <section class="border-b border-ink/10 bg-bg">
-    <div class="mx-auto max-w-6xl px-6 py-12">
-      <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-        <div>
-          <p class="font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">55+</p>
-          <p class="mt-2 text-sm text-muted">Years combined enterprise GTM leadership</p>
-        </div>
-        <div>
-          <p class="font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">3<span class="text-accent">+</span></p>
-          <p class="mt-2 text-sm text-muted">CRO seats held — Visier, LeapYear, GiveCampus</p>
-        </div>
-        <div>
-          <p class="font-display text-2xl font-bold tracking-tight text-deep md:text-3xl">Series&nbsp;A→Growth</p>
-          <p class="mt-2 text-sm text-muted">Where we do our best work</p>
-        </div>
-        <div>
-          <p class="font-display text-2xl font-bold tracking-tight text-deep md:text-3xl">Senior-led</p>
-          <p class="mt-2 text-sm text-muted">No analyst layers, no hand-offs</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why PikeSquare -->
-  <section class="border-b border-ink/10 bg-white">
-    <div class="mx-auto max-w-6xl px-6 py-20">
-      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Why PikeSquare</p>
-      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
-        Senior leadership that stays for the execution.
-      </h2>
-      <p class="mt-4 max-w-2xl text-muted">
-        The category most agencies and solo advisors miss: the same senior operator owns the strategy <em>and</em> the operating change. No hand-offs to a junior team, no "deliverables" that sit on a shelf.
-      </p>
-      <div class="mt-10 grid gap-x-12 gap-y-8 md:grid-cols-2">
-        {
-          whys.map((w) => (
-            <div>
-              <h3 class="font-display text-xl font-bold text-deep">{w.title}</h3>
-              <p class="mt-2 text-muted">{w.body}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Founders teaser -->
-  <section class="border-b border-ink/10">
-    <div class="mx-auto max-w-6xl px-6 py-20">
-      <p class="text-sm font-semibold uppercase tracking-wider text-accent">The partners</p>
-      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
-        Two founders. Both have held the seat.
-      </h2>
-      <p class="mt-4 max-w-2xl text-muted">
-        PikeSquare is run by two senior operators — Susan and Steve. The same partner who scopes your engagement runs it.
-      </p>
-      <div class="mt-12 grid gap-10 md:grid-cols-2">
-        <a href="/about" class="group flex gap-6 rounded-2xl border border-ink/10 bg-white p-6 transition hover:border-deep/40 hover:shadow-md">
-          <img
-            src="/team/susan.jpeg"
-            alt="Susan McGovern"
-            class="h-32 w-32 flex-none rounded-2xl object-cover shadow-sm"
-            width="256"
-            height="256"
-            loading="lazy"
-          />
-          <div class="flex flex-col">
-            <h3 class="font-display text-xl font-bold text-deep">Susan McGovern</h3>
-            <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-muted">Co-founder &amp; Partner</p>
-            <p class="mt-3 text-sm text-ink leading-relaxed">25+ years in B2B SaaS. Built solution consulting, customer success, and revenue operations from scratch. Most recently VP of Growth at Axonify; earlier VP at Visier and SuccessFactors.</p>
-            <span class="mt-auto pt-3 text-sm font-semibold text-deep group-hover:underline">Read more →</span>
-          </div>
-        </a>
-        <a href="/about" class="group flex gap-6 rounded-2xl border border-ink/10 bg-white p-6 transition hover:border-deep/40 hover:shadow-md">
-          <img
-            src="/team/steve.jpg"
-            alt="Steve Bamberger"
-            class="h-32 w-32 flex-none rounded-2xl object-cover shadow-sm"
-            width="256"
-            height="256"
-            loading="lazy"
-          />
-          <div class="flex flex-col">
-            <h3 class="font-display text-xl font-bold text-deep">Steve Bamberger</h3>
-            <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-muted">Co-founder &amp; Partner</p>
-            <p class="mt-3 text-sm text-ink leading-relaxed">35-year enterprise software veteran. CRO at GiveCampus today; previously CRO at LeapYear (acquired by Snowflake) and Visier (90%/yr growth). Keynote speaker on sales excellence and AI.</p>
-            <span class="mt-auto pt-3 text-sm font-semibold text-deep group-hover:underline">Read more →</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- How we work -->
-  <section class="border-b border-ink/10 bg-white">
-    <div class="mx-auto max-w-6xl px-6 py-20">
-      <p class="text-sm font-semibold uppercase tracking-wider text-accent">How we work</p>
-      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
-        From first call to running engagement in two weeks.
-      </h2>
-      <ol class="mt-10 grid gap-8 md:grid-cols-3">
-        {
-          steps.map((s) => (
-            <li>
-              <span class="font-display text-5xl font-bold text-accent">0{s.n}</span>
-              <h3 class="mt-3 font-display text-xl font-bold text-ink">{s.title}</h3>
-              <p class="mt-2 text-muted">{s.body}</p>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
-  </section>
-
-  <!-- Proof -->
-  <section class="border-b border-ink/10 bg-accent-soft/20">
-    <div class="mx-auto max-w-6xl px-6 py-20">
-      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Proof</p>
-      <div class="mt-6 grid gap-6 md:grid-cols-2">
-        <blockquote class="rounded-2xl border border-accent/30 bg-white p-8 shadow-sm">
-          <p class="text-lg leading-relaxed text-ink">
-            "Seed-stage data infrastructure SaaS. Founder-led to $1.4M ARR. PikeSquare ran fractional GTM leadership for six months — rebuilt the ICP, hired two AEs, set the forecasting cadence. Pipeline coverage went from 1.6x to 3.2x before the Series A."
-          </p>
-        </blockquote>
-        <blockquote class="rounded-2xl border border-accent/30 bg-white p-8 shadow-sm">
-          <p class="text-lg leading-relaxed text-ink">
-            "Series A vertical SaaS, 14 reps. PikeSquare advised the new VP Sales weekly. Time-to-productivity for new AEs dropped from 7 months to 4. Win rate on competitive deals up 11 points."
-          </p>
-        </blockquote>
-      </div>
-    </div>
-  </section>
-
-  <!-- Closing CTA (deep navy block) -->
-  <section class="bg-deep text-white">
-    <div class="mx-auto max-w-3xl px-6 py-24 text-center">
-      <h2 class="font-display text-3xl font-bold tracking-tight md:text-4xl">
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
         30 minutes. No deck.
       </h2>
-      <p class="mt-4 text-lg text-deep-soft">
-        Tell us where you are. We'll tell you whether we're the right fit — and if not, point you somewhere better.
+      <p class="mt-4 text-lg text-muted">
+        Tell us where you are. We'll tell you if we're the right fit.
       </p>
       <div class="mt-8 flex justify-center">
         <a
           href={SCHEDULING_URL}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-base font-semibold text-deep shadow-sm transition hover:bg-accent hover:text-white"
+          class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent hover:text-white"
         >
           Book a 30-min meeting
         </a>
