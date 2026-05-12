@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+
+// Lead resources — the four currently on pikesquare.co/resources, with cover images.
+const leadResources = [
+  {
+    title: 'The Healthy Pipeline',
+    blurb: 'Revenue leaders obsess over pipeline. Before there\'s revenue — before you can plan, forecast, or diagnose any GTM issue — you must first understand pipeline.',
+    pdf: '/resources/pdfs/healthy-pipeline.pdf',
+    cover: '/resources/thumbs/healthy-pipeline.png',
+  },
+  {
+    title: 'Demand Generation in Enterprise SaaS',
+    blurb: 'A sustainable demand-generation framework for SaaS — beyond tactical SDR management or marketing campaigns.',
+    pdf: '/resources/pdfs/demand-generation.pdf',
+    cover: '/resources/thumbs/demand-generation.png',
+  },
+  {
+    title: 'Revenue Operations Model',
+    blurb: 'A simple graphic that lays out the major functions of revenue operations.',
+    pdf: '/resources/pdfs/revenue-operations.pdf',
+    cover: '/resources/thumbs/revenue-operations.jpg',
+  },
+  {
+    title: 'Revenue Enablement — Conceptual Model',
+    blurb: 'An overview of the key revenue-enablement functions and how they fit together.',
+    pdf: '/resources/pdfs/revenue-enablement.pdf',
+    cover: '/resources/thumbs/revenue-enablement.png',
+  },
+];
+
+// Additional resources from the PikeSquare archive — listed without thumbnails for now.
+const moreResources = [
+  {
+    title: 'GTM Conceptual Model',
+    blurb: 'How the major go-to-market functions relate — strategy, motion, message, process, talent, and operations.',
+    pdf: '/resources/pdfs/gtm-conceptual-model.pdf',
+  },
+  {
+    title: 'Enterprise Sales Stages',
+    blurb: 'A baseline definition of sales stages for enterprise B2B — clean inputs for forecasting and conversion analysis.',
+    pdf: '/resources/pdfs/enterprise-sales-stages.pdf',
+  },
+  {
+    title: 'SaaS Enterprise Value Map',
+    blurb: 'A reference model for mapping product capabilities to the business outcomes enterprise buyers care about.',
+    pdf: '/resources/pdfs/saas-value-map.pdf',
+  },
+  {
+    title: 'PikeSquare Services Brochure',
+    blurb: 'A one-page overview of how PikeSquare engages — useful to share with a leadership team or board.',
+    pdf: '/resources/pdfs/services-brochure.pdf',
+  },
+];
+
+// News & Articles. Each entry: { title, blurb, url, date }. URL is the canonical
+// link (typically LinkedIn for now). Add new entries to the top of the list.
+const articles: { title: string; blurb: string; url: string; date: string }[] = [
+  {
+    title: "I wrote a bot to catch someone doing something right",
+    blurb: 'Steve on building an AI bot, and what catching positive moments taught him about how revenue orgs miss them.',
+    url: 'https://www.linkedin.com/pulse/i-wrote-bot-catch-someone-doing-something-right-steve-bamberger-hfzdc',
+    date: 'Apr 29, 2026',
+  },
+  {
+    title: "The Tale of Andersen and the Name That Wouldn't Die",
+    blurb: 'Steve on Andersen Consulting, the name that outlived the firm, and what it says about building durable identity.',
+    url: 'https://www.linkedin.com/pulse/tale-andersen-name-wouldnt-die-steve-bamberger-yzstc',
+    date: 'Feb 25, 2025',
+  },
+  {
+    title: 'On Founder Mode',
+    blurb: 'Steve on Paul Graham\'s "Founder Mode" essay — what it gets right, and what founders running revenue often miss.',
+    url: 'https://www.linkedin.com/pulse/founder-mode-steve-bamberger-ktwzc',
+    date: 'Sep 9, 2024',
+  },
+];
+---
+
+<BaseLayout title="Resources — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Resources</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        Free models, frameworks, and a few opinions.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        The conceptual models we use in our work, and the articles Steve and Susan publish. Take what helps. Send us what you'd like us to write next.
+      </p>
+    </div>
+  </section>
+
+  <!-- Lead resources -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Models &amp; frameworks</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep">
+        Download the basics.
+      </h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          leadResources.map((r) => (
+            <a
+              href={r.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-bg transition hover:border-deep/40 hover:shadow-md"
+            >
+              <div class="aspect-[4/3] overflow-hidden bg-white">
+                <img
+                  src={r.cover}
+                  alt={`${r.title} cover`}
+                  class="h-full w-full object-contain p-6 transition group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              </div>
+              <div class="flex flex-1 flex-col p-6">
+                <h3 class="font-display text-lg font-bold text-deep">{r.title}</h3>
+                <p class="mt-2 text-sm text-muted">{r.blurb}</p>
+                <span class="mt-auto pt-4 text-sm font-semibold text-deep group-hover:underline">
+                  Download PDF →
+                </span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- More resources -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">From the archive</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep">
+        More to dig into.
+      </h2>
+      <div class="mt-10 grid gap-4 md:grid-cols-2">
+        {
+          moreResources.map((r) => (
+            <a
+              href={r.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6 transition hover:border-deep/40 hover:shadow-md"
+            >
+              <h3 class="font-display text-lg font-bold text-deep">{r.title}</h3>
+              <p class="mt-2 text-sm text-muted">{r.blurb}</p>
+              <span class="mt-auto pt-4 text-sm font-semibold text-deep group-hover:underline">
+                Download PDF →
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- News & Articles -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">News & Articles</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep">
+        Latest pieces.
+      </h2>
+
+      {articles.length === 0 ? (
+        <div class="mt-10 rounded-2xl border border-amber-300 bg-amber-50 p-6 text-sm leading-relaxed text-ink">
+          <p class="font-semibold">No articles yet.</p>
+          <p class="mt-1">They'll show up here as they're published — send the URLs and I'll add them.</p>
+        </div>
+      ) : (
+        <ul class="mt-10 grid gap-4 md:grid-cols-2">
+          {articles.map((a) => (
+            <li>
+              <a
+                href={a.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex h-full flex-col rounded-2xl border border-ink/10 bg-bg p-6 transition hover:border-deep/40 hover:shadow-md"
+              >
+                <p class="text-xs font-semibold uppercase tracking-wider text-muted">{a.date}</p>
+                <h3 class="mt-2 font-display text-lg font-bold text-deep">{a.title}</h3>
+                <p class="mt-2 text-sm text-muted">{a.blurb}</p>
+                <span class="mt-auto pt-4 text-sm font-semibold text-deep group-hover:underline">
+                  Read on LinkedIn →
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+        Want one of these tailored to your business?
+      </h2>
+      <p class="mt-4 text-muted">
+        Most of these models are starting points. We'll happily adapt one for your team in a quick-turn project — or walk through it on a call.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <CTAButton />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,47 @@
+---
+import { SCHEDULING_URL } from '../lib/site';
+
+const links = [
+  { href: '/services', label: 'Services' },
+  { href: '/assessment', label: 'Assessment' },
+  { href: '/showcase', label: 'Showcase' },
+  { href: '/resources', label: 'Resources' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-ink/10 bg-bg/85 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a href="/" class="flex items-center" aria-label="PikeSquare home">
+      <img
+        src="/brand/logo.png"
+        alt="PikeSquare"
+        class="h-12 w-auto md:h-14"
+        width="1920"
+        height="701"
+      />
+    </a>
+    <ul class="hidden items-center gap-8 md:flex">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class="text-sm font-medium text-muted transition hover:text-ink"
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a
+      href={SCHEDULING_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center rounded-full bg-deep px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-accent"
+    >
+      Book a meeting
+    </a>
+  </nav>
+</header>

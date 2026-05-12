@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+---
+
+<BaseLayout title="Insights — PikeSquare">
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <h1 class="font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        Notes from the GTM bench.
+      </h1>
+      <p class="mt-6 text-lg text-muted">
+        Articles, frameworks, and tools we've built for the founders we work with.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <div class="rounded-2xl border border-amber-300 bg-amber-50 p-6 text-sm text-ink">
+        <p class="font-semibold">TODO for Claude Code</p>
+        <p class="mt-2">
+          Phase 2 work. Set up MDX content collection at <code class="rounded bg-white px-1.5 py-0.5">src/content/articles/</code>, render an index list here, and seed with the four launch articles named in Section 6.9 of the rewrite plan. Also add cards linking out to FormationIQ (formationiq.pikesquare.co) and PrismIQ (calculator.pikesquare.co).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <CTAButton />
+    </div>
+  </section>
+</BaseLayout>

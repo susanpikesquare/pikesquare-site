@@ -1,0 +1,45 @@
+---
+import { SCHEDULING_URL } from '../lib/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-ink/10 bg-bg">
+  <div class="mx-auto max-w-6xl px-6 py-12">
+    <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+      <div>
+        <p class="font-display text-lg font-bold tracking-tight text-deep">
+          PikeSquare
+        </p>
+        <p class="mt-2 max-w-sm text-sm text-muted">
+          Senior GTM operators for startups and scale-ups.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-8 text-sm">
+        <div>
+          <p class="font-semibold text-ink">Services</p>
+          <ul class="mt-2 space-y-1 text-muted">
+            <li><a href="/services/ai" class="hover:text-ink">AI Services</a></li>
+            <li><a href="/services/advisory" class="hover:text-ink">Advisory Retainer</a></li>
+            <li><a href="/services/fractional-leadership" class="hover:text-ink">Fractional GTM Leadership</a></li>
+            <li><a href="/services/sales-kickoff" class="hover:text-ink">Sales Kickoffs &amp; Enablement</a></li>
+            <li><a href="/services/keynotes" class="hover:text-ink">Keynotes &amp; Speaking</a></li>
+            <li><a href="/services/quick-projects" class="hover:text-ink">Quick-turn Projects</a></li>
+            <li><a href="/services" class="hover:text-ink">Compare all →</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold text-ink">Company</p>
+          <ul class="mt-2 space-y-1 text-muted">
+            <li><a href="/about" class="hover:text-ink">About</a></li>
+            <li><a href="/how-we-work" class="hover:text-ink">How We Work</a></li>
+            <li><a href="/assessment" class="hover:text-ink">GTM Readiness Assessment</a></li>
+            <li><a href="/resources" class="hover:text-ink">Resources</a></li>
+            <li><a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" class="hover:text-ink">Book a meeting</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="mt-12 text-xs text-muted">© {year} PikeSquare, LLC. All rights reserved.</p>
+  </div>
+</footer>

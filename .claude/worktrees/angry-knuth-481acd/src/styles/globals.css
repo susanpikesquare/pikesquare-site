@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  /* PikeSquare brand palette (FINAL 2022-09-10) */
+  --color-deep: #202971;        /* primary navy — wordmark */
+  --color-deep-soft: #A7ABC7;   /* navy tint */
+  --color-accent: #FF8001;      /* primary orange — pike square mark */
+  --color-accent-soft: #FFBB8A;
+  --color-ink: #210D10;         /* near-black text */
+  --color-muted: #594E86;       /* secondary purple, used for body muted */
+  --color-muted-soft: #938CB1;
+  --color-bg: #fafaf7;          /* warm off-white */
+  --color-rust: #802101;
+  --color-sun: #FFDB01;
+  --color-sea: #3F94B2;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+}

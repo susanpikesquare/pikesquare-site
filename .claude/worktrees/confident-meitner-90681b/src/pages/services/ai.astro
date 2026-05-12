@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+
+const offerings = [
+  {
+    title: 'AI Stack Audit & Roadmap',
+    blurb: 'A 2-week audit of your current GTM stack — where AI is already useful, where it\'s hype, and where to invest next. We deliver a sequenced roadmap covering build-vs-buy-vs-wait, integration points, and the team capabilities you\'ll need.',
+    bullets: [
+      'Inventory of your current AI usage and underutilized capabilities',
+      'Prioritized list of high-leverage opportunities by team',
+      'Build-vs-buy recommendation for each',
+      'Adoption plan with measurable 30/60/90 day milestones',
+    ],
+  },
+  {
+    title: 'AI Data Surfacing',
+    blurb: 'Most GTM teams already have the data they need — buried in the CRM, the BI tool, the call recording transcripts, and the dashboards no one opens. We use AI to pull the signal out, without asking you to buy more software.',
+    bullets: [
+      'AI-driven account intelligence and deal-health signals',
+      'Conversation and email pattern analysis',
+      'Custom GPTs and copilots wired to your existing systems',
+      'Automated executive briefings and weekly digests',
+    ],
+  },
+  {
+    title: 'AI Enablement & Training',
+    blurb: 'Train your team to build the AI tools they actually need. We run hands-on workshops covering the everyday workflows reps and managers can automate — and the productivity multipliers that show up when the team can ship a custom GPT in an afternoon.',
+    bullets: [
+      'Hands-on workshops for sales, CS, and RevOps teams',
+      'Custom GPTs / copilots for repeatable workflows',
+      'Low-code app building (Replit, Bolt, similar tools)',
+      'Internal AI use-policy and guardrails',
+    ],
+  },
+  {
+    title: 'AI for Sales Kickoffs',
+    blurb: 'Wire AI into your SKO so the training sticks beyond the room. We build interactive role-plays, on-demand coaching agents, and rep-facing copilots that reinforce the kickoff content for the rest of the year.',
+    bullets: [
+      'AI-powered role-play and discovery practice',
+      'On-demand coaching agents trained on your playbook',
+      'Just-in-time enablement during live deals',
+      'Post-event analytics on adoption and behavior change',
+    ],
+  },
+  {
+    title: 'AI Keynotes & Executive Workshops',
+    blurb: 'Steve on AI in the modern revenue org — for sales kickoffs, conferences, and executive offsites. Workshops for leadership teams who want to leave with conviction about where to act and where to wait.',
+    bullets: [
+      'Keynotes on where AI is actually working in GTM',
+      'Executive workshops on AI strategy and adoption',
+      'Interactive sessions tailored to your audience',
+      'Pre-work and post-event materials included',
+    ],
+  },
+  {
+    title: 'AI-Augmented Sales Pitch Decks',
+    blurb: 'Pair our pitch-deck builds with AI-augmented research, narrative generation, and persona-tailored variants — built faster, refreshed easier, and shippable to the team in days, not weeks.',
+    bullets: [
+      'AI-assisted account and persona research',
+      'Modular variants generated from a core deck',
+      'Talk-track and rep enablement included',
+      'Refresh process your team can run themselves',
+    ],
+  },
+];
+---
+
+<BaseLayout title="AI Services — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">AI Services</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        AI, applied to the work — not to a deck.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        We help GTM teams figure out where AI moves the needle, surface insights from the systems you already own, and ship AI-augmented workflows without buying another tool. Senior operators doing the work, not analysts pointing at slides.
+      </p>
+      <div class="mt-10">
+        <CTAButton label="Talk through your AI roadmap" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">How we think about it</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep">
+        Use what you have first.
+      </h2>
+      <ul class="mt-8 space-y-5">
+        <li class="flex gap-4">
+          <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent"></span>
+          <div>
+            <p class="font-semibold text-ink">AI should reduce your stack, not grow it.</p>
+            <p class="mt-1 text-muted">Most teams have the data and tools they need. The leverage is in surfacing what's already there — not in adding another vendor.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent"></span>
+          <div>
+            <p class="font-semibold text-ink">Build small, ship often.</p>
+            <p class="mt-1 text-muted">Custom GPTs, internal apps, and lightweight automations beat enterprise platforms when the workflow is specific. Your team can ship them in days if they know how.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent"></span>
+          <div>
+            <p class="font-semibold text-ink">Behavior change is the bottleneck.</p>
+            <p class="mt-1 text-muted">The hard part of AI in GTM isn't the tech — it's getting reps and managers to actually change how they work. We design for adoption, not screenshots.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Offerings -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">What we offer</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep">
+        Six ways we put AI to work.
+      </h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          offerings.map((o) => (
+            <article class="flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6">
+              <h3 class="font-display text-lg font-bold text-deep">{o.title}</h3>
+              <p class="mt-2 text-sm text-muted">{o.blurb}</p>
+              <ul class="mt-4 space-y-2">
+                {o.bullets.map((b) => (
+                  <li class="flex gap-3 text-sm text-ink">
+                    <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+        Not sure where AI fits yet?
+      </h2>
+      <p class="mt-4 text-muted">
+        Most leadership teams have the same question. The Stack Audit is built for exactly that conversation — 2 weeks, fixed price, sequenced roadmap at the end.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <CTAButton />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

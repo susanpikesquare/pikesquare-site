@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+---
+
+<BaseLayout title="Sales Pitch Deck Build — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Service</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        A sales deck your reps will actually use.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Most B2B sales decks have grown into a Frankenstein — slides bolted on by product, marketing, and last quarter's pivot. We rebuild the deck from the customer back: the moments that matter in the cycle, the objections the rep needs answers to, and the story that earns a follow-up.
+      </p>
+      <div class="mt-10">
+        <CTAButton label="Talk through your deck" />
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">What we deliver</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep">
+        Built with your reps, not at them.
+      </h2>
+      <ul class="mt-8 space-y-5">
+        <li class="flex gap-4">
+          <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent"></span>
+          <div>
+            <p class="font-semibold text-ink">Story architecture.</p>
+            <p class="mt-1 text-muted">A clear narrative that maps to the buyer's problem, decision, and risk — not a product tour disguised as a deck.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent"></span>
+          <div>
+            <p class="font-semibold text-ink">A modular slide set.</p>
+            <p class="mt-1 text-muted">A core deck plus modular sections — discovery, persona, vertical, executive — so reps can flex without rebuilding from scratch.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent"></span>
+          <div>
+            <p class="font-semibold text-ink">Talk track and rep enablement.</p>
+            <p class="mt-1 text-muted">Notes, transitions, and an enablement session so the team can run the deck the way it was designed.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <CTAButton />
+    </div>
+  </section>
+</BaseLayout>

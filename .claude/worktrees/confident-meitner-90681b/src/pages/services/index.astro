@@ -12,9 +12,9 @@ const categories = [
     blurb: 'Senior operators alongside or in seat of your revenue leadership — strategic pattern-matching for hard moments, or interim ownership of the function.',
     shape: 'Retainer (4–8 hrs/month) or fractional seat (8–20 hrs/week, 3–6 months)',
     items: [
-      { label: 'Advisory Retainer (Susan or Steve)' },
-      { label: 'Fractional GTM Leadership (CRO, VP Sales, VP CS, RevOps)' },
-      { label: 'CEO / board pattern-matching' },
+      { label: 'Advisory Retainer (Susan or Steve)', href: '/services/advisory' },
+      { label: 'Fractional GTM Leadership (CRO, VP Sales, VP CS, RevOps)', href: '/services/fractional-leadership' },
+      { label: 'CEO / board pattern-matching', href: '/services/advisory' },
     ],
   },
   {
@@ -22,10 +22,10 @@ const categories = [
     blurb: 'Sharp planning and operational rebuilds when the moment demands a defensible answer — for the board, the bank, or the next quarter.',
     shape: 'Fixed scope, 2–6 weeks',
     items: [
-      { label: 'GTM Diagnostics & 90-day Plan' },
-      { label: 'Scale-up readiness reviews' },
-      { label: 'Board / fundraise GTM prep' },
-      { label: 'ICP and target-buyer redesign' },
+      { label: 'GTM Diagnostics & 90-day Plan', href: '/services/diagnostics' },
+      { label: 'Scale-up readiness reviews', href: '/services/diagnostics' },
+      { label: 'Board / fundraise GTM prep', href: '/services/diagnostics' },
+      { label: 'ICP and target-buyer redesign', href: '/services/diagnostics' },
     ],
   },
   {
@@ -33,22 +33,10 @@ const categories = [
     blurb: 'Multi-week deliverables — content, exercises, processes, decks — built with your team and ready to run.',
     shape: 'Project-based, 2–12 weeks',
     items: [
-      { label: 'Sales Kickoffs & Enablement Programs' },
-      { label: 'Sales Pitch Deck Build' },
-      { label: 'RevOps & GTM Effectiveness' },
-      { label: 'Custom app builds' },
-    ],
-  },
-  {
-    title: 'Quick-turn Projects',
-    blurb: 'Smaller, scoped, async deliverables — pitch deck refresh, messaging audit, data sheet, tools audit, training module. Senior operators, fixed price, fast turnaround.',
-    shape: 'Async, 3 days–3 weeks, fixed price',
-    items: [
-      { label: 'Pitch Deck Refresh' },
-      { label: 'Messaging Audit' },
-      { label: 'Data Sheet / One-Pager' },
-      { label: 'GTM Tools Audit' },
-      { label: 'Training Module / Course' },
+      { label: 'Sales Kickoffs & Enablement Programs', href: '/services/sales-kickoff' },
+      { label: 'Sales Pitch Deck Build', href: '/services/pitch-deck' },
+      { label: 'RevOps & GTM Effectiveness', href: '/services/revops' },
+      { label: 'Custom app builds', href: '/showcase' },
     ],
   },
   {
@@ -56,11 +44,11 @@ const categories = [
     blurb: 'AI applied to revenue work — surface insights from the systems you already own, build internal tools, train your team. Cuts across every other category.',
     shape: 'Audit, build, train, or speak — sized to fit',
     items: [
-      { label: 'AI Stack Audit & Roadmap' },
-      { label: 'AI Data Surfacing' },
-      { label: 'AI Enablement & Training' },
-      { label: 'AI for Sales Kickoffs' },
-      { label: 'AI-Augmented Sales Pitch Decks' },
+      { label: 'AI Stack Audit & Roadmap', href: '/services/ai' },
+      { label: 'AI Data Surfacing', href: '/services/ai' },
+      { label: 'AI Enablement & Training', href: '/services/ai' },
+      { label: 'AI for Sales Kickoffs', href: '/services/ai' },
+      { label: 'AI-Augmented Sales Pitch Decks', href: '/services/ai' },
     ],
   },
   {
@@ -68,10 +56,10 @@ const categories = [
     blurb: 'Steve on stage at your sales kickoff, conference, or executive offsite — and the prep behind it. Workshops for leadership teams who want to leave with conviction.',
     shape: 'Per-engagement, prep + delivery included',
     items: [
-      { label: 'Sales kickoff and conference keynotes' },
-      { label: 'AI in the modern revenue org (keynote)' },
-      { label: 'Executive workshops on GTM strategy' },
-      { label: 'Panel and fireside facilitation' },
+      { label: 'Sales kickoff and conference keynotes', href: '/services/keynotes' },
+      { label: 'AI in the modern revenue org (keynote)', href: '/services/keynotes' },
+      { label: 'Executive workshops on GTM strategy', href: '/services/keynotes' },
+      { label: 'Panel and fireside facilitation', href: '/services/keynotes' },
     ],
   },
 ];
@@ -85,7 +73,7 @@ const categories = [
         Pick the engagement that fits the moment.
       </h1>
       <p class="mt-6 max-w-2xl text-lg text-muted">
-        Six ways to engage — each with examples of the work we typically take on. If your moment looks different, we can probably shape something for it. The shortest path is a 30-minute conversation.
+        Five ways to engage — each with examples of the work we typically take on. If your moment looks different, we can probably shape something for it. The shortest path is a 30-minute conversation.
       </p>
     </div>
   </section>
@@ -106,7 +94,9 @@ const categories = [
                 {c.items.map((it) => (
                   <li class="flex gap-3 text-sm">
                     <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
-                    <span class="text-deep">{it.label}</span>
+                    <a href={it.href} class="text-deep underline-offset-4 hover:underline">
+                      {it.label}
+                    </a>
                   </li>
                 ))}
               </ul>

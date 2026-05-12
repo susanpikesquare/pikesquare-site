@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+import FounderMomentCard from '../../components/FounderMomentCard.astro';
+
+// Trigger moments — match each to a recurring engagement shape we've seen.
+const moments = [
+  {
+    quote: 'I just promoted (or hired) a new VP Sales — I want to set them up to win.',
+    resolution: 'Pattern-match the first 90 days, pressure-test the operating plan, weigh in on early hires before mistakes compound.',
+  },
+  {
+    quote: "The board wants the plan to hold up — I want a senior partner who's seen this before.",
+    resolution: 'A monthly retainer for board prep, deal reviews, and the hard calls between meetings.',
+  },
+  {
+    quote: "We're choosing between two GTM motions and need someone who's run both.",
+    resolution: 'Sounding board with a CRO who has been through it — not opinion-as-a-service.',
+  },
+  {
+    quote: "I'm running revenue solo and there's nobody above me to talk shop with.",
+    resolution: 'Founder/CEO-level advisory — sharp pattern-matching and the discipline of a regular cadence.',
+  },
+  {
+    quote: 'Big deal in flight and I want a second pair of eyes from someone who has closed at this size.',
+    resolution: 'Single-month deal coaching, scoped to the cycle. No annual commitment.',
+  },
+  {
+    quote: 'We just promoted from within — the new GTM leader needs a senior co-pilot.',
+    resolution: "Co-pilot retainer that builds the new leader's muscle without becoming a crutch.",
+  },
+];
+
+const offerings = [
+  'Weekly or bi-weekly working session with a PikeSquare partner',
+  'On-call between sessions for the hard moments — deals, hires, board calls',
+  'Deal coaching, hire reviews, and comp-plan stress-tests',
+  'Board and fundraise GTM prep — story, slides, narrative',
+  'Pattern-matching from a network of CRO and VP peers',
+  'Honest red-flag identification — early, not after the quarter is lost',
+];
+
+const faqs = [
+  {
+    q: 'Do I get Susan, Steve, or someone else?',
+    a: "Depends on the work. We match on the discovery call — based on which partner has run the closest version of what you're working on.",
+  },
+  {
+    q: 'Can advisory turn into fractional leadership later?',
+    a: 'Often does. Some founders start with a retainer to test fit, then expand into a fractional seat when the moment calls for it.',
+  },
+  {
+    q: 'What if I only need help for one big moment, not a retainer?',
+    a: "A single-month retainer or a quick-turn project may fit better. We won't talk you into ongoing work you don't need.",
+  },
+  {
+    q: 'Are we expected to follow the advice?',
+    a: "No. You're the operator, we're the sounding board. The job is to sharpen your judgment, not to replace it.",
+  },
+];
+---
+
+<BaseLayout title="GTM Advisory Retainer — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Service</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        A senior operator on retainer — in your inbox, on your calendar, in the hard moments.
+      </h1>
+      <p class="mt-6 text-lg text-muted">
+        PikeSquare advisory is a monthly retainer with one of our partners. For founders and GTM leaders who need senior pattern-matching alongside them, not in their seat.
+      </p>
+      <div class="mt-10 flex flex-col items-start gap-4 md:flex-row md:items-center">
+        <CTAButton />
+        <a
+          href="/services/fractional-leadership"
+          class="text-base font-semibold text-deep underline-offset-4 hover:underline"
+        >
+          Need someone in seat? See Fractional Leadership →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- When founders come to us -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">When founders come to us</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Six moments where a senior advisor changes the outcome.
+      </h2>
+      <p class="mt-4 max-w-2xl text-muted">
+        If your moment looks different but feels adjacent, we can probably shape something for it.
+      </p>
+      <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {moments.map((m) => <FounderMomentCard quote={m.quote} resolution={m.resolution} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">What we do</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Six ways advisory shows up in your week.
+      </h2>
+      <ul class="mt-10 space-y-4">
+        {
+          offerings.map((o) => (
+            <li class="flex gap-4">
+              <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent" />
+              <p class="text-base text-ink">{o}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- How we engage -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">How we engage</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Monthly retainer. Cancel any month.
+      </h2>
+      <p class="mt-4 max-w-2xl text-muted">
+        Predictable cadence, no lock-in. The bar is whether the work is paying off — if it isn't, you don't re-up.
+      </p>
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-ink/10 bg-bg p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Hours</p>
+          <p class="mt-2 text-base text-ink">
+            4–8 hours per month is typical. More if the moment calls for it. Includes the working sessions, async support between, and prep time.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-ink/10 bg-bg p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Cadence</p>
+          <p class="mt-2 text-base text-ink">
+            Weekly or bi-weekly working sessions. Slack and email between. We're available for the hard moments — not just the scheduled ones.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-ink/10 bg-bg p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Commitment</p>
+          <p class="mt-2 text-base text-ink">
+            Month-to-month. Most engagements run 6–12 months because the cadence keeps paying off, not because of contracts. Cancel any month, no penalty.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-ink/10 bg-bg p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Onboarding</p>
+          <p class="mt-2 text-base text-ink">
+            Discovery call → fit check → scoped retainer letter → first session within a week. No multi-week sales process.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">FAQ</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Questions founders ask on the discovery call.
+      </h2>
+      <dl class="mt-10 space-y-8">
+        {
+          faqs.map((f) => (
+            <div>
+              <dt class="font-display text-lg font-bold text-deep">{f.q}</dt>
+              <dd class="mt-2 text-muted">{f.a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-24 text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+        30 minutes. We'll know if it's a fit.
+      </h2>
+      <p class="mt-4 text-lg text-muted">
+        Tell us where you are. We'll tell you whether advisory is the right shape — and if a different engagement fits, we'll point you to it.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
+        <CTAButton />
+        <a
+          href="/assessment"
+          class="text-base font-semibold text-deep underline-offset-4 hover:underline"
+        >
+          Or take the free 5-minute assessment first →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

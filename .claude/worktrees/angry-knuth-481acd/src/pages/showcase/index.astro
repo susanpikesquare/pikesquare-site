@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+
+// Custom apps PikeSquare has built — examples, not products you have to use.
+// They illustrate what we can build with you, for you, or alongside your team.
+type App = {
+  name: string;
+  tagline: string;
+  blurb: string;
+  bullets: string[];
+  url: string;
+  label: string;
+  image?: string;            // single hero image
+  gallery?: { src: string; caption: string }[]; // multi-image carousel
+};
+
+const apps: App[] = [
+  {
+    name: 'PrismIQ',
+    tagline: 'Illuminate the value behind every decision.',
+    blurb: "An app concept for helping sales and customer success teams quantify, visualize, and communicate measurable business impact — from the first pitch to every renewal. The kind of internal tool that replaces bespoke ROI spreadsheets with something a rep can actually use mid-cycle.",
+    bullets: [
+      'Build business cases in minutes instead of hours',
+      'AI-powered automation behind the math',
+      'Designed for every stage of the customer journey',
+    ],
+    url: 'https://calculator.pikesquare.co/',
+    label: 'Example app — from our practice',
+    gallery: [
+      { src: '/showcase/prismiq-research.png',      caption: 'AI Company Research — pulls industry, headcount, tech stack, and the compliance gap that makes the deal in seconds.' },
+      { src: '/showcase/prismiq-metrics.png',       caption: 'Industry-validated benchmarks turn ROI inputs into a defensible $4.2M annual value — no spreadsheet required.' },
+      { src: '/showcase/prismiq-business-case.png', caption: 'A CFO-grade business case the rep can send, track, and follow up on — with engagement insight by stakeholder.' },
+    ],
+  },
+  {
+    name: 'FormationIQ',
+    tagline: 'A central work hub for revenue teams.',
+    blurb: "An app concept for a revenue-intelligence overlay on Salesforce — giving AEs, AMs, and CSMs a single starting point for the day with priorities, AI recommendations, and account intelligence pulled in from tools like Clay and 6sense.",
+    bullets: [
+      'Connect your CRM, get AI-driven recommendations',
+      'Role-based cockpits for AE, AM, and CSM',
+      'Account intelligence from Clay and 6sense',
+    ],
+    url: 'https://formationiq.pikesquare.co/',
+    label: 'Example app — from our practice',
+    gallery: [
+      { src: '/showcase/formationiq-hub.png',         caption: 'Sales Leadership Command Center — AI-prioritized actions, pipeline forecast, and rep performance at a glance.' },
+      { src: '/showcase/formationiq-account.png',     caption: 'Account 360 — company profile, technology stack, intent signals, and active buying signals from Clay and 6sense.' },
+      { src: '/showcase/formationiq-opportunity.png', caption: 'Opportunity detail with AI Deal Summary, MEDDPICC qualification, and Command of the Message.' },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Showcase — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Showcase</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        Custom apps and AI come standard.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Every PikeSquare engagement includes custom-app and AI capability. We can use ours as <strong>examples</strong>, build new ones <strong>for you</strong>, or <strong>train your team</strong> to build their own. The apps below are our own work — illustrative of what's possible, not products you have to use.
+      </p>
+    </div>
+  </section>
+
+  <!-- Apps -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-16 space-y-20">
+      {
+        apps.map((app, i) => (
+          <article class={`grid gap-10 md:grid-cols-2 md:items-center ${i % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''}`}>
+            <div>
+              {app.gallery && app.gallery.length > 0 ? (
+                <div
+                  class="relative"
+                  data-carousel
+                  data-captions={JSON.stringify(app.gallery.map((g) => g.caption))}
+                >
+                  <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-ink/10 bg-bg relative">
+                    {app.gallery.map((shot, idx) => (
+                      <div
+                        class={`absolute inset-0 transition-opacity duration-300 ${idx === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                        data-slide
+                        data-index={idx}
+                      >
+                        <img
+                          src={shot.src}
+                          alt={`${app.name} — ${shot.caption}`}
+                          class="h-full w-full object-cover object-top"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
+                    <button
+                      type="button"
+                      data-prev
+                      aria-label="Previous slide"
+                      class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 text-deep shadow-md transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-accent"
+                    >
+                      <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 010 1.06L9.06 10l3.73 3.71a.75.75 0 11-1.06 1.06l-4.25-4.24a.75.75 0 010-1.06l4.25-4.24a.75.75 0 011.06 0z" clip-rule="evenodd" /></svg>
+                    </button>
+                    <button
+                      type="button"
+                      data-next
+                      aria-label="Next slide"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 text-deep shadow-md transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-accent"
+                    >
+                      <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.21 5.23a.75.75 0 011.06 0l4.25 4.24a.75.75 0 010 1.06l-4.25 4.24a.75.75 0 11-1.06-1.06L10.94 10 7.21 6.29a.75.75 0 010-1.06z" clip-rule="evenodd" /></svg>
+                    </button>
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                      {app.gallery.map((_, idx) => (
+                        <button
+                          type="button"
+                          data-dot
+                          data-index={idx}
+                          aria-label={`Go to slide ${idx + 1}`}
+                          aria-current={idx === 0 ? 'true' : 'false'}
+                          class="h-2 w-2 rounded-full bg-white/70 ring-1 ring-deep/30 transition-all aria-[current=true]:w-5 aria-[current=true]:bg-deep"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <p class="mt-3 text-sm text-muted" data-caption>{app.gallery[0].caption}</p>
+                </div>
+              ) : app.image ? (
+                <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-ink/10 bg-bg">
+                  <img
+                    src={app.image}
+                    alt={`${app.name} hero`}
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-ink/10 bg-bg">
+                  <div class="flex h-full w-full flex-col items-center justify-center p-10 text-center">
+                    <p class="font-display text-3xl font-bold text-deep">{app.name}</p>
+                    <p class="mt-2 text-sm text-muted">Prototype — visit for a peek.</p>
+                    <a
+                      href={app.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="mt-6 inline-flex items-center rounded-full bg-deep px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-accent"
+                    >
+                      Take a look →
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-wider text-accent">{app.label}</p>
+              <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+                {app.name}
+              </h2>
+              <p class="mt-4 text-lg font-semibold text-ink">{app.tagline}</p>
+              <p class="mt-3 text-base leading-relaxed text-ink">{app.blurb}</p>
+              {app.bullets.length > 0 && (
+                <ul class="mt-5 space-y-2">
+                  {app.bullets.map((b) => (
+                    <li class="flex gap-3 text-sm text-ink">
+                      <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div class="mt-8">
+                <a
+                  href={app.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+                >
+                  Visit {app.name} →
+                </a>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+        Want a custom app like one of these?
+      </h2>
+      <p class="mt-4 text-muted">
+        We'll build it, train your team to build it, or pair on the design — whichever fits the moment. Most of ours started as a Friday-afternoon prototype.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <CTAButton />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
+    const slides = root.querySelectorAll<HTMLElement>('[data-slide]');
+    const dots = root.querySelectorAll<HTMLElement>('[data-dot]');
+    const prev = root.querySelector<HTMLButtonElement>('[data-prev]');
+    const next = root.querySelector<HTMLButtonElement>('[data-next]');
+    const captionEl = root.querySelector<HTMLElement>('[data-caption]');
+    const captions: string[] = JSON.parse(root.dataset.captions || '[]');
+    let idx = 0;
+
+    const show = (n: number) => {
+      idx = (n + slides.length) % slides.length;
+      slides.forEach((s, i) => {
+        const active = i === idx;
+        s.classList.toggle('opacity-100', active);
+        s.classList.toggle('opacity-0', !active);
+        s.classList.toggle('pointer-events-none', !active);
+      });
+      dots.forEach((d, i) => d.setAttribute('aria-current', i === idx ? 'true' : 'false'));
+      if (captionEl && captions[idx]) captionEl.textContent = captions[idx];
+    };
+
+    prev?.addEventListener('click', () => show(idx - 1));
+    next?.addEventListener('click', () => show(idx + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
+  });
+</script>

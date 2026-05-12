@@ -1,0 +1,268 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+import FounderMomentCard from '../../components/FounderMomentCard.astro';
+
+// Trigger moments — keep these tight and recognizable. Each one maps to a real
+// engagement shape PikeSquare has run. Resist the urge to make them generic.
+const moments = [
+  {
+    quote: 'The board asked for the plan and what we have is a deck of bullet points.',
+    resolution: 'A 4-week diagnostic that produces a defensible 90-day operating plan, board-ready summary included.',
+  },
+  {
+    quote: 'The fundraise is two quarters out and the GTM story has to hold up.',
+    resolution: 'Diagnostic + investor-grade narrative — efficiency, motion, expansion, and what the next 18 months actually require.',
+  },
+  {
+    quote: "We've grown past the founder-led motion and the team can't articulate what's working.",
+    resolution: 'Scale-up readiness review: ICP, motion, org, and the operating cadence to take it past the founder.',
+  },
+  {
+    quote: "Last quarter missed and we don't trust the forecast that says next quarter won't.",
+    resolution: 'Pipeline & forecast diagnostic — clean inputs, deal health, and the cadence that surfaces risk earlier.',
+  },
+  {
+    quote: "We're entering a new segment and don't know if our motion will travel.",
+    resolution: 'ICP and target-buyer redesign — what changes by segment, what stays the same, and how to prove it in 90 days.',
+  },
+  {
+    quote: 'A new revenue leader is coming in and needs a defensible 90-day plan.',
+    resolution: 'Onboarding diagnostic — the same plan you\'d hand to the board, paired with an advisory retainer for the first quarter.',
+  },
+];
+
+// What we look at, organized by the 6 GTM pillars. Bullets are concrete and
+// audit-flavored on purpose — vague bullets make the engagement feel soft.
+const audit = [
+  {
+    title: 'Strategy',
+    blurb: 'Right customers, right buyers, right stage of growth.',
+    bullets: [
+      'ICP and target-buyer review against actual closed-won and closed-lost',
+      'Segment expansion or contraction recommendation',
+      'Defensible 12-month GTM plan with explicit assumptions',
+    ],
+  },
+  {
+    title: 'Motion',
+    blurb: 'How you acquire, progress, and grow customers.',
+    bullets: [
+      'Acquisition channel mix and unit economics by source',
+      'Deal stages, qualification, and conversion analysis',
+      'Customer success motion: risk factors, renewal, expansion',
+    ],
+  },
+  {
+    title: 'Message',
+    blurb: 'A repeatable story the team can actually tell.',
+    bullets: [
+      'Pitch deck and value-narrative review against win/loss patterns',
+      'Persona and vertical variants — what to build, what to drop',
+      'Sales rep storytelling: where the message breaks down in the funnel',
+    ],
+  },
+  {
+    title: 'Process',
+    blurb: 'Repeatable rituals — forecast, deal review, pipeline.',
+    bullets: [
+      'Forecast accuracy and coverage analysis',
+      'Deal-review and pipeline cadence assessment',
+      'Operating-rhythm gaps that hide problems until quarter-end',
+    ],
+  },
+  {
+    title: 'Talent',
+    blurb: 'Org design, hiring, comp, and enablement.',
+    bullets: [
+      'Org structure for current stage vs. 12-month target',
+      'Hiring priorities, comp plan, and ramp-time review',
+      'Enablement and kickoff readiness — what the team actually needs',
+    ],
+  },
+  {
+    title: 'Operations',
+    blurb: 'Systems, data, and AI that improve outcomes.',
+    bullets: [
+      'CRM, dashboards, and data-trust audit',
+      'Tech stack rationalization — what to consolidate, what to drop',
+      'AI opportunity map: where AI moves the needle in your stack',
+    ],
+  },
+];
+
+const deliverables = [
+  '90-day operating plan with owners, milestones, and a weekly cadence to ship it',
+  '6-pillar maturity assessment — current state and 12-month target',
+  'Three bets to make and three to defer, with the reasoning explicit',
+  'Hiring priorities for the next two quarters',
+  'Forecast-readiness scorecard: clean inputs the team can build on',
+  'Board-ready summary deck',
+  '30-day advisory window post-delivery — calls, reviews, and course-corrections',
+];
+
+const weeks = [
+  {
+    label: 'Weeks 1–2',
+    title: 'Discovery & data review',
+    body: 'Interviews with leadership and ICs across sales, CS, marketing, and RevOps. CRM and dashboard pull. Existing artifacts reviewed — decks, plans, dashboards, comp documents. Win/loss read.',
+  },
+  {
+    label: 'Weeks 3–4',
+    title: 'Audit & synthesis',
+    body: 'Six-pillar analysis. Pipeline and forecast pressure-test. Org and stack assessment. First draft of the 90-day plan reviewed with leadership; we stress-test the assumptions before locking.',
+  },
+  {
+    label: 'Weeks 5–6',
+    title: 'Plan, deck, kickoff',
+    body: 'Final 90-day operating plan. Board-ready summary. Hiring and structure recommendations. Kickoff of the 30-day advisory window so the plan ships, not just sits.',
+  },
+];
+---
+
+<BaseLayout title="GTM Diagnostics & 90-day Plan — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Service</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        A 4–6 week sprint that produces a defensible GTM plan.
+      </h1>
+      <p class="mt-6 text-lg text-muted">
+        When the board wants the plan, the round is months away, or the current plan no longer holds up — PikeSquare runs a fixed-scope diagnostic and hands you a 90-day operating plan. Senior operator on point. Fixed price. Built to ship, not to sit on a shelf.
+      </p>
+      <div class="mt-10 flex flex-col items-start gap-4 md:flex-row md:items-center">
+        <CTAButton />
+        <a
+          href="/assessment"
+          class="text-base font-semibold text-deep underline-offset-4 hover:underline"
+        >
+          Or take the free 5-minute assessment first →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- When founders come to us -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">When founders come to us</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Six moments that signal it's time for a diagnostic.
+      </h2>
+      <p class="mt-4 max-w-2xl text-muted">
+        If your moment looks different but feels adjacent, we can probably shape something for it.
+      </p>
+      <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {moments.map((m) => <FounderMomentCard quote={m.quote} resolution={m.resolution} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- What's in the diagnostic -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">What's in the diagnostic</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Six pillars audited. The same lens we use across every engagement.
+      </h2>
+      <p class="mt-4 max-w-2xl text-muted">
+        We don't just look at the symptom that brought you in — we audit the full GTM system, because the answer to "why are we missing forecast?" is almost never just about forecasting.
+      </p>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          audit.map((a) => (
+            <article class="flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6">
+              <h3 class="font-display text-lg font-bold text-deep">{a.title}</h3>
+              <p class="mt-2 text-sm text-muted">{a.blurb}</p>
+              <ul class="mt-4 space-y-2">
+                {a.bullets.map((b) => (
+                  <li class="flex gap-3 text-sm text-ink">
+                    <span aria-hidden="true" class="mt-2 inline-block h-1.5 w-1.5 flex-none bg-accent" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverable -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Deliverable</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        What you walk away with.
+      </h2>
+      <p class="mt-4 max-w-2xl text-muted">
+        Not a 60-page report. A short, sharp set of artifacts the team can actually run with — plus 30 days of advisory to make sure they do.
+      </p>
+      <ul class="mt-10 space-y-4">
+        {
+          deliverables.map((d) => (
+            <li class="flex gap-4">
+              <span aria-hidden="true" class="mt-2 inline-block h-2.5 w-2.5 flex-none bg-accent" />
+              <p class="text-base text-ink">{d}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- How we engage -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">How we engage</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Fixed scope. Fixed price. Senior operator on point.
+      </h2>
+      <p class="mt-4 max-w-2xl text-muted">
+        One PikeSquare partner runs the engagement end-to-end — no analyst layer between strategy and the people doing the work. Two short cycles a week with leadership; everything else is async.
+      </p>
+      <ol class="mt-10 grid gap-8 md:grid-cols-3">
+        {
+          weeks.map((w) => (
+            <li class="rounded-2xl border border-ink/10 bg-white p-6">
+              <p class="text-xs font-semibold uppercase tracking-wider text-accent">{w.label}</p>
+              <h3 class="mt-2 font-display text-xl font-bold text-deep">{w.title}</h3>
+              <p class="mt-3 text-muted">{w.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-ink/10 bg-bg p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Investment</p>
+          <p class="mt-2 text-base text-ink">
+            Fixed-price engagement, scoped on the discovery call. Most diagnostics fall in a predictable range — we'll quote precisely after we hear what you're working on.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-ink/10 bg-bg p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">After the diagnostic</p>
+          <p class="mt-2 text-base text-ink">
+            Some teams take the plan and run it. Others convert into a Fractional GTM Leadership engagement or an Advisory Retainer. We're upfront about which path fits — no upsell pressure.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-24 text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+        Want a defensible plan in six weeks?
+      </h2>
+      <p class="mt-4 text-lg text-muted">
+        30-minute call to scope the engagement. We'll tell you whether a diagnostic is the right shape — and if not, we'll point you to the right one.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <CTAButton />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
