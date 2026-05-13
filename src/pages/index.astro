@@ -120,6 +120,8 @@ const moments = [
               <div
                 class={`moment-slide transition-opacity duration-500 ${index === 0 ? 'opacity-100' : 'opacity-0 hidden'}`}
                 data-index={index}
+                data-image={moment.image}
+                data-alt={moment.alt}
               >
                 <blockquote class="text-lg font-semibold text-deep italic mb-3">
                   "{moment.quote}"
@@ -189,7 +191,7 @@ const moments = [
   </section>
 </BaseLayout>
 
-<script define:vars={{ moments }}>
+<script>
   // Auto-rotating moments carousel
   let currentSlide = 0;
   const slides = document.querySelectorAll('.moment-slide');
@@ -209,9 +211,15 @@ const moments = [
     });
 
     // Update image to match current slide
-    if (carouselImage && moments[index]) {
-      carouselImage.src = moments[index].image;
-      carouselImage.alt = moments[index].alt;
+    if (carouselImage && slides[index]) {
+      const imageUrl = slides[index].getAttribute('data-image');
+      const imageAlt = slides[index].getAttribute('data-alt');
+      if (imageUrl) {
+        carouselImage.src = imageUrl;
+      }
+      if (imageAlt) {
+        carouselImage.alt = imageAlt;
+      }
     }
   }
 
