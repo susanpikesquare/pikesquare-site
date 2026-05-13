@@ -18,8 +18,10 @@ const pillars = [
       'ICP is documented and most pipeline reflects it.',
       'ICP, target buyer, and 90-day plan are sharp and current.',
     ],
+    why: 'Without clarity on who you\'re selling to, everything else — your message, your sales motion, your hiring — optimizes for the wrong thing.',
+    gapImpact: 'When strategy is unclear, your team wastes energy chasing the wrong deals. Reps get frustrated, win rates drop, and you scale the wrong motion.',
     services: [
-      { label: 'GTM Diagnostics & 90-day Plan', href: '/services/diagnostics' },
+      { label: 'GTM Diagnostics & Plan', href: '/services/diagnostics' },
       { label: 'Advisory Retainer', href: '/services/advisory' },
     ],
   },
@@ -33,6 +35,8 @@ const pillars = [
       'Motions are defined, run, and reviewed quarterly.',
       'Motions are tuned, instrumented, and predictable.',
     ],
+    why: 'A repeatable motion is what separates scaling from chaos. Without it, you\'re relying on individual heroics instead of a system.',
+    gapImpact: 'Without a clear motion, you can\'t forecast. You can\'t hire. You can\'t coach reps. Every quarter is a surprise, and you\'re always one key person away from missing plan.',
     services: [
       { label: 'Fractional GTM Leadership', href: '/services/fractional-leadership' },
       { label: 'RevOps & GTM Effectiveness', href: '/services/revops' },
@@ -48,9 +52,11 @@ const pillars = [
       'A consistent narrative is in market and reps stick to it.',
       'Modular variants by persona and vertical, refreshed regularly.',
     ],
+    why: 'Reps sell best when they believe the story and can tell it naturally. An inconsistent message confuses buyers and makes your brand feel fractured.',
+    gapImpact: 'Reps lose deals because they\'re all saying different things. Buyers get different value props on different calls. Your positioning gets watered down.',
     services: [
-      { label: 'Sales Pitch Deck Build', href: '/services/pitch-deck' },
-      { label: 'AI-Augmented Pitch Decks', href: '/services/ai' },
+      { label: 'Sales Pitch Deck Build', href: '/services' },
+      { label: 'AI-Augmented Pitch Decks', href: '/services' },
     ],
   },
   {
@@ -63,9 +69,11 @@ const pillars = [
       'Forecast within ±10% and deal reviews are productive.',
       'Discipline is a competitive advantage — board-ready every month.',
     ],
+    why: 'Process is what turns a sales team into a revenue machine. It\'s the rhythm that forces hard conversations, surfaces problems early, and builds accountability.',
+    gapImpact: 'Without reliable process, you can\'t forecast. You surprise the board. You miss the patterns that would let you course-correct early.',
     services: [
-      { label: 'RevOps & GTM Effectiveness', href: '/services/revops' },
-      { label: 'Fractional GTM Leadership', href: '/services/fractional-leadership' },
+      { label: 'RevOps & GTM Effectiveness', href: '/services' },
+      { label: 'Fractional GTM Leadership', href: '/services' },
     ],
   },
   {
@@ -78,9 +86,11 @@ const pillars = [
       'Onboarding and ongoing enablement are working.',
       'Talent system is a hiring magnet and ramp is fast.',
     ],
+    why: 'Your team amplifies or defeats everything else. A weak talent system means constant churn, slow ramps, and good people getting frustrated.',
+    gapImpact: 'You lose institutional knowledge when people churn. New hires take months to ramp. Your best people leave because the org is too chaotic to operate in.',
     services: [
-      { label: 'Sales Kickoffs & Enablement', href: '/services/sales-kickoff' },
-      { label: 'AI Enablement & Training', href: '/services/ai' },
+      { label: 'Sales Kickoffs & Enablement', href: '/services' },
+      { label: 'AI Enablement & Training', href: '/services' },
     ],
   },
   {
@@ -93,9 +103,11 @@ const pillars = [
       'Dashboards are trusted and used in operating rituals.',
       'AI surfaces insights from existing systems; team acts on them.',
     ],
+    why: 'You can\'t improve what you don\'t measure. Ops is the nervous system that tells you what\'s actually happening versus what you think is happening.',
+    gapImpact: 'Bad data leads to bad decisions. You optimize the wrong things. Reps don\'t trust the CRM. You miss early signals that deals are at risk.',
     services: [
-      { label: 'AI Stack Audit & Roadmap', href: '/services/ai' },
-      { label: 'AI Data Surfacing', href: '/services/ai' },
+      { label: 'AI Stack Audit', href: '/services' },
+      { label: 'AI Data Surfacing', href: '/services' },
     ],
   },
 ];
@@ -108,15 +120,15 @@ const pillarsJson = JSON.stringify(pillars);
   <!-- Hero -->
   <section class="border-b border-ink/10">
     <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
-      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Free tool</p>
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Free assessment</p>
       <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
-        GTM Readiness Assessment.
+        Where's your GTM breaking down?
       </h1>
       <p class="mt-6 max-w-2xl text-lg text-muted">
-        Five minutes. Six pillars. A snapshot of where your go-to-market function is today, where you want it to be, and the biggest gaps in between.
+        Rate yourself on six core GTM dimensions. We'll show you where you stand, where you're trying to go, and which gaps are holding you back the most.
       </p>
       <p class="mt-4 max-w-2xl text-sm text-muted">
-        No email required to see your results. Want the report in your inbox? Optional, at the end.
+        Takes 5 minutes. No email required for results. Want the full report delivered? That's optional.
       </p>
     </div>
   </section>
@@ -131,7 +143,7 @@ const pillarsJson = JSON.stringify(pillars);
               <legend class="px-3 text-xs font-semibold uppercase tracking-wider text-accent">
                 Pillar {idx + 1} of 6
               </legend>
-              <h2 class="font-display text-2xl font-bold text-deep">Go-to-Market {p.title}</h2>
+              <h2 class="font-display text-2xl font-bold text-deep">{p.title}</h2>
               <p class="mt-2 text-base text-ink">{p.blurb}</p>
 
               <p class="mt-6 text-xs font-semibold uppercase tracking-wider text-muted">
@@ -248,10 +260,10 @@ const pillarsJson = JSON.stringify(pillars);
       <div class="mt-12 rounded-2xl border border-deep/20 bg-deep p-8 text-white">
         <p class="text-xs font-semibold uppercase tracking-wider text-accent-soft">Next step</p>
         <h3 class="mt-2 font-display text-2xl font-bold md:text-3xl">
-          Want help building the plan to close these gaps?
+          Ready to close these gaps?
         </h3>
         <p class="mt-3 max-w-2xl text-deep-soft">
-          Our 4–6 week GTM Diagnostic turns this snapshot into a defensible 90-day operating plan — owners, milestones, and the cadence to ship it. Or start with a 30-minute call to figure out what shape of engagement fits.
+          Book a call to talk through what you're seeing. We'll help you prioritize which gaps to fix first and show you what that engagement looks like.
         </p>
         <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
           <a
@@ -260,13 +272,13 @@ const pillarsJson = JSON.stringify(pillars);
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-base font-semibold text-deep shadow-sm transition hover:bg-accent hover:text-white"
           >
-            Book a 30-min meeting
+            Book a meeting
           </a>
           <a
-            href="/services/diagnostics"
+            href="/services"
             class="inline-flex items-center justify-center rounded-full border border-white/30 px-7 py-3 text-base font-semibold text-white transition hover:bg-white/10"
           >
-            See the GTM Diagnostic →
+            See all services →
           </a>
         </div>
       </div>
@@ -336,10 +348,10 @@ const pillarsJson = JSON.stringify(pillars);
   const emailSuccess = document.getElementById('email-results-success');
 
   function maturityBand(avg) {
-    if (avg >= 3.5) return { tier: 'Optimized', message: 'You\'re running a tight GTM operation. Most of the lift now is in compounding the edge — sharper segmentation, better instrumentation, AI in the loop.' };
-    if (avg >= 3.0) return { tier: 'Established', message: 'Solid foundation. The next move is to convert "good enough" pillars into competitive advantages — usually two or three of them at once.' };
-    if (avg >= 2.0) return { tier: 'Developing', message: 'Fundamentals are coming together but inconsistently. Pick the two pillars holding the rest back and rebuild them with senior leadership.' };
-    return { tier: 'Forming', message: 'You\'re early — and that\'s fine. The risk is scaling the wrong motion. The right move is a tight diagnostic before any new hires or channels.' };
+    if (avg >= 3.5) return { tier: 'Optimized', message: 'Your GTM function is running like a well-oiled machine. You\'re forecasting accurately, reps are hitting quota, and the machine scales. The work now is refinement — getting better at what you already know how to do.' };
+    if (avg >= 3.0) return { tier: 'Established', message: 'You\'ve got a solid foundation. The basics are in place, but you\'re not yet predictable. Focus on the one or two weakest pillars — fixing those will unlock the rest.' };
+    if (avg >= 2.0) return { tier: 'Developing', message: 'You\'re building, but it\'s still manual and inconsistent. You need to systematize how you work before you can scale. Pick your biggest gap and fix it properly.' };
+    return { tier: 'Forming', message: 'You\'re finding your way. That\'s normal early on. The risk is scaling before you have a repeatable motion. Get clarity on strategy and motion before hiring aggressively.' };
   }
 
   function renderResults(data) {
@@ -348,8 +360,8 @@ const pillarsJson = JSON.stringify(pillars);
     const overallTarget = data.reduce((s, p) => s + p.target, 0) / data.length;
     const band = maturityBand(overallCurrent);
 
-    headline.textContent = `Current state: ${band.tier} (${overallCurrent.toFixed(1)} / 4)`;
-    summary.textContent = `${band.message} Your aspiration averages ${overallTarget.toFixed(1)} / 4 across the six pillars — the gap below is where engagement starts.`;
+    headline.textContent = `${band.tier}: ${overallCurrent.toFixed(1)} / 4`;
+    summary.textContent = `${band.message} Your target is ${overallTarget.toFixed(1)} / 4. Below is where you have the most work to do.`;
 
     // Pillar bars
     pillarsContainer.innerHTML = '';
@@ -381,16 +393,22 @@ const pillarsJson = JSON.stringify(pillars);
     const topGaps = sorted.slice(0, 2);
 
     recsContainer.innerHTML = '';
-    topGaps.forEach((p) => {
+    topGaps.forEach((p, idx) => {
       const li = document.createElement('li');
-      li.className = 'flex flex-col gap-2 border-l-4 border-accent pl-5';
+      li.className = 'rounded-xl border border-ink/10 bg-white p-5';
       const servicesHtml = p.services
-        .map((s) => `<a href="${s.href}" class="text-deep underline-offset-4 hover:underline">${s.label}</a>`)
-        .join(' &middot; ');
+        .map((s) => `<a href="${s.href}" class="font-semibold text-deep underline-offset-4 hover:underline">${s.label}</a>`)
+        .join('<span class="mx-2 text-muted">•</span>');
       li.innerHTML = `
-        <p class="font-display text-lg font-bold text-deep">${p.title}${p.gap > 0 ? ` — closing a ${p.gap}-stage gap` : ' — sharpen what you have'}</p>
-        <p class="text-sm text-ink">${p.blurb}</p>
-        <p class="text-sm text-muted">Where we'd start: ${servicesHtml}</p>
+        <div class="flex items-start gap-3">
+          <div class="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-accent/10 text-base font-bold text-accent">${idx + 1}</div>
+          <div class="flex-1">
+            <p class="font-display text-lg font-bold text-deep">${p.title}</p>
+            <p class="mt-2 text-sm text-ink">${p.gapImpact}</p>
+            <p class="mt-3 text-xs font-semibold uppercase tracking-wider text-muted">Start here:</p>
+            <p class="mt-1 text-sm">${servicesHtml}</p>
+          </div>
+        </div>
       `;
       recsContainer.appendChild(li);
     });
@@ -438,7 +456,12 @@ const pillarsJson = JSON.stringify(pillars);
       return;
     }
     errorBox.classList.add('hidden');
-    renderResults(data);
+    // Merge in the why and gapImpact from pillar definitions
+    const enrichedData = data.map((d) => {
+      const pillar = pillars.find((p) => p.key === d.key);
+      return { ...d, why: pillar?.why, gapImpact: pillar?.gapImpact };
+    });
+    renderResults(enrichedData);
   });
 
   form.addEventListener('reset', () => {
