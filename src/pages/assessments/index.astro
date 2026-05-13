@@ -1,0 +1,826 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+import { SCHEDULING_URL } from '../../lib/site';
+
+// GTM Assessment Pillars
+const gtmPillars = [
+  {
+    key: 'strategy',
+    title: 'Strategy',
+    blurb: 'Right customers, right buyers, right stage of growth.',
+    stages: [
+      'No clear ICP — we sell to whoever shows up.',
+      'ICP exists but the team doesn\'t use it consistently.',
+      'ICP is documented and most pipeline reflects it.',
+      'ICP, target buyer, and 90-day plan are sharp and current.',
+    ],
+    why: 'Without clarity on who you\'re selling to, everything else — your message, your sales motion, your hiring — optimizes for the wrong thing.',
+    gapImpact: 'When strategy is unclear, your team wastes energy chasing the wrong deals. Reps get frustrated, win rates drop, and you scale the wrong motion.',
+    services: [
+      { label: 'GTM Diagnostics & Plan', href: '/services' },
+      { label: 'Advisory Retainer', href: '/services' },
+    ],
+  },
+  {
+    key: 'motion',
+    title: 'Motion',
+    blurb: 'How we acquire, progress, and grow customers.',
+    stages: [
+      'Acquisition and renewal motions are ad-hoc.',
+      'A motion exists for one of {acquire, expand, renew}, not all.',
+      'Motions are defined, run, and reviewed quarterly.',
+      'Motions are tuned, instrumented, and predictable.',
+    ],
+    why: 'A repeatable motion is what separates scaling from chaos. Without it, you\'re relying on individual heroics instead of a system.',
+    gapImpact: 'Without a clear motion, you can\'t forecast. You can\'t hire. You can\'t coach reps. Every quarter is a surprise, and you\'re always one key person away from missing plan.',
+    services: [
+      { label: 'Fractional GTM Leadership', href: '/services' },
+      { label: 'RevOps & GTM Effectiveness', href: '/services' },
+    ],
+  },
+  {
+    key: 'message',
+    title: 'Message',
+    blurb: 'A repeatable story the team can actually tell.',
+    stages: [
+      'Every rep tells a different version of the story.',
+      'A pitch deck exists but reps go off-script.',
+      'A consistent narrative is in market and reps stick to it.',
+      'Modular variants by persona and vertical, refreshed regularly.',
+    ],
+    why: 'Reps sell best when they believe the story and can tell it naturally. An inconsistent message confuses buyers and makes your brand feel fractured.',
+    gapImpact: 'Reps lose deals because they\'re all saying different things. Buyers get different value props on different calls. Your positioning gets watered down.',
+    services: [
+      { label: 'Sales Pitch Deck Build', href: '/services' },
+      { label: 'AI-Augmented Pitch Decks', href: '/services' },
+    ],
+  },
+  {
+    key: 'process',
+    title: 'Process',
+    blurb: 'Repeatable rituals — forecast, deal review, pipeline.',
+    stages: [
+      'No reliable forecast or deal-review cadence.',
+      'A cadence exists but accuracy is inconsistent.',
+      'Forecast within ±10% and deal reviews are productive.',
+      'Discipline is a competitive advantage — board-ready every month.',
+    ],
+    why: 'Process is what turns a sales team into a revenue machine. It\'s the rhythm that forces hard conversations, surfaces problems early, and builds accountability.',
+    gapImpact: 'Without reliable process, you can\'t forecast. You surprise the board. You miss the patterns that would let you course-correct early.',
+    services: [
+      { label: 'RevOps & GTM Effectiveness', href: '/services' },
+      { label: 'Fractional GTM Leadership', href: '/services' },
+    ],
+  },
+  {
+    key: 'talent',
+    title: 'Talent',
+    blurb: 'Org design, hiring, comp, and enablement.',
+    stages: [
+      'Org is improvised; new hires ramp slowly or churn.',
+      'Roles are defined but enablement is light.',
+      'Onboarding and ongoing enablement are working.',
+      'Talent system is a hiring magnet and ramp is fast.',
+    ],
+    why: 'Your team amplifies or defeats everything else. A weak talent system means constant churn, slow ramps, and good people getting frustrated.',
+    gapImpact: 'You lose institutional knowledge when people churn. New hires take months to ramp. Your best people leave because the org is too chaotic to operate in.',
+    services: [
+      { label: 'Sales Kickoffs & Enablement', href: '/services' },
+      { label: 'AI Enablement & Training', href: '/services' },
+    ],
+  },
+  {
+    key: 'operations',
+    title: 'Operations',
+    blurb: 'Systems, data, and AI that improve outcomes.',
+    stages: [
+      'CRM data is messy; dashboards aren\'t trusted.',
+      'Some dashboards exist; data quality is hit-or-miss.',
+      'Dashboards are trusted and used in operating rituals.',
+      'AI surfaces insights from existing systems; team acts on them.',
+    ],
+    why: 'You can\'t improve what you don\'t measure. Ops is the nervous system that tells you what\'s actually happening versus what you think is happening.',
+    gapImpact: 'Bad data leads to bad decisions. You optimize the wrong things. Reps don\'t trust the CRM. You miss early signals that deals are at risk.',
+    services: [
+      { label: 'AI Stack Audit', href: '/services' },
+      { label: 'AI Data Surfacing', href: '/services' },
+    ],
+  },
+];
+
+// AI Assessment Dimensions
+const aiDimensions = [
+  {
+    key: 'data',
+    title: 'Data & Infrastructure',
+    blurb: 'Clean data, accessible tools, the right stack.',
+    stages: [
+      'Data is siloed and messy; tools don\'t talk to each other.',
+      'Some data governance exists; basic integrations in place.',
+      'Data is clean and accessible; most tools are integrated.',
+      'Data is a competitive advantage; AI-ready infrastructure across the stack.',
+    ],
+    why: 'AI only works on good data. Without clean, accessible data, your AI efforts are building on sand.',
+    gapImpact: 'You can\'t use AI effectively. Models trained on bad data give bad answers. You waste time cleaning data instead of using it.',
+    services: [
+      { label: 'AI Stack Audit', href: '/services' },
+      { label: 'AI Data Surfacing', href: '/services' },
+    ],
+  },
+  {
+    key: 'adoption',
+    title: 'AI Adoption',
+    blurb: 'What you\'re actually using AI for today.',
+    stages: [
+      'No AI in use; exploring possibilities.',
+      'Experimenting with AI in one or two areas.',
+      'AI is in use across your revenue function.',
+      'AI is embedded in workflows; team can\'t imagine working without it.',
+    ],
+    why: 'Early AI adoption compounds. Teams that start now will have a massive edge in 18 months.',
+    gapImpact: 'You\'re falling behind competitors using AI. Your team is doing work manually that could be automated. You\'re burning time and money.',
+    services: [
+      { label: 'AI Enablement & Training', href: '/services' },
+      { label: 'AI for Sales Kickoffs', href: '/services' },
+    ],
+  },
+  {
+    key: 'strategy',
+    title: 'AI Strategy',
+    blurb: 'A plan for where AI fits in your business.',
+    stages: [
+      'No AI strategy; waiting to see what happens.',
+      'Exploring AI use cases but no formal plan.',
+      'AI strategy is defined; priorities are clear.',
+      'AI strategy is tied to business outcomes; quarterly reviews and adjustments.',
+    ],
+    why: 'Random AI adoption doesn\'t drive value. A strategy ensures you\'re investing in AI that matters to your business.',
+    gapImpact: 'You\'re doing AI projects that don\'t move the needle. You\'re investing in the wrong tools. Your team doesn\'t know what they\'re optimizing for.',
+    services: [
+      { label: 'AI Stack Audit', href: '/services' },
+      { label: 'Advisory Retainer', href: '/services' },
+    ],
+  },
+  {
+    key: 'team',
+    title: 'Team & Skills',
+    blurb: 'Can your team use AI effectively?',
+    stages: [
+      'Team doesn\'t understand AI; skeptical or overwhelmed.',
+      'Some team members are exploring AI; others resist.',
+      'Team is comfortable using AI tools in their workflows.',
+      'Team actively identifies new AI opportunities; drives adoption.',
+    ],
+    why: 'The best AI strategy fails if your team can\'t or won\'t use it.',
+    gapImpact: 'Tools sit unused. Team gets frustrated. You spend money on AI and see no return.',
+    services: [
+      { label: 'AI Enablement & Training', href: '/services' },
+      { label: 'Sales Kickoffs & Enablement', href: '/services' },
+    ],
+  },
+  {
+    key: 'revenue',
+    title: 'AI in Revenue',
+    blurb: 'How AI is being used in GTM specifically.',
+    stages: [
+      'No AI in revenue function; doing it the old way.',
+      'Experimenting with AI for messaging, research, or forecasting.',
+      'AI is improving deal flow, messaging, and forecast accuracy.',
+      'AI is driving revenue outcomes; predictive insights are standard practice.',
+    ],
+    why: 'AI in revenue is where it compounds fastest. Better forecasts, smarter prospecting, sharper messaging.',
+    gapImpact: 'You\'re missing deals you should be winning. Your reps are doing research manually. Your forecast is a guess.',
+    services: [
+      { label: 'AI Stack Audit', href: '/services' },
+      { label: 'AI Data Surfacing', href: '/services' },
+    ],
+  },
+  {
+    key: 'governance',
+    title: 'AI Governance',
+    blurb: 'Policies, risk management, ethical guidelines.',
+    stages: [
+      'No governance; using AI however people want.',
+      'Some guidelines exist; inconsistently applied.',
+      'Clear policies on data privacy, bias, and responsible AI use.',
+      'Governance is built into process; regular audits and compliance checks.',
+    ],
+    why: 'Unmanaged AI creates risk. Data leaks, biased models, regulatory problems.',
+    gapImpact: 'You could expose customer data. Models could be making biased decisions. You\'re vulnerable to regulatory changes.',
+    services: [
+      { label: 'AI Stack Audit', href: '/services' },
+      { label: 'Advisory Retainer', href: '/services' },
+    ],
+  },
+];
+
+const gtmPillarsJson = JSON.stringify(gtmPillars);
+const aiDimensionsJson = JSON.stringify(aiDimensions);
+---
+
+<BaseLayout title="Assessments — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <h1 class="font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        How ready are you?
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Two assessments to understand where your GTM function stands and how far you can push with AI. Take either one — or both — to get a clear picture of your gaps and where to focus first.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6">
+      <!-- Tab Navigation -->
+      <div class="flex border-b border-ink/10">
+        <button
+          id="gtm-tab"
+          class="px-6 py-4 text-base font-semibold text-deep border-b-2 border-deep"
+          data-tab="gtm"
+        >
+          GTM Readiness
+        </button>
+        <button
+          id="ai-tab"
+          class="px-6 py-4 text-base font-semibold text-muted border-b-2 border-transparent hover:text-deep"
+          data-tab="ai"
+        >
+          AI Assessment
+        </button>
+      </div>
+
+      <!-- GTM Assessment Tab -->
+      <div id="gtm-content" class="py-16">
+        <p class="text-sm font-semibold uppercase tracking-wider text-accent">Assessment</p>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+          GTM Readiness Assessment.
+        </h2>
+        <p class="mt-4 max-w-2xl text-lg text-muted">
+          Rate yourself on six core GTM dimensions. We'll show you where you stand, where you're trying to go, and which gaps are holding you back the most.
+        </p>
+        <p class="mt-4 max-w-2xl text-sm text-muted">
+          Takes 5 minutes. No email required for results. Want the full report delivered? That's optional.
+        </p>
+
+        <!-- GTM Form -->
+        <form id="gtm-assessment-form" class="mt-10 space-y-10" novalidate>
+          {
+            gtmPillars.map((p, idx) => (
+              <fieldset class="rounded-2xl border border-ink/10 bg-bg p-7" data-pillar={p.key}>
+                <legend class="px-3 text-xs font-semibold uppercase tracking-wider text-accent">
+                  Pillar {idx + 1} of 6
+                </legend>
+                <h3 class="font-display text-2xl font-bold text-deep">{p.title}</h3>
+                <p class="mt-2 text-base text-ink">{p.blurb}</p>
+
+                <p class="mt-6 text-xs font-semibold uppercase tracking-wider text-muted">
+                  Maturity stages
+                </p>
+                <ol class="mt-2 space-y-1 text-sm text-muted">
+                  {p.stages.map((s, i) => (
+                    <li>
+                      <span class="font-semibold text-deep">{i + 1}.</span> {s}
+                    </li>
+                  ))}
+                </ol>
+
+                <div class="mt-6 grid gap-6 md:grid-cols-2">
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-muted">
+                      Where you are today
+                    </p>
+                    <div class="mt-3 flex gap-2" role="radiogroup" aria-label={`${p.title}: current state`}>
+                      {[1, 2, 3, 4].map((n) => (
+                        <label class="group flex-1 cursor-pointer">
+                          <input
+                            type="radio"
+                            name={`gtm-${p.key}-current`}
+                            value={n}
+                            class="peer sr-only"
+                            required
+                          />
+                          <span
+                            class="flex h-12 items-center justify-center rounded-lg border border-ink/15 bg-white text-base font-semibold text-ink transition group-hover:border-deep peer-checked:border-deep peer-checked:bg-deep peer-checked:text-white"
+                          >
+                            {n}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-muted">
+                      Where you want to be in 12 months
+                    </p>
+                    <div class="mt-3 flex gap-2" role="radiogroup" aria-label={`${p.title}: target state`}>
+                      {[1, 2, 3, 4].map((n) => (
+                        <label class="group flex-1 cursor-pointer">
+                          <input
+                            type="radio"
+                            name={`gtm-${p.key}-target`}
+                            value={n}
+                            class="peer sr-only"
+                            required
+                          />
+                          <span
+                            class="flex h-12 items-center justify-center rounded-lg border border-ink/15 bg-white text-base font-semibold text-ink transition group-hover:border-accent peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white"
+                          >
+                            {n}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            ))
+          }
+
+          <div id="gtm-form-error" class="hidden rounded-lg border border-rust/30 bg-rust/5 p-4 text-sm text-rust">
+            Please answer every question — there's a row that's still blank.
+          </div>
+
+          <div class="flex flex-col items-start gap-4 md:flex-row md:items-center">
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+            >
+              See my results
+            </button>
+            <button
+              type="reset"
+              class="text-sm font-semibold text-muted underline-offset-4 hover:text-ink hover:underline"
+            >
+              Start over
+            </button>
+          </div>
+        </form>
+
+        <!-- GTM Results -->
+        <section id="gtm-results" class="hidden mt-16 border-t border-ink/10 pt-16">
+          <p class="text-sm font-semibold uppercase tracking-wider text-accent">Your results</p>
+          <h2 id="gtm-results-headline" class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+            <!-- filled by JS -->
+          </h2>
+          <p id="gtm-results-summary" class="mt-4 max-w-2xl text-lg text-muted">
+            <!-- filled by JS -->
+          </p>
+
+          <div id="gtm-results-pillars" class="mt-10 space-y-5">
+            <!-- filled by JS -->
+          </div>
+
+          <div class="mt-12 rounded-2xl border border-ink/10 bg-white p-7">
+            <p class="text-xs font-semibold uppercase tracking-wider text-accent">Where to focus first</p>
+            <h3 class="mt-2 font-display text-xl font-bold text-deep">Your biggest gaps — and what we'd suggest.</h3>
+            <ul id="gtm-results-recommendations" class="mt-5 space-y-5 text-base">
+              <!-- filled by JS -->
+            </ul>
+          </div>
+
+          <div class="mt-12 rounded-2xl border border-deep/20 bg-deep p-8 text-white">
+            <p class="text-xs font-semibold uppercase tracking-wider text-accent-soft">Next step</p>
+            <h3 class="mt-2 font-display text-2xl font-bold md:text-3xl">
+              Ready to close these gaps?
+            </h3>
+            <p class="mt-3 max-w-2xl text-deep-soft">
+              Book a call to talk through what you're seeing. We'll help you prioritize which gaps to fix first and show you what that engagement looks like.
+            </p>
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a
+                href={SCHEDULING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-base font-semibold text-deep shadow-sm transition hover:bg-accent hover:text-white"
+              >
+                Book a meeting
+              </a>
+              <a
+                href="/services"
+                class="inline-flex items-center justify-center rounded-full border border-white/30 px-7 py-3 text-base font-semibold text-white transition hover:bg-white/10"
+              >
+                See all services →
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- AI Assessment Tab -->
+      <div id="ai-content" class="hidden py-16">
+        <p class="text-sm font-semibold uppercase tracking-wider text-accent">Assessment</p>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+          AI Assessment.
+        </h2>
+        <p class="mt-4 max-w-2xl text-lg text-muted">
+          Understand your AI maturity across six dimensions. We'll show you where you're leveraging AI today and where the biggest opportunities are.
+        </p>
+        <p class="mt-4 max-w-2xl text-sm text-muted">
+          Takes 5 minutes. No email required for results. Want the full report delivered? That's optional.
+        </p>
+
+        <!-- AI Form -->
+        <form id="ai-assessment-form" class="mt-10 space-y-10" novalidate>
+          {
+            aiDimensions.map((d, idx) => (
+              <fieldset class="rounded-2xl border border-ink/10 bg-bg p-7" data-dimension={d.key}>
+                <legend class="px-3 text-xs font-semibold uppercase tracking-wider text-accent">
+                  Dimension {idx + 1} of 6
+                </legend>
+                <h3 class="font-display text-2xl font-bold text-deep">{d.title}</h3>
+                <p class="mt-2 text-base text-ink">{d.blurb}</p>
+
+                <p class="mt-6 text-xs font-semibold uppercase tracking-wider text-muted">
+                  Maturity stages
+                </p>
+                <ol class="mt-2 space-y-1 text-sm text-muted">
+                  {d.stages.map((s, i) => (
+                    <li>
+                      <span class="font-semibold text-deep">{i + 1}.</span> {s}
+                    </li>
+                  ))}
+                </ol>
+
+                <div class="mt-6 grid gap-6 md:grid-cols-2">
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-muted">
+                      Where you are today
+                    </p>
+                    <div class="mt-3 flex gap-2" role="radiogroup" aria-label={`${d.title}: current state`}>
+                      {[1, 2, 3, 4].map((n) => (
+                        <label class="group flex-1 cursor-pointer">
+                          <input
+                            type="radio"
+                            name={`ai-${d.key}-current`}
+                            value={n}
+                            class="peer sr-only"
+                            required
+                          />
+                          <span
+                            class="flex h-12 items-center justify-center rounded-lg border border-ink/15 bg-white text-base font-semibold text-ink transition group-hover:border-deep peer-checked:border-deep peer-checked:bg-deep peer-checked:text-white"
+                          >
+                            {n}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-muted">
+                      Where you want to be in 12 months
+                    </p>
+                    <div class="mt-3 flex gap-2" role="radiogroup" aria-label={`${d.title}: target state`}>
+                      {[1, 2, 3, 4].map((n) => (
+                        <label class="group flex-1 cursor-pointer">
+                          <input
+                            type="radio"
+                            name={`ai-${d.key}-target`}
+                            value={n}
+                            class="peer sr-only"
+                            required
+                          />
+                          <span
+                            class="flex h-12 items-center justify-center rounded-lg border border-ink/15 bg-white text-base font-semibold text-ink transition group-hover:border-accent peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white"
+                          >
+                            {n}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            ))
+          }
+
+          <div id="ai-form-error" class="hidden rounded-lg border border-rust/30 bg-rust/5 p-4 text-sm text-rust">
+            Please answer every question — there's a row that's still blank.
+          </div>
+
+          <div class="flex flex-col items-start gap-4 md:flex-row md:items-center">
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+            >
+              See my results
+            </button>
+            <button
+              type="reset"
+              class="text-sm font-semibold text-muted underline-offset-4 hover:text-ink hover:underline"
+            >
+              Start over
+            </button>
+          </div>
+        </form>
+
+        <!-- AI Results -->
+        <section id="ai-results" class="hidden mt-16 border-t border-ink/10 pt-16">
+          <p class="text-sm font-semibold uppercase tracking-wider text-accent">Your results</p>
+          <h2 id="ai-results-headline" class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
+            <!-- filled by JS -->
+          </h2>
+          <p id="ai-results-summary" class="mt-4 max-w-2xl text-lg text-muted">
+            <!-- filled by JS -->
+          </p>
+
+          <div id="ai-results-pillars" class="mt-10 space-y-5">
+            <!-- filled by JS -->
+          </div>
+
+          <div class="mt-12 rounded-2xl border border-ink/10 bg-white p-7">
+            <p class="text-xs font-semibold uppercase tracking-wider text-accent">Where to focus first</p>
+            <h3 class="mt-2 font-display text-xl font-bold text-deep">Your biggest gaps — and what we'd suggest.</h3>
+            <ul id="ai-results-recommendations" class="mt-5 space-y-5 text-base">
+              <!-- filled by JS -->
+            </ul>
+          </div>
+
+          <div class="mt-12 rounded-2xl border border-deep/20 bg-deep p-8 text-white">
+            <p class="text-xs font-semibold uppercase tracking-wider text-accent-soft">Next step</p>
+            <h3 class="mt-2 font-display text-2xl font-bold md:text-3xl">
+              Ready to accelerate your AI adoption?
+            </h3>
+            <p class="mt-3 max-w-2xl text-deep-soft">
+              Book a call to discuss your AI strategy. We'll help you prioritize which dimensions to tackle first and how to get your team on board.
+            </p>
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a
+                href={SCHEDULING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-base font-semibold text-deep shadow-sm transition hover:bg-accent hover:text-white"
+              >
+                Book a meeting
+              </a>
+              <a
+                href="/services"
+                class="inline-flex items-center justify-center rounded-full border border-white/30 px-7 py-3 text-base font-semibold text-white transition hover:bg-white/10"
+              >
+                See all services →
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section id="pre-results-cta">
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <p class="text-base text-muted">Prefer to talk to a human first?</p>
+      <div class="mt-6 flex justify-center">
+        <CTAButton />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline define:vars={{ gtmPillarsJson, aiDimensionsJson }}>
+  const gtmPillars = JSON.parse(gtmPillarsJson);
+  const aiDimensions = JSON.parse(aiDimensionsJson);
+
+  // Tab functionality
+  const gtmTab = document.getElementById('gtm-tab');
+  const aiTab = document.getElementById('ai-tab');
+  const gtmContent = document.getElementById('gtm-content');
+  const aiContent = document.getElementById('ai-content');
+
+  gtmTab.addEventListener('click', () => {
+    gtmTab.classList.add('border-deep', 'text-deep');
+    gtmTab.classList.remove('border-transparent', 'text-muted');
+    aiTab.classList.remove('border-deep', 'text-deep');
+    aiTab.classList.add('border-transparent', 'text-muted');
+    gtmContent.classList.remove('hidden');
+    aiContent.classList.add('hidden');
+  });
+
+  aiTab.addEventListener('click', () => {
+    aiTab.classList.add('border-deep', 'text-deep');
+    aiTab.classList.remove('border-transparent', 'text-muted');
+    gtmTab.classList.remove('border-deep', 'text-deep');
+    gtmTab.classList.add('border-transparent', 'text-muted');
+    aiContent.classList.remove('hidden');
+    gtmContent.classList.add('hidden');
+  });
+
+  // GTM Assessment
+  const gtmForm = document.getElementById('gtm-assessment-form');
+  const gtmErrorBox = document.getElementById('gtm-form-error');
+  const gtmResults = document.getElementById('gtm-results');
+  const gtmHeadline = document.getElementById('gtm-results-headline');
+  const gtmSummary = document.getElementById('gtm-results-summary');
+  const gtmPillarsContainer = document.getElementById('gtm-results-pillars');
+  const gtmRecsContainer = document.getElementById('gtm-results-recommendations');
+
+  function gtmMaturityBand(avg) {
+    if (avg >= 3.5) return { tier: 'Optimized', message: 'Your GTM function is running like a well-oiled machine. You\'re forecasting accurately, reps are hitting quota, and the machine scales. The work now is refinement — getting better at what you already know how to do.' };
+    if (avg >= 3.0) return { tier: 'Established', message: 'You\'ve got a solid foundation. The basics are in place, but you\'re not yet predictable. Focus on the one or two weakest pillars — fixing those will unlock the rest.' };
+    if (avg >= 2.0) return { tier: 'Developing', message: 'You\'re building, but it\'s still manual and inconsistent. You need to systematize how you work before you can scale. Pick your biggest gap and fix it properly.' };
+    return { tier: 'Forming', message: 'You\'re finding your way. That\'s normal early on. The risk is scaling before you have a repeatable motion. Get clarity on strategy and motion before hiring aggressively.' };
+  }
+
+  function aiMaturityBand(avg) {
+    if (avg >= 3.5) return { tier: 'AI-Driven', message: 'AI is embedded in your workflow. Your team uses it daily, insights are actionable, and results are measurable. You\'re ahead of most. Keep innovating.' };
+    if (avg >= 3.0) return { tier: 'AI-Enabled', message: 'You\'re using AI effectively across multiple areas. Your team is comfortable with the tools. The next move is to connect the dots — AI insights driving business decisions.' };
+    if (avg >= 2.0) return { tier: 'AI-Exploring', message: 'You\'re experimenting and learning. That\'s the right place to be. Pick one or two areas to focus on and measure impact before scaling.' };
+    return { tier: 'AI-Early', message: 'You\'re just getting started with AI. That\'s fine — but start now. Build the data foundation and get your team trained before you fall too far behind.' };
+  }
+
+  function renderResults(type, data) {
+    if (type === 'gtm') {
+      const overallCurrent = data.reduce((s, p) => s + p.current, 0) / data.length;
+      const overallTarget = data.reduce((s, p) => s + p.target, 0) / data.length;
+      const band = gtmMaturityBand(overallCurrent);
+
+      gtmHeadline.textContent = `${band.tier}: ${overallCurrent.toFixed(1)} / 4`;
+      gtmSummary.textContent = `${band.message} Your target is ${overallTarget.toFixed(1)} / 4. Below is where you have the most work to do.`;
+
+      gtmPillarsContainer.innerHTML = '';
+      data.forEach((p) => {
+        const currentPct = (p.current / 4) * 100;
+        const targetPct = (p.target / 4) * 100;
+        const row = document.createElement('div');
+        row.className = 'rounded-xl border border-ink/10 bg-white p-5';
+        row.innerHTML = `
+          <div class="flex items-baseline justify-between gap-4">
+            <h4 class="font-display text-base font-bold text-deep">${p.title}</h4>
+            <p class="text-sm text-muted">
+              <span class="font-semibold text-deep">${p.current}</span>
+              <span class="mx-1 text-muted/60">→</span>
+              <span class="font-semibold text-accent">${p.target}</span>
+              <span class="ml-2 text-xs uppercase tracking-wider">${p.gap > 0 ? `gap ${p.gap}` : 'on target'}</span>
+            </p>
+          </div>
+          <div class="relative mt-3 h-3 w-full rounded-full bg-ink/10">
+            <div class="absolute left-0 top-0 h-3 rounded-full bg-accent/30" style="width: ${targetPct}%"></div>
+            <div class="absolute left-0 top-0 h-3 rounded-full bg-deep" style="width: ${currentPct}%"></div>
+          </div>
+        `;
+        gtmPillarsContainer.appendChild(row);
+      });
+
+      const sorted = [...data].sort((a, b) => b.gap - a.gap || a.current - b.current);
+      const topGaps = sorted.slice(0, 2);
+
+      gtmRecsContainer.innerHTML = '';
+      topGaps.forEach((p, idx) => {
+        const li = document.createElement('li');
+        li.className = 'rounded-xl border border-ink/10 bg-white p-5';
+        const servicesHtml = p.services
+          .map((s) => `<a href="${s.href}" class="font-semibold text-deep underline-offset-4 hover:underline">${s.label}</a>`)
+          .join('<span class="mx-2 text-muted">•</span>');
+        li.innerHTML = `
+          <div class="flex items-start gap-3">
+            <div class="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-accent/10 text-base font-bold text-accent">${idx + 1}</div>
+            <div class="flex-1">
+              <p class="font-display text-lg font-bold text-deep">${p.title}</p>
+              <p class="mt-2 text-sm text-ink">${p.gapImpact}</p>
+              <p class="mt-3 text-xs font-semibold uppercase tracking-wider text-muted">Start here:</p>
+              <p class="mt-1 text-sm">${servicesHtml}</p>
+            </div>
+          </div>
+        `;
+        gtmRecsContainer.appendChild(li);
+      });
+
+      gtmResults.classList.remove('hidden');
+      gtmResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (type === 'ai') {
+      const overallCurrent = data.reduce((s, d) => s + d.current, 0) / data.length;
+      const overallTarget = data.reduce((s, d) => s + d.target, 0) / data.length;
+      const band = aiMaturityBand(overallCurrent);
+
+      document.getElementById('ai-results-headline').textContent = `${band.tier}: ${overallCurrent.toFixed(1)} / 4`;
+      document.getElementById('ai-results-summary').textContent = `${band.message} Your target is ${overallTarget.toFixed(1)} / 4. Below is where you have the most work to do.`;
+
+      const aiPillarsContainer = document.getElementById('ai-results-pillars');
+      aiPillarsContainer.innerHTML = '';
+      data.forEach((d) => {
+        const currentPct = (d.current / 4) * 100;
+        const targetPct = (d.target / 4) * 100;
+        const row = document.createElement('div');
+        row.className = 'rounded-xl border border-ink/10 bg-white p-5';
+        row.innerHTML = `
+          <div class="flex items-baseline justify-between gap-4">
+            <h4 class="font-display text-base font-bold text-deep">${d.title}</h4>
+            <p class="text-sm text-muted">
+              <span class="font-semibold text-deep">${d.current}</span>
+              <span class="mx-1 text-muted/60">→</span>
+              <span class="font-semibold text-accent">${d.target}</span>
+              <span class="ml-2 text-xs uppercase tracking-wider">${d.gap > 0 ? `gap ${d.gap}` : 'on target'}</span>
+            </p>
+          </div>
+          <div class="relative mt-3 h-3 w-full rounded-full bg-ink/10">
+            <div class="absolute left-0 top-0 h-3 rounded-full bg-accent/30" style="width: ${targetPct}%"></div>
+            <div class="absolute left-0 top-0 h-3 rounded-full bg-deep" style="width: ${currentPct}%"></div>
+          </div>
+        `;
+        aiPillarsContainer.appendChild(row);
+      });
+
+      const sorted = [...data].sort((a, b) => b.gap - a.gap || a.current - b.current);
+      const topGaps = sorted.slice(0, 2);
+
+      const aiRecsContainer = document.getElementById('ai-results-recommendations');
+      aiRecsContainer.innerHTML = '';
+      topGaps.forEach((d, idx) => {
+        const li = document.createElement('li');
+        li.className = 'rounded-xl border border-ink/10 bg-white p-5';
+        const servicesHtml = d.services
+          .map((s) => `<a href="${s.href}" class="font-semibold text-deep underline-offset-4 hover:underline">${s.label}</a>`)
+          .join('<span class="mx-2 text-muted">•</span>');
+        li.innerHTML = `
+          <div class="flex items-start gap-3">
+            <div class="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-accent/10 text-base font-bold text-accent">${idx + 1}</div>
+            <div class="flex-1">
+              <p class="font-display text-lg font-bold text-deep">${d.title}</p>
+              <p class="mt-2 text-sm text-ink">${d.gapImpact}</p>
+              <p class="mt-3 text-xs font-semibold uppercase tracking-wider text-muted">Start here:</p>
+              <p class="mt-1 text-sm">${servicesHtml}</p>
+            </div>
+          </div>
+        `;
+        aiRecsContainer.appendChild(li);
+      });
+
+      document.getElementById('ai-results').classList.remove('hidden');
+      document.getElementById('ai-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  gtmForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = gtmPillars.map((p) => {
+      const cur = gtmForm.querySelector(`input[name="gtm-${p.key}-current"]:checked`);
+      const tgt = gtmForm.querySelector(`input[name="gtm-${p.key}-target"]:checked`);
+      if (!cur || !tgt) return null;
+      const current = parseInt(cur.value, 10);
+      const target = parseInt(tgt.value, 10);
+      return {
+        key: p.key,
+        title: p.title,
+        blurb: p.blurb,
+        services: p.services,
+        current,
+        target,
+        gap: Math.max(0, target - current),
+        gapImpact: p.gapImpact,
+      };
+    });
+
+    if (data.some((d) => d === null)) {
+      gtmErrorBox.classList.remove('hidden');
+      gtmErrorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    gtmErrorBox.classList.add('hidden');
+    renderResults('gtm', data);
+  });
+
+  const aiForm = document.getElementById('ai-assessment-form');
+  const aiErrorBox = document.getElementById('ai-form-error');
+
+  aiForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = aiDimensions.map((d) => {
+      const cur = aiForm.querySelector(`input[name="ai-${d.key}-current"]:checked`);
+      const tgt = aiForm.querySelector(`input[name="ai-${d.key}-target"]:checked`);
+      if (!cur || !tgt) return null;
+      const current = parseInt(cur.value, 10);
+      const target = parseInt(tgt.value, 10);
+      return {
+        key: d.key,
+        title: d.title,
+        blurb: d.blurb,
+        services: d.services,
+        current,
+        target,
+        gap: Math.max(0, target - current),
+        gapImpact: d.gapImpact,
+      };
+    });
+
+    if (data.some((d) => d === null)) {
+      aiErrorBox.classList.remove('hidden');
+      aiErrorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    aiErrorBox.classList.add('hidden');
+    renderResults('ai', data);
+  });
+
+  gtmForm.addEventListener('reset', () => {
+    gtmResults.classList.add('hidden');
+    gtmErrorBox.classList.add('hidden');
+  });
+
+  aiForm.addEventListener('reset', () => {
+    document.getElementById('ai-results').classList.add('hidden');
+    aiErrorBox.classList.add('hidden');
+  });
+</script>
