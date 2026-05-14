@@ -109,114 +109,192 @@ const gtmPillars = [
   },
 ];
 
-// AI Assessment Dimensions
-const aiDimensions = [
-  {
-    key: 'data',
-    title: 'Data & Infrastructure',
-    blurb: 'Clean data, accessible tools, the right stack.',
-    stages: [
-      'Data is siloed and messy; tools don\'t talk to each other.',
-      'Some data governance exists; basic integrations in place.',
-      'Data is clean and accessible; most tools are integrated.',
-      'Data is a competitive advantage; AI-ready infrastructure across the stack.',
-    ],
-    why: 'AI only works on good data. Without clean, accessible data, your AI efforts are building on sand.',
-    gapImpact: 'You can\'t use AI effectively. Models trained on bad data give bad answers. You waste time cleaning data instead of using it.',
-    services: [
-      { label: 'AI Stack Audit', href: '/services' },
-      { label: 'AI Data Surfacing', href: '/services' },
-    ],
-  },
-  {
-    key: 'adoption',
-    title: 'AI Adoption',
-    blurb: 'What you\'re actually using AI for today.',
-    stages: [
-      'No AI in use; exploring possibilities.',
-      'Experimenting with AI in one or two areas.',
-      'AI is in use across your revenue function.',
-      'AI is embedded in workflows; team can\'t imagine working without it.',
-    ],
-    why: 'Early AI adoption compounds. Teams that start now will have a massive edge in 18 months.',
-    gapImpact: 'You\'re falling behind competitors using AI. Your team is doing work manually that could be automated. You\'re burning time and money.',
-    services: [
-      { label: 'AI Enablement & Training', href: '/services' },
-      { label: 'AI for Sales Kickoffs', href: '/services' },
-    ],
-  },
+// GTM AI Maturity Assessment Dimensions
+const gtmAIDimensions = [
   {
     key: 'strategy',
-    title: 'AI Strategy',
-    blurb: 'A plan for where AI fits in your business.',
+    title: 'Strategy',
+    blurb: 'Is there a clear AI vision tied to business outcomes?',
     stages: [
-      'No AI strategy; waiting to see what happens.',
-      'Exploring AI use cases but no formal plan.',
-      'AI strategy is defined; priorities are clear.',
-      'AI strategy is tied to business outcomes; quarterly reviews and adjustments.',
+      'No formal AI strategy; waiting to see what happens.',
+      'Exploring AI use cases but no formal plan for GTM.',
+      'AI strategy is defined with clear GTM priorities.',
+      'AI strategy is tied to revenue outcomes; actively measured and adjusted.',
+      'AI is core to competitive differentiation and GTM transformation.',
     ],
-    why: 'Random AI adoption doesn\'t drive value. A strategy ensures you\'re investing in AI that matters to your business.',
-    gapImpact: 'You\'re doing AI projects that don\'t move the needle. You\'re investing in the wrong tools. Your team doesn\'t know what they\'re optimizing for.',
+    why: 'Without strategy, AI investments scatter. A GTM-specific AI plan ensures every effort moves revenue.',
+    gapImpact: 'Your AI projects don\'t align with GTM priorities. You\'re investing in shiny tools instead of revenue impact.',
     services: [
-      { label: 'AI Stack Audit', href: '/services' },
+      { label: 'GTM AI Strategy Workshop', href: '/services' },
       { label: 'Advisory Retainer', href: '/services' },
     ],
   },
   {
-    key: 'team',
-    title: 'Team & Skills',
-    blurb: 'Can your team use AI effectively?',
+    key: 'adoption',
+    title: 'Adoption & Usage',
+    blurb: 'Are GTM teams actually using AI consistently?',
     stages: [
-      'Team doesn\'t understand AI; skeptical or overwhelmed.',
-      'Some team members are exploring AI; others resist.',
-      'Team is comfortable using AI tools in their workflows.',
-      'Team actively identifies new AI opportunities; drives adoption.',
+      'Individuals experimenting with ChatGPT privately; no organizational adoption.',
+      'Approved AI tools introduced; some reps and CSMs using them weekly.',
+      'AI usage is 60%+ of sales and CS teams; embedded in key workflows.',
+      'AI is embedded in most workflows; team can\'t imagine working without it.',
+      'AI is fully embedded; autonomous AI systems handle routine orchestration.',
     ],
-    why: 'The best AI strategy fails if your team can\'t or won\'t use it.',
-    gapImpact: 'Tools sit unused. Team gets frustrated. You spend money on AI and see no return.',
+    why: 'Adoption compounds. Teams that embed AI now have massive edge in 18 months.',
+    gapImpact: 'Your tools sit unused. Reps still doing work manually. You\'re paying for AI with no ROI.',
     services: [
       { label: 'AI Enablement & Training', href: '/services' },
       { label: 'Sales Kickoffs & Enablement', href: '/services' },
     ],
   },
   {
-    key: 'revenue',
-    title: 'AI in Revenue',
-    blurb: 'How AI is being used in GTM specifically.',
+    key: 'workflow',
+    title: 'Workflow Integration',
+    blurb: 'Is AI embedded into core GTM workflows or just side usage?',
     stages: [
-      'No AI in revenue function; doing it the old way.',
-      'Experimenting with AI for messaging, research, or forecasting.',
-      'AI is improving deal flow, messaging, and forecast accuracy.',
-      'AI is driving revenue outcomes; predictive insights are standard practice.',
+      'AI is a personal tool; not integrated into any GTM process.',
+      'AI used in 1-2 areas (prospecting or forecasting) but not systematized.',
+      'AI embedded in 3+ key workflows (prospecting, call summaries, deal risk).',
+      'AI insights automatically trigger actions; workflows are AI-first.',
+      'Entire revenue engine redesigned around AI; agentic systems orchestrate work.',
     ],
-    why: 'AI in revenue is where it compounds fastest. Better forecasts, smarter prospecting, sharper messaging.',
-    gapImpact: 'You\'re missing deals you should be winning. Your reps are doing research manually. Your forecast is a guess.',
+    why: 'Workflow integration is where AI moves from productivity toy to revenue engine.',
+    gapImpact: 'AI insights exist but require manual action. Reps still duplicate AI work. No workflow leverage.',
+    services: [
+      { label: 'GTM Workflow Redesign', href: '/services' },
+      { label: 'RevOps & GTM Effectiveness', href: '/services' },
+    ],
+  },
+  {
+    key: 'data',
+    title: 'Data Readiness',
+    blurb: 'Is customer/revenue data centralized and usable for AI?',
+    stages: [
+      'Data is siloed, messy, fragmented; no single source of truth.',
+      'Some data governance exists; basic integrations in place.',
+      'Data is clean, accessible, and mostly integrated across systems.',
+      'Data is AI-ready; real-time pipelines feed models and dashboards.',
+      'Data is a competitive advantage; AI automatically surfaces insights.',
+    ],
+    why: 'AI only works on good data. Bad data = bad insights and decisions.',
+    gapImpact: 'You can\'t use AI effectively. Your models train on incomplete or inaccurate data.',
     services: [
       { label: 'AI Stack Audit', href: '/services' },
-      { label: 'AI Data Surfacing', href: '/services' },
+      { label: 'RevOps & GTM Effectiveness', href: '/services' },
     ],
   },
   {
     key: 'governance',
-    title: 'AI Governance',
-    blurb: 'Policies, risk management, ethical guidelines.',
+    title: 'Governance & Trust',
+    blurb: 'Are there policies, oversight, and safeguards for AI?',
     stages: [
-      'No governance; using AI however people want.',
-      'Some guidelines exist; inconsistently applied.',
+      'No governance; AI used however people want; no oversight.',
+      'Ad-hoc guidelines exist; inconsistently applied.',
       'Clear policies on data privacy, bias, and responsible AI use.',
-      'Governance is built into process; regular audits and compliance checks.',
+      'Governance built into process; regular audits and compliance reviews.',
+      'Governance is automated; continuous monitoring and adjustment.',
     ],
-    why: 'Unmanaged AI creates risk. Data leaks, biased models, regulatory problems.',
-    gapImpact: 'You could expose customer data. Models could be making biased decisions. You\'re vulnerable to regulatory changes.',
+    why: 'Unmanaged AI creates risk—data leaks, biased decisions, regulatory exposure.',
+    gapImpact: 'You could expose customer data. Decisions might be biased. Legal and compliance risk.',
     services: [
       { label: 'AI Stack Audit', href: '/services' },
       { label: 'Advisory Retainer', href: '/services' },
     ],
   },
+  {
+    key: 'enablement',
+    title: 'Enablement & Skills',
+    blurb: 'Are GTM teams trained and confident with AI tools and techniques?',
+    stages: [
+      'Team doesn\'t understand AI; skeptical or overwhelmed.',
+      'Some team members exploring; most haven\'t been trained.',
+      'Team is comfortable using AI tools in daily workflows.',
+      'Team actively identifies and pilots new AI opportunities.',
+      'Team designs and shapes AI capabilities; drives innovation.',
+    ],
+    why: 'The best AI strategy fails if your team can\'t or won\'t use it.',
+    gapImpact: 'Tools sit unused. Team resists. You invest in AI with zero return.',
+    services: [
+      { label: 'AI Enablement & Training', href: '/services' },
+      { label: 'Sales Kickoffs & Enablement', href: '/services' },
+    ],
+  },
+  {
+    key: 'measurement',
+    title: 'Measurement & Impact',
+    blurb: 'Can you quantify AI\'s impact on revenue and efficiency?',
+    stages: [
+      'No measurement; unclear if AI is driving any value.',
+      'Tracking adoption metrics but not business outcomes.',
+      'Tied AI to one metric (efficiency or forecast accuracy).',
+      'Measuring impact across retention, pipeline, ramp, and efficiency.',
+      'AI ROI is continuously tracked and optimized; used for all decisions.',
+    ],
+    why: 'What gets measured gets done. Without measurement, AI stays experimentation.',
+    gapImpact: 'You can\'t justify AI spending. You don\'t know what\'s working. Can\'t optimize.',
+    services: [
+      { label: 'RevOps & GTM Effectiveness', href: '/services' },
+      { label: 'GTM AI Strategy Workshop', href: '/services' },
+    ],
+  },
+  {
+    key: 'leadership',
+    title: 'Leadership Behavior',
+    blurb: 'Are managers and leaders using and championing AI?',
+    stages: [
+      'Leadership is skeptical or hands-off about AI.',
+      'Leaders see AI value but don\'t use it consistently themselves.',
+      'Managers coach reps on AI; reinforce usage.',
+      'Leaders actively use AI; model behavior; remove blockers.',
+      'Leadership designs strategy and processes around AI.',
+    ],
+    why: 'Teams adopt what leaders model. If leaders don\'t use AI, reps won\'t either.',
+    gapImpact: 'Culture doesn\'t support adoption. Reps don\'t see leadership commitment. Change stalls.',
+    services: [
+      { label: 'Sales Kickoffs & Enablement', href: '/services' },
+      { label: 'Advisory Retainer', href: '/services' },
+    ],
+  },
+  {
+    key: 'change',
+    title: 'Change Management',
+    blurb: 'Are processes and roles evolving because of AI?',
+    stages: [
+      'No process change; treating AI as an add-on tool.',
+      'Piloting process changes in one or two areas.',
+      'Key workflows have been redesigned around AI.',
+      'Roles and responsibilities updated for AI-first workflows.',
+      'Organizational structure fundamentally changed because of AI.',
+    ],
+    why: 'Real impact requires process redesign, not just tool adoption.',
+    gapImpact: 'AI becomes busywork. Reps still work the old way. No real transformation.',
+    services: [
+      { label: 'GTM Workflow Redesign', href: '/services' },
+      { label: 'Fractional GTM Leadership', href: '/services' },
+    ],
+  },
+  {
+    key: 'customer',
+    title: 'Customer Experience',
+    blurb: 'Is AI improving customer outcomes, not just internal efficiency?',
+    stages: [
+      'AI is used only for internal efficiency (not customer-facing).',
+      'Experimenting with AI-driven personalization or recommendations.',
+      'AI is improving response times and relevance to customers.',
+      'AI is driving customer outcomes; customers see measurable value.',
+      'AI is core to customer experience and competitive differentiation.',
+    ],
+    why: 'Customer-facing AI is harder but higher impact. It compounds.',
+    gapImpact: 'You\'re optimizing internal metrics, not customer value. Limited competitive advantage.',
+    services: [
+      { label: 'AI Stack Audit', href: '/services' },
+      { label: 'GTM AI Strategy Workshop', href: '/services' },
+    ],
+  },
 ];
 
 const gtmPillarsJson = JSON.stringify(gtmPillars);
-const aiDimensionsJson = JSON.stringify(aiDimensions);
+const gtmAIDimensionsJson = JSON.stringify(gtmAIDimensions);
 ---
 
 <BaseLayout title="Assessments — PikeSquare">
@@ -249,7 +327,7 @@ const aiDimensionsJson = JSON.stringify(aiDimensions);
           class="px-6 py-4 text-base font-semibold text-muted border-b-2 border-transparent hover:text-deep"
           data-tab="ai"
         >
-          AI Assessment
+          GTM AI Maturity
         </button>
       </div>
 
@@ -414,10 +492,10 @@ const aiDimensionsJson = JSON.stringify(aiDimensions);
       <div id="ai-content" class="hidden py-16">
         <p class="text-sm font-semibold uppercase tracking-wider text-accent">Assessment</p>
         <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
-          AI Assessment.
+          GTM AI Maturity Assessment.
         </h2>
         <p class="mt-4 max-w-2xl text-lg text-muted">
-          Understand your AI maturity across six dimensions. We'll show you where you're leveraging AI today and where the biggest opportunities are.
+          Understand where your GTM organization stands on the AI maturity curve. We'll map you to one of five stages—from Experimental to AI-Native—and show you exactly what's next.
         </p>
         <p class="mt-4 max-w-2xl text-sm text-muted">
           Takes 5 minutes. No email required for results. Want the full report delivered? That's optional.
@@ -426,10 +504,10 @@ const aiDimensionsJson = JSON.stringify(aiDimensions);
         <!-- AI Form -->
         <form id="ai-assessment-form" class="mt-10 space-y-10" novalidate>
           {
-            aiDimensions.map((d, idx) => (
+            gtmAIDimensions.map((d, idx) => (
               <fieldset class="rounded-2xl border border-ink/10 bg-bg p-7" data-dimension={d.key}>
                 <legend class="px-3 text-xs font-semibold uppercase tracking-wider text-accent">
-                  Dimension {idx + 1} of 6
+                  Dimension {idx + 1} of 10
                 </legend>
                 <h3 class="font-display text-2xl font-bold text-deep">{d.title}</h3>
                 <p class="mt-2 text-base text-ink">{d.blurb}</p>
@@ -451,7 +529,7 @@ const aiDimensionsJson = JSON.stringify(aiDimensions);
                       Where you are today
                     </p>
                     <div class="mt-3 flex gap-2" role="radiogroup" aria-label={`${d.title}: current state`}>
-                      {[1, 2, 3, 4].map((n) => (
+                      {[1, 2, 3, 4, 5].map((n) => (
                         <label class="group flex-1 cursor-pointer">
                           <input
                             type="radio"
@@ -461,7 +539,7 @@ const aiDimensionsJson = JSON.stringify(aiDimensions);
                             required
                           />
                           <span
-                            class="flex h-12 items-center justify-center rounded-lg border border-ink/15 bg-white text-base font-semibold text-ink transition group-hover:border-deep peer-checked:border-deep peer-checked:bg-deep peer-checked:text-white"
+                            class="flex h-12 items-center justify-center rounded-lg border border-ink/15 bg-white text-sm font-semibold text-ink transition group-hover:border-deep peer-checked:border-deep peer-checked:bg-deep peer-checked:text-white"
                           >
                             {n}
                           </span>
@@ -474,7 +552,7 @@ const aiDimensionsJson = JSON.stringify(aiDimensions);
                       Where you want to be in 12 months
                     </p>
                     <div class="mt-3 flex gap-2" role="radiogroup" aria-label={`${d.title}: target state`}>
-                      {[1, 2, 3, 4].map((n) => (
+                      {[1, 2, 3, 4, 5].map((n) => (
                         <label class="group flex-1 cursor-pointer">
                           <input
                             type="radio"
@@ -484,7 +562,7 @@ const aiDimensionsJson = JSON.stringify(aiDimensions);
                             required
                           />
                           <span
-                            class="flex h-12 items-center justify-center rounded-lg border border-ink/15 bg-white text-base font-semibold text-ink transition group-hover:border-accent peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white"
+                            class="flex h-12 items-center justify-center rounded-lg border border-ink/15 bg-white text-sm font-semibold text-ink transition group-hover:border-accent peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white"
                           >
                             {n}
                           </span>
@@ -580,9 +658,9 @@ const aiDimensionsJson = JSON.stringify(aiDimensions);
   </section>
 </BaseLayout>
 
-<script is:inline define:vars={{ gtmPillarsJson, aiDimensionsJson }}>
+<script is:inline define:vars={{ gtmPillarsJson, gtmAIDimensionsJson }}>
   const gtmPillars = JSON.parse(gtmPillarsJson);
-  const aiDimensions = JSON.parse(aiDimensionsJson);
+  const gtmAIDimensions = JSON.parse(gtmAIDimensionsJson);
 
   // Tab functionality
   const gtmTab = document.getElementById('gtm-tab');
@@ -625,10 +703,31 @@ const aiDimensionsJson = JSON.stringify(aiDimensions);
   }
 
   function aiMaturityBand(avg) {
-    if (avg >= 3.5) return { tier: 'AI-Driven', message: 'AI is embedded in your workflow. Your team uses it daily, insights are actionable, and results are measurable. You\'re ahead of most. Keep innovating.' };
-    if (avg >= 3.0) return { tier: 'AI-Enabled', message: 'You\'re using AI effectively across multiple areas. Your team is comfortable with the tools. The next move is to connect the dots — AI insights driving business decisions.' };
-    if (avg >= 2.0) return { tier: 'AI-Exploring', message: 'You\'re experimenting and learning. That\'s the right place to be. Pick one or two areas to focus on and measure impact before scaling.' };
-    return { tier: 'AI-Early', message: 'You\'re just getting started with AI. That\'s fine — but start now. Build the data foundation and get your team trained before you fall too far behind.' };
+    if (avg >= 4.5) return {
+      tier: 'AI-Native Revenue Organization',
+      stage: 'Stage 5',
+      message: 'AI is embedded into every customer-facing process. Workflows are intentionally designed around human + AI. Agentic systems handle orchestration. You\'re a rare organization — keep pushing.'
+    };
+    if (avg >= 3.7) return {
+      tier: 'Predictive & Adaptive GTM',
+      stage: 'Stage 4',
+      message: 'AI influences decisions at scale. Real-time recommendations guide reps. Forecasting is reliable. You\'re proving ROI. Next: tie AI to every GTM decision.'
+    };
+    if (avg >= 2.9) return {
+      tier: 'Workflow Integration',
+      stage: 'Stage 3',
+      message: 'AI is embedded into operational workflows. Cross-functional coordination is working. AI insights trigger actions. This is where most mature organizations are. Strengthen measurement.'
+    };
+    if (avg >= 2.1) return {
+      tier: 'Assisted Productivity',
+      stage: 'Stage 2',
+      message: 'Approved tools are in place. Reps and CSMs are using AI for efficiency gains. Adoption is real but inconsistent. Next: move beyond productivity into workflow integration.'
+    };
+    return {
+      tier: 'Experimental / Shadow AI',
+      stage: 'Stage 1',
+      message: 'Individuals are experimenting with AI, but it\'s not organized. No governance. Limited adoption. Start with a clear strategy and pick one workflow to redesign around AI.'
+    };
   }
 
   function renderResults(type, data) {
@@ -695,24 +794,27 @@ const aiDimensionsJson = JSON.stringify(aiDimensions);
       const overallTarget = data.reduce((s, d) => s + d.target, 0) / data.length;
       const band = aiMaturityBand(overallCurrent);
 
-      document.getElementById('ai-results-headline').textContent = `${band.tier}: ${overallCurrent.toFixed(1)} / 4`;
-      document.getElementById('ai-results-summary').textContent = `${band.message} Your target is ${overallTarget.toFixed(1)} / 4. Below is where you have the most work to do.`;
+      document.getElementById('ai-results-headline').textContent = `${band.stage}: ${band.tier} (${overallCurrent.toFixed(1)} / 5)`;
+      document.getElementById('ai-results-summary').textContent = `${band.message} Your target is ${overallTarget.toFixed(1)} / 5. Below is where you have the most work to do.`;
 
       const aiPillarsContainer = document.getElementById('ai-results-pillars');
       aiPillarsContainer.innerHTML = '';
       data.forEach((d) => {
-        const currentPct = (d.current / 4) * 100;
-        const targetPct = (d.target / 4) * 100;
+        const currentPct = (d.current / 5) * 100;
+        const targetPct = (d.target / 5) * 100;
         const row = document.createElement('div');
         row.className = 'rounded-xl border border-ink/10 bg-white p-5';
         row.innerHTML = `
           <div class="flex items-baseline justify-between gap-4">
-            <h4 class="font-display text-base font-bold text-deep">${d.title}</h4>
-            <p class="text-sm text-muted">
+            <div class="flex-1">
+              <h4 class="font-display text-base font-bold text-deep">${d.title}</h4>
+              <p class="mt-1 text-xs text-muted">${d.blurb}</p>
+            </div>
+            <p class="text-sm text-muted flex-shrink-0">
               <span class="font-semibold text-deep">${d.current}</span>
               <span class="mx-1 text-muted/60">→</span>
               <span class="font-semibold text-accent">${d.target}</span>
-              <span class="ml-2 text-xs uppercase tracking-wider">${d.gap > 0 ? `gap ${d.gap}` : 'on target'}</span>
+              <span class="ml-2 text-xs uppercase tracking-wider">${d.gap > 0 ? `gap ${d.gap}` : 'on track'}</span>
             </p>
           </div>
           <div class="relative mt-3 h-3 w-full rounded-full bg-ink/10">
@@ -787,7 +889,7 @@ const aiDimensionsJson = JSON.stringify(aiDimensions);
 
   aiForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const data = aiDimensions.map((d) => {
+    const data = gtmAIDimensions.map((d) => {
       const cur = aiForm.querySelector(`input[name="ai-${d.key}-current"]:checked`);
       const tgt = aiForm.querySelector(`input[name="ai-${d.key}-target"]:checked`);
       if (!cur || !tgt) return null;
