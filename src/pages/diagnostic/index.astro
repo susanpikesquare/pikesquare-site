@@ -1,0 +1,544 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Diagnostic questions - 2 per area
+const diagnosticQuestions = [
+  {
+    area: 'Motion Execution',
+    areaKey: 'motion',
+    questions: [
+      {
+        id: 'motion_1',
+        question: 'How predictable is your pipeline generation quarter-to-quarter?',
+        options: [
+          'We can forecast next quarter\'s pipeline with confidence',
+          'We have a rough idea, but surprises happen regularly',
+          'It\'s unpredictable—we\'re always scrambling to find deals',
+          'We don\'t track or forecast pipeline',
+        ],
+      },
+      {
+        id: 'motion_2',
+        question: 'How consistently do deals move through your sales cycle?',
+        options: [
+          'Deals move through stages at a predictable pace',
+          'Most deals progress normally, but some get stuck for months',
+          'Many deals stall indefinitely or fall out of the pipeline',
+          'We don\'t have clear stages or progression patterns',
+        ],
+      },
+    ],
+  },
+  {
+    area: 'Message Consistency',
+    areaKey: 'message',
+    questions: [
+      {
+        id: 'message_1',
+        question: 'How consistent is your sales pitch across your team?',
+        options: [
+          'Every rep tells the same story using the same framework',
+          'Mostly aligned, but reps add their own spin',
+          'Reps go off-script regularly—messaging varies a lot',
+          'No consistent message—everyone\'s selling differently',
+        ],
+      },
+      {
+        id: 'message_2',
+        question: 'How clear is your differentiation from competitors?',
+        options: [
+          'We have a sharp, defensible value prop prospects understand immediately',
+          'We\'re differentiated, but it\'s not always clear in conversations',
+          'Prospects see us as similar to competitors',
+          'We\'re competing primarily on price',
+        ],
+      },
+    ],
+  },
+  {
+    area: 'Process Discipline',
+    areaKey: 'process',
+    questions: [
+      {
+        id: 'process_1',
+        question: 'How accurate is your sales forecast compared to actual results?',
+        options: [
+          'Within ±5%—we\'re very accurate',
+          'Within ±10%—generally reliable with minor surprises',
+          'Within ±20%—we\'re in the ballpark but miss regularly',
+          '>±20% or no forecast process—we\'re guessing',
+        ],
+      },
+      {
+        id: 'process_2',
+        question: 'How formal is your deal review and pipeline management process?',
+        options: [
+          'Weekly reviews with clear coaching and accountability',
+          'Monthly reviews that surface issues',
+          'Sporadic reviews or informal check-ins',
+          'No regular deal reviews',
+        ],
+      },
+    ],
+  },
+  {
+    area: 'Talent & Enablement',
+    areaKey: 'talent',
+    questions: [
+      {
+        id: 'talent_1',
+        question: 'How long does it take a new sales rep to reach full productivity?',
+        options: [
+          '60-90 days—they\'re productive quickly',
+          '4-6 months—standard ramp',
+          '6-12 months—it takes a while to get up to speed',
+          'We don\'t track it or it varies wildly',
+        ],
+      },
+      {
+        id: 'talent_2',
+        question: 'How structured is your sales enablement and coaching?',
+        options: [
+          'Formal enablement program with regular training and coaching',
+          'Some training happens, but it\'s inconsistent',
+          'Reps learn mostly through trial and error',
+          'No formal enablement program',
+        ],
+      },
+    ],
+  },
+  {
+    area: 'Operations & Visibility',
+    areaKey: 'operations',
+    questions: [
+      {
+        id: 'operations_1',
+        question: 'How much does your team trust your CRM data?',
+        options: [
+          'High trust—data is complete, accurate, and used in decisions',
+          'Mostly trust it—some gaps but generally reliable',
+          'Low trust—data is inconsistent or incomplete',
+          'No CRM or we don\'t use it',
+        ],
+      },
+      {
+        id: 'operations_2',
+        question: 'Do you have dashboards and metrics that your team actually uses?',
+        options: [
+          'Yes—team uses dashboards regularly to make decisions',
+          'Some dashboards exist but they\'re not heavily used',
+          'Dashboards exist but people ignore them',
+          'No dashboards or metrics in place',
+        ],
+      },
+    ],
+  },
+];
+
+// Gap impact descriptions
+const gapImpacts = {
+  motion: 'When motion execution breaks down, you can\'t forecast. You can\'t hire. You can\'t coach reps. Every quarter is a surprise.',
+  message: 'Inconsistent messaging confuses buyers and makes your brand feel fractured. Reps lose deals because they\'re all saying different things.',
+  process: 'Without reliable process, you surprise the board. You miss the patterns that would let you course-correct early.',
+  talent: 'You lose institutional knowledge when people churn. New hires take months to ramp. Your best people leave because the org is too chaotic.',
+  operations: 'Bad data leads to bad decisions. You optimize the wrong things. Reps don\'t trust the CRM. You miss early signals that deals are at risk.',
+};
+
+// Service recommendations by area
+const servicesByArea = {
+  motion: [
+    { label: 'Fractional GTM Leadership', href: '/services' },
+    { label: 'RevOps & GTM Effectiveness', href: '/services' },
+  ],
+  message: [
+    { label: 'Sales Pitch Deck Build', href: '/services' },
+    { label: 'Messaging Audit', href: '/services' },
+  ],
+  process: [
+    { label: 'Fractional GTM Leadership', href: '/services' },
+    { label: 'RevOps & GTM Effectiveness', href: '/services' },
+  ],
+  talent: [
+    { label: 'Sales Kickoffs & Enablement', href: '/services' },
+    { label: 'AI Enablement & Training', href: '/services' },
+  ],
+  operations: [
+    { label: 'AI Stack Audit', href: '/services' },
+    { label: 'AI Data Surfacing', href: '/services' },
+  ],
+};
+
+const diagnosticJson = JSON.stringify(diagnosticQuestions);
+const gapImpactsJson = JSON.stringify(gapImpacts);
+const servicesJson = JSON.stringify(servicesByArea);
+---
+
+<BaseLayout title="GTM Execution Health Diagnostic — PikeSquare">
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <h1 class="font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        GTM Execution Health Diagnostic
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Understand where your GTM execution is breaking down. Answer 10 quick questions, then optionally upload your CRM data to validate patterns.
+      </p>
+    </div>
+  </section>
+
+  <!-- Password Gate -->
+  <section id="password-gate" class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-2xl px-6 py-20">
+      <div class="rounded-2xl border border-ink/10 bg-bg p-8">
+        <h2 class="font-display text-2xl font-bold text-deep">Access Required</h2>
+        <p class="mt-3 text-muted">
+          This diagnostic is for active consulting engagements. Enter your access password to continue.
+        </p>
+        <div class="mt-6">
+          <input
+            type="password"
+            id="password-input"
+            placeholder="Enter password"
+            class="w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-base text-deep placeholder-muted focus:border-deep focus:outline-none"
+          />
+          <button
+            id="password-submit"
+            class="mt-4 w-full rounded-full bg-deep px-6 py-3 text-base font-semibold text-white transition hover:bg-accent"
+          >
+            Unlock Diagnostic
+          </button>
+          <p id="password-error" class="mt-3 hidden text-sm text-rust">
+            Incorrect password. Please try again.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagnostic Content (hidden until authenticated) -->
+  <section id="diagnostic-content" class="hidden">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <!-- Form -->
+      <form id="diagnostic-form" class="space-y-12" novalidate>
+        {
+          diagnosticQuestions.map((area, areaIdx) => (
+            <div class="rounded-2xl border border-ink/10 bg-white p-8">
+              <p class="text-xs font-semibold uppercase tracking-wider text-accent">
+                Area {areaIdx + 1} of 5
+              </p>
+              <h2 class="mt-2 font-display text-2xl font-bold text-deep">{area.area}</h2>
+
+              <div class="mt-8 space-y-8">
+                {area.questions.map((q) => (
+                  <fieldset class="space-y-3">
+                    <legend class="text-base font-semibold text-deep">{q.question}</legend>
+                    <div class="space-y-2">
+                      {q.options.map((option, optIdx) => (
+                        <label class="flex gap-3 cursor-pointer group">
+                          <input
+                            type="radio"
+                            name={q.id}
+                            value={optIdx}
+                            class="mt-1 accent-deep"
+                            required
+                          />
+                          <span class="text-sm text-muted group-hover:text-ink transition">
+                            {option}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+
+        <div id="form-error" class="hidden rounded-lg border border-rust/30 bg-rust/5 p-4 text-sm text-rust">
+          Please answer all questions to see your results.
+        </div>
+
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <button
+            type="submit"
+            class="rounded-full bg-deep px-7 py-3 text-base font-semibold text-white transition hover:bg-accent"
+          >
+            See My Results
+          </button>
+          <button
+            type="reset"
+            class="text-sm font-semibold text-muted underline-offset-4 hover:text-ink hover:underline"
+          >
+            Start Over
+          </button>
+        </div>
+      </form>
+
+      <!-- Results Section -->
+      <section id="results" class="hidden mt-16 border-t border-ink/10 pt-16">
+        <p class="text-sm font-semibold uppercase tracking-wider text-accent">Your Results</p>
+        <h2 class="mt-3 font-display text-3xl font-bold text-deep">
+          Your Execution Gaps
+        </h2>
+        <p class="mt-4 max-w-2xl text-lg text-muted">
+          Here's where your GTM execution is strongest — and where it's breaking down.
+        </p>
+
+        <div id="results-areas" class="mt-10 space-y-6">
+          <!-- Filled by JavaScript -->
+        </div>
+
+        <!-- CRM Upload Section -->
+        <div class="mt-12 rounded-2xl border border-accent/20 bg-accent/5 p-8">
+          <p class="text-sm font-semibold uppercase tracking-wider text-accent">Optional: Validate with Data</p>
+          <h3 class="mt-2 font-display text-2xl font-bold text-deep">
+            Upload Your CRM Data
+          </h3>
+          <p class="mt-3 max-w-2xl text-muted">
+            Upload a CSV export of your pipeline to see segment performance, product-market fit validation, and win/loss patterns.
+          </p>
+
+          <div class="mt-6">
+            <label class="block">
+              <span class="text-sm font-semibold text-deep">Select CSV File</span>
+              <input
+                type="file"
+                id="csv-upload"
+                accept=".csv"
+                class="mt-2 block w-full text-sm text-muted file:mr-4 file:rounded-lg file:border-0 file:bg-deep file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-accent"
+              />
+              <p class="mt-2 text-xs text-muted">
+                CRM-agnostic format. Include: deal stage, close date, deal size, segment/industry, won/lost status, and any other relevant fields.
+              </p>
+            </label>
+            <button
+              type="button"
+              id="csv-analyze"
+              disabled
+              class="mt-4 rounded-full bg-deep px-6 py-3 text-base font-semibold text-white transition hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Analyze Data
+            </button>
+          </div>
+        </div>
+
+        <!-- CRM Analysis Results -->
+        <div id="csv-results" class="hidden mt-12 rounded-2xl border border-ink/10 bg-white p-8">
+          <h3 class="font-display text-xl font-bold text-deep">CRM Analysis</h3>
+          <div id="csv-analysis-content" class="mt-4 space-y-4 text-sm text-muted">
+            <!-- Filled by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div class="mt-12 rounded-2xl border border-deep/20 bg-deep p-8 text-white">
+          <h3 class="font-display text-2xl font-bold">Ready to fix these gaps?</h3>
+          <p class="mt-3 max-w-2xl text-deep-soft">
+            Book a call to walk through what you're seeing and discuss which gaps to tackle first.
+          </p>
+          <div class="mt-6">
+            <a
+              href="https://calendly.com/pikesquare/consultation"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-deep transition hover:bg-accent hover:text-white"
+            >
+              Book a Call
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline define:vars={{ diagnosticJson, gapImpactsJson, servicesJson }}>
+  const CORRECT_PASSWORD = 'GTMExecution2026'; // Change this to your desired password
+  const diagnosticQuestions = JSON.parse(diagnosticJson);
+  const gapImpacts = JSON.parse(gapImpactsJson);
+  const servicesByArea = JSON.parse(servicesJson);
+
+  const passwordGate = document.getElementById('password-gate');
+  const passwordInput = document.getElementById('password-input');
+  const passwordSubmit = document.getElementById('password-submit');
+  const passwordError = document.getElementById('password-error');
+  const diagnosticContent = document.getElementById('diagnostic-content');
+  const diagnosticForm = document.getElementById('diagnostic-form');
+  const resultsSection = document.getElementById('results');
+  const resultsAreas = document.getElementById('results-areas');
+  const csvUpload = document.getElementById('csv-upload');
+  const csvAnalyze = document.getElementById('csv-analyze');
+  const csvResults = document.getElementById('csv-results');
+  const csvAnalysisContent = document.getElementById('csv-analysis-content');
+
+  // Check if already authenticated
+  function checkAuth() {
+    const auth = sessionStorage.getItem('diagnostic-auth');
+    if (auth === 'true') {
+      showDiagnostic();
+    }
+  }
+
+  // Password submission
+  passwordSubmit?.addEventListener('click', () => {
+    if (passwordInput.value === CORRECT_PASSWORD) {
+      sessionStorage.setItem('diagnostic-auth', 'true');
+      showDiagnostic();
+    } else {
+      passwordError.classList.remove('hidden');
+      passwordInput.value = '';
+      passwordInput.focus();
+    }
+  });
+
+  // Allow Enter key
+  passwordInput?.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      passwordSubmit.click();
+    }
+  });
+
+  function showDiagnostic() {
+    passwordGate.classList.add('hidden');
+    diagnosticContent.classList.remove('hidden');
+  }
+
+  // Form submission
+  diagnosticForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(diagnosticForm);
+    const answers = Object.fromEntries(formData);
+
+    // Validate all questions answered
+    const allQuestionIds = diagnosticQuestions.flatMap(area => area.questions.map(q => q.id));
+    const answered = allQuestionIds.every(id => answers[id] !== undefined);
+
+    if (!answered) {
+      document.getElementById('form-error').classList.remove('hidden');
+      return;
+    }
+
+    // Calculate scores
+    const scores = {};
+    diagnosticQuestions.forEach(area => {
+      let areaScore = 0;
+      area.questions.forEach(q => {
+        const answerIdx = parseInt(answers[q.id]);
+        areaScore += answerIdx;
+      });
+      scores[area.areaKey] = areaScore / area.questions.length;
+    });
+
+    // Display results
+    displayResults(scores);
+  });
+
+  function displayResults(scores) {
+    resultsAreas.innerHTML = '';
+
+    diagnosticQuestions.forEach((area, idx) => {
+      const score = scores[area.areaKey];
+      const gapLevel = score < 1 ? 'Critical' : score < 2 ? 'Significant' : 'Minor';
+      const gapColor = score < 1 ? 'rust' : score < 2 ? 'amber' : 'accent';
+
+      const html = `
+        <div class="rounded-2xl border border-ink/10 bg-white p-7">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-display text-xl font-bold text-deep">${area.area}</h3>
+              <p class="mt-2 text-sm text-muted">${gapImpacts[area.areaKey]}</p>
+              <div class="mt-4">
+                <p class="text-xs font-semibold uppercase tracking-wider text-${gapColor}">Gap Level: ${gapLevel}</p>
+              </div>
+            </div>
+            <div class="ml-6 flex-shrink-0">
+              <div class="text-4xl font-bold text-${gapColor}">
+                ${(score * 25).toFixed(0)}%
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 border-t border-ink/10 pt-5">
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted">We can help with</p>
+            <ul class="mt-3 space-y-2">
+              ${servicesByArea[area.areaKey].map(s => `
+                <li class="text-sm">
+                  <a href="${s.href}" class="font-semibold text-deep hover:underline">${s.label}</a>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+      resultsAreas.innerHTML += html;
+    });
+
+    diagnosticForm.classList.add('hidden');
+    resultsSection.classList.remove('hidden');
+    resultsSection.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // CSV upload handling
+  csvUpload?.addEventListener('change', () => {
+    csvAnalyze.disabled = !csvUpload.files.length;
+  });
+
+  csvAnalyze?.addEventListener('click', () => {
+    const file = csvUpload.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const csv = e.target.result;
+      analyzeCSV(csv);
+    };
+    reader.readAsText(file);
+  });
+
+  function analyzeCSV(csvText) {
+    // Parse CSV
+    const lines = csvText.trim().split('\n');
+    const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+    const rows = lines.slice(1).map(line => {
+      const values = line.split(',').map(v => v.trim());
+      const obj = {};
+      headers.forEach((h, i) => {
+        obj[h] = values[i];
+      });
+      return obj;
+    });
+
+    // Generate basic analysis
+    const totalDeals = rows.length;
+    const wonDeals = rows.filter(r => r.status?.toLowerCase() === 'won' || r.won?.toLowerCase() === 'true').length;
+    const winRate = ((wonDeals / totalDeals) * 100).toFixed(1);
+
+    let analysisHTML = `
+      <div class="space-y-4">
+        <div class="grid gap-4 md:grid-cols-3">
+          <div class="rounded-lg border border-ink/10 bg-bg p-4">
+            <p class="text-xs font-semibold uppercase text-muted">Total Deals Analyzed</p>
+            <p class="mt-2 text-2xl font-bold text-deep">${totalDeals}</p>
+          </div>
+          <div class="rounded-lg border border-ink/10 bg-bg p-4">
+            <p class="text-xs font-semibold uppercase text-muted">Deals Won</p>
+            <p class="mt-2 text-2xl font-bold text-deep">${wonDeals}</p>
+          </div>
+          <div class="rounded-lg border border-ink/10 bg-bg p-4">
+            <p class="text-xs font-semibold uppercase text-muted">Win Rate</p>
+            <p class="mt-2 text-2xl font-bold text-deep">${winRate}%</p>
+          </div>
+        </div>
+        <p class="text-sm text-muted italic">
+          This is a basic analysis. For deeper segment analysis, PMF validation, and win/loss pattern analysis, we'll work with you on the full data exploration.
+        </p>
+      </div>
+    `;
+
+    csvAnalysisContent.innerHTML = analysisHTML;
+    csvResults.classList.remove('hidden');
+  }
+
+  // Initialize
+  checkAuth();
+</script>
