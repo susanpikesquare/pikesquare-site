@@ -4,33 +4,6 @@ import CTAButton from '../components/CTAButton.astro';
 import GTMDimensions from '../components/GTMDimensions.astro';
 import { SCHEDULING_URL } from '../lib/site';
 
-const pillars = [
-  {
-    title: 'Strategy',
-    description: 'Which customers matter most, and how to position yourself to win them. This is the foundation everything else sits on.',
-  },
-  {
-    title: 'Motion',
-    description: 'How you actually acquire customers. What channels work, how deals flow, how you keep them. Get this right before you scale.',
-  },
-  {
-    title: 'Message',
-    description: 'One message your sales and marketing teams can actually use without constantly tweaking it. Consistent, repeatable, coherent.',
-  },
-  {
-    title: 'Process',
-    description: 'A repeatable system your whole team can execute. Clear processes mean better execution and less heroics.',
-  },
-  {
-    title: 'Talent',
-    description: 'The right people in the right roles with the right incentives. Building and running the team that makes this work.',
-  },
-  {
-    title: 'Operations',
-    description: 'Systems, data, and reporting that actually give you clarity. Most teams have the tools. They just need to use them right.',
-  },
-];
-
 const moments = [
   {
     quote: "We're entering scale-up mode and the GTM playbook hasn't caught up.",
@@ -158,18 +131,8 @@ const moments = [
       </h2>
 
       <!-- Visual -->
-      <div class="mt-12 mb-16 rounded-2xl border border-ink/10 bg-bg p-8">
+      <div class="mt-12 mb-8 rounded-2xl border border-ink/10 bg-bg p-8">
         <GTMDimensions />
-      </div>
-
-      <!-- Detailed cards -->
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {pillars.map((pillar) => (
-          <article class="rounded-2xl border border-ink/10 bg-bg p-6">
-            <h3 class="font-display text-xl font-bold text-deep">{pillar.title}</h3>
-            <p class="mt-3 text-sm leading-relaxed text-ink">{pillar.description}</p>
-          </article>
-        ))}
       </div>
     </div>
   </section>
