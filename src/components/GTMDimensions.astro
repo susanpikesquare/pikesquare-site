@@ -1,61 +1,84 @@
 ---
-// GTM Dimensions Hexagon - shows the 6 core GTM dimensions
+// GTM Dimensions - 6 core dimensions with icons in clean grid
 ---
 
-<div class="w-full flex justify-center">
-  <svg viewBox="0 0 600 650" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-2xl">
+<div class="w-full">
+  <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" class="w-full">
     <defs>
       <style>
-        .dimension-label { font-weight: bold; font-size: 16px; text-anchor: middle; }
-        .center-label { font-weight: bold; font-size: 20px; text-anchor: middle; }
-        .sub-label { font-size: 12px; text-anchor: middle; fill: #6B7280; }
+        .dim-title { font-weight: 700; font-size: 16px; text-anchor: middle; fill: #1F2937; }
+        .dim-desc { font-size: 12px; text-anchor: middle; fill: #6B7280; }
+        .dim-card { rx: 16; }
       </style>
     </defs>
 
-    <!-- Center circle -->
-    <circle cx="300" cy="325" r="60" fill="#1F2937" opacity="0.05" stroke="#1F2937" stroke-width="2"/>
-    <text x="300" y="330" class="center-label" fill="#1F2937">Go-to-Market</text>
+    <!-- Row 1: Strategy, Motion, Message -->
 
-    <!-- Strategy - Top -->
-    <circle cx="300" cy="100" r="50" fill="#3B82F6" opacity="0.1" stroke="#3B82F6" stroke-width="2"/>
-    <text x="300" y="125" class="dimension-label" fill="#1F2937">Strategy</text>
-    <text x="300" y="145" class="sub-label">Vision, ICP, Positioning</text>
+    <!-- Strategy Card -->
+    <rect x="30" y="30" width="280" height="180" class="dim-card" fill="#3B82F6" opacity="0.08" stroke="#3B82F6" stroke-width="2"/>
+    <!-- Target icon -->
+    <circle cx="90" cy="90" r="30" fill="none" stroke="#3B82F6" stroke-width="2"/>
+    <circle cx="90" cy="90" r="20" fill="none" stroke="#3B82F6" stroke-width="2"/>
+    <circle cx="90" cy="90" r="10" fill="#3B82F6"/>
+    <text x="170" y="105" class="dim-title">Strategy</text>
+    <text x="170" y="125" class="dim-desc">Vision, ICP</text>
+    <text x="170" y="140" class="dim-desc">Positioning</text>
 
-    <!-- Motion - Top Right -->
-    <circle cx="475" cy="175" r="50" fill="#10B981" opacity="0.1" stroke="#10B981" stroke-width="2"/>
-    <text x="475" y="200" class="dimension-label" fill="#1F2937">Motion</text>
-    <text x="475" y="220" class="sub-label">Plays, Campaigns</text>
+    <!-- Motion Card -->
+    <rect x="360" y="30" width="280" height="180" class="dim-card" fill="#10B981" opacity="0.08" stroke="#10B981" stroke-width="2"/>
+    <!-- Arrow icon -->
+    <path d="M 390 110 L 420 110 M 410 90 L 420 110 L 410 130" stroke="#10B981" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 435 110 L 465 110 M 455 90 L 465 110 L 455 130" stroke="#10B981" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="500" y="105" class="dim-title">Motion</text>
+    <text x="500" y="125" class="dim-desc">Plays, Campaigns</text>
+    <text x="500" y="140" class="dim-desc">Go-to-market execution</text>
 
-    <!-- Message - Bottom Right -->
-    <circle cx="450" cy="475" r="50" fill="#F59E0B" opacity="0.1" stroke="#F59E0B" stroke-width="2"/>
-    <text x="450" y="500" class="dimension-label" fill="#1F2937">Message</text>
-    <text x="450" y="520" class="sub-label">Value Prop, Positioning</text>
+    <!-- Message Card -->
+    <rect x="690" y="30" width="280" height="180" class="dim-card" fill="#F59E0B" opacity="0.08" stroke="#F59E0B" stroke-width="2"/>
+    <!-- Speech bubble icon -->
+    <path d="M 750 75 Q 760 70 770 75 L 785 75 Q 800 75 800 90 L 800 125 Q 800 140 785 140 L 770 140 L 760 150 L 765 140 L 750 140 Q 735 140 735 125 L 735 90 Q 735 75 750 75" fill="none" stroke="#F59E0B" stroke-width="2"/>
+    <text x="830" y="105" class="dim-title">Message</text>
+    <text x="830" y="125" class="dim-desc">Value proposition</text>
+    <text x="830" y="140" class="dim-desc">Positioning, narrative</text>
 
-    <!-- Operations - Bottom Left -->
-    <circle cx="150" cy="475" r="50" fill="#EF4444" opacity="0.1" stroke="#EF4444" stroke-width="2"/>
-    <text x="150" y="500" class="dimension-label" fill="#1F2937">Operations</text>
-    <text x="150" y="520" class="sub-label">Tools, Data, Reporting</text>
+    <!-- Row 2: Talent, Process, Operations -->
 
-    <!-- Talent - Top Left -->
-    <circle cx="125" cy="175" r="50" fill="#8B5CF6" opacity="0.1" stroke="#8B5CF6" stroke-width="2"/>
-    <text x="125" y="200" class="dimension-label" fill="#1F2937">Talent</text>
-    <text x="125" y="220" class="sub-label">Hiring, Roles, Teams</text>
+    <!-- Talent Card -->
+    <rect x="30" y="280" width="280" height="180" class="dim-card" fill="#8B5CF6" opacity="0.08" stroke="#8B5CF6" stroke-width="2"/>
+    <!-- People icon -->
+    <circle cx="85" cy="300" r="12" fill="#8B5CF6"/>
+    <path d="M 70 315 L 100 315 Q 105 315 105 320 L 105 335 L 65 335 L 65 320 Q 65 315 70 315" fill="#8B5CF6"/>
+    <circle cx="115" cy="300" r="12" fill="#8B5CF6"/>
+    <path d="M 100 315 L 130 315 Q 135 315 135 320 L 135 335 L 95 335 L 95 320 Q 95 315 100 315" fill="#8B5CF6"/>
+    <text x="170" y="355" class="dim-title">Talent</text>
+    <text x="170" y="375" class="dim-desc">Hiring, roles, teams</text>
+    <text x="170" y="390" class="dim-desc">Incentives, management</text>
 
-    <!-- Process - Center Right (between Strategy and Motion/Message) -->
-    <circle cx="475" cy="325" r="50" fill="#06B6D4" opacity="0.1" stroke="#06B6D4" stroke-width="2"/>
-    <text x="475" y="330" class="dimension-label" fill="#1F2937">Process</text>
-    <text x="475" y="350" class="sub-label">Workflows, SLAs</text>
+    <!-- Process Card -->
+    <rect x="360" y="280" width="280" height="180" class="dim-card" fill="#06B6D4" opacity="0.08" stroke="#06B6D4" stroke-width="2"/>
+    <!-- Workflow icon (connected dots) -->
+    <circle cx="395" cy="305" r="8" fill="#06B6D4"/>
+    <line x1="403" y1="305" x2="430" y2="305" stroke="#06B6D4" stroke-width="2"/>
+    <circle cx="438" cy="305" r="8" fill="#06B6D4"/>
+    <line x1="438" y1="313" x2="438" y2="335" stroke="#06B6D4" stroke-width="2"/>
+    <circle cx="438" cy="343" r="8" fill="#06B6D4"/>
+    <text x="500" y="355" class="dim-title">Process</text>
+    <text x="500" y="375" class="dim-desc">Workflows, SLAs</text>
+    <text x="500" y="390" class="dim-desc">Standardization, scale</text>
 
-    <!-- Connection lines from center to each dimension -->
-    <line x1="340" y1="375" x2="410" y2="425" stroke="#D1D5DB" stroke-width="1" stroke-dasharray="5,5"/>
-    <line x1="340" y1="375" x2="200" y2="425" stroke="#D1D5DB" stroke-width="1" stroke-dasharray="5,5"/>
-    <line x1="300" y1="160" x2="300" y2="265" stroke="#D1D5DB" stroke-width="1" stroke-dasharray="5,5"/>
-    <line x1="340" y1="275" x2="425" y2="225" stroke="#D1D5DB" stroke-width="1" stroke-dasharray="5,5"/>
-    <line x1="340" y1="375" x2="425" y2="325" stroke="#D1D5DB" stroke-width="1" stroke-dasharray="5,5"/>
-    <line x1="260" y1="275" x2="175" y2="225" stroke="#D1D5DB" stroke-width="1" stroke-dasharray="5,5"/>
+    <!-- Operations Card -->
+    <rect x="690" y="280" width="280" height="180" class="dim-card" fill="#EF4444" opacity="0.08" stroke="#EF4444" stroke-width="2"/>
+    <!-- Dashboard icon (grid) -->
+    <rect x="750" y="300" width="16" height="16" fill="#EF4444"/>
+    <rect x="772" y="300" width="16" height="16" fill="#EF4444"/>
+    <rect x="750" y="322" width="16" height="16" fill="#EF4444"/>
+    <rect x="772" y="322" width="16" height="16" fill="#EF4444"/>
+    <text x="830" y="355" class="dim-title">Operations</text>
+    <text x="830" y="375" class="dim-desc">Tools, data, reporting</text>
+    <text x="830" y="390" class="dim-desc">Analytics, visibility</text>
 
-    <!-- Note at bottom -->
-    <text x="300" y="610" font-size="13" text-anchor="middle" fill="#6B7280">
+    <!-- Bottom note -->
+    <text x="500" y="480" font-size="13" text-anchor="middle" fill="#6B7280">
       Apply these six dimensions across demand gen, sales, and customer success
     </text>
   </svg>

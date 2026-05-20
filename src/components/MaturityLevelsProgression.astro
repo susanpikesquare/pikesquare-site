@@ -1,75 +1,79 @@
 ---
-// Maturity Levels Progression - shows the 6 levels from Experimental to Transformational
+// Maturity Levels Progression - 6 levels with improved visual hierarchy
 ---
 
 <div class="w-full">
-  <svg viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" class="w-full">
+  <svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" class="w-full">
     <defs>
       <style>
-        .level-box { font-weight: bold; font-size: 14px; }
-        .level-title { font-weight: bold; font-size: 15px; text-anchor: middle; }
+        .level-num { font-weight: 700; font-size: 24px; text-anchor: middle; }
+        .level-title { font-weight: 700; font-size: 14px; text-anchor: middle; fill: #1F2937; }
         .level-desc { font-size: 11px; text-anchor: middle; fill: #6B7280; }
+        .level-card { rx: 12; }
       </style>
     </defs>
 
     <!-- Level 1: Experimental -->
-    <rect x="30" y="50" width="130" height="120" fill="#EF4444" opacity="0.1" stroke="#EF4444" stroke-width="2" rx="8"/>
-    <text x="95" y="90" class="level-title" fill="#DC2626">1</text>
-    <text x="95" y="110" class="level-title" fill="#1F2937">Experimental</text>
-    <text x="95" y="135" class="level-desc">Ad hoc, no standards</text>
-    <text x="95" y="148" class="level-desc">no governance</text>
-
+    <rect x="20" y="40" width="160" height="160" class="level-card" fill="#EF4444" opacity="0.1" stroke="#EF4444" stroke-width="2"/>
+    <text x="100" y="70" class="level-num" fill="#DC2626">1</text>
+    <text x="100" y="120" class="level-title">Experimental</text>
+    <text x="100" y="135" class="level-desc">Ad hoc, no</text>
+    <text x="100" y="147" class="level-desc">standards</text>
     <!-- Arrow -->
-    <path d="M 170 110 L 200 110" stroke="#D1D5DB" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+    <path d="M 190 120 L 220 120" stroke="#D1D5DB" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
 
     <!-- Level 2: Emerging -->
-    <rect x="210" y="50" width="130" height="120" fill="#F59E0B" opacity="0.1" stroke="#F59E0B" stroke-width="2" rx="8"/>
-    <text x="275" y="90" class="level-title" fill="#D97706">2</text>
-    <text x="275" y="110" class="level-title" fill="#1F2937">Emerging</text>
-    <text x="275" y="135" class="level-desc">Team adoption, shared</text>
-    <text x="275" y="148" class="level-desc">prompts & guidelines</text>
-
+    <rect x="220" y="40" width="160" height="160" class="level-card" fill="#F59E0B" opacity="0.1" stroke="#F59E0B" stroke-width="2"/>
+    <text x="300" y="70" class="level-num" fill="#D97706">2</text>
+    <text x="300" y="120" class="level-title">Emerging</text>
+    <text x="300" y="135" class="level-desc">Team adoption,</text>
+    <text x="300" y="147" class="level-desc">shared guidelines</text>
     <!-- Arrow -->
-    <path d="M 350 110 L 380 110" stroke="#D1D5DB" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+    <path d="M 390 120 L 420 120" stroke="#D1D5DB" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
 
     <!-- Level 3: Operationalized -->
-    <rect x="390" y="50" width="130" height="120" fill="#10B981" opacity="0.1" stroke="#10B981" stroke-width="2" rx="8"/>
-    <text x="455" y="90" class="level-title" fill="#059669">3</text>
-    <text x="455" y="110" class="level-title" fill="#1F2937">Operationalized</text>
-    <text x="455" y="135" class="level-desc">Embedded in workflows,</text>
-    <text x="455" y="148" class="level-desc">standardized, owned</text>
-
+    <rect x="420" y="40" width="160" height="160" class="level-card" fill="#10B981" opacity="0.1" stroke="#10B981" stroke-width="2"/>
+    <text x="500" y="70" class="level-num" fill="#059669">3</text>
+    <text x="500" y="120" class="level-title">Operationalized</text>
+    <text x="500" y="135" class="level-desc">Embedded in</text>
+    <text x="500" y="147" class="level-desc">workflows, owned</text>
     <!-- Arrow -->
-    <path d="M 530 110 L 560 110" stroke="#D1D5DB" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+    <path d="M 590 120 L 620 120" stroke="#D1D5DB" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
 
     <!-- Level 4: Integrated -->
-    <rect x="570" y="50" width="130" height="120" fill="#06B6D4" opacity="0.1" stroke="#06B6D4" stroke-width="2" rx="8"/>
-    <text x="635" y="90" class="level-title" fill="#0891B2">4</text>
-    <text x="635" y="110" class="level-title" fill="#1F2937">Integrated</text>
-    <text x="635" y="135" class="level-desc">Cross-functional, shared</text>
-    <text x="635" y="148" class="level-desc">intelligence coordinated</text>
-
+    <rect x="620" y="40" width="160" height="160" class="level-card" fill="#06B6D4" opacity="0.1" stroke="#06B6D4" stroke-width="2"/>
+    <text x="700" y="70" class="level-num" fill="#0891B2">4</text>
+    <text x="700" y="120" class="level-title">Integrated</text>
+    <text x="700" y="135" class="level-desc">Cross-functional,</text>
+    <text x="700" y="147" class="level-desc">coordinated</text>
     <!-- Arrow -->
-    <path d="M 710 110 L 740 110" stroke="#D1D5DB" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+    <path d="M 790 120 L 820 120" stroke="#D1D5DB" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
 
     <!-- Level 5: Predictive & Adaptive -->
-    <rect x="750" y="50" width="130" height="120" fill="#3B82F6" opacity="0.1" stroke="#3B82F6" stroke-width="2" rx="8"/>
-    <text x="815" y="90" class="level-title" fill="#1D4ED8">5</text>
-    <text x="815" y="110" class="level-title" fill="#1F2937">Predictive &</text>
-    <text x="815" y="125" class="level-title" fill="#1F2937">Adaptive</text>
-    <text x="815" y="148" class="level-desc">AI-driven recommendations</text>
+    <rect x="820" y="40" width="160" height="160" class="level-card" fill="#3B82F6" opacity="0.1" stroke="#3B82F6" stroke-width="2"/>
+    <text x="900" y="70" class="level-num" fill="#1D4ED8">5</text>
+    <text x="900" y="115" class="level-title">Predictive &</text>
+    <text x="900" y="128" class="level-title">Adaptive</text>
+    <text x="900" y="147" class="level-desc">AI-driven insights</text>
 
-    <!-- Level 6: Transformational (bottom) -->
-    <rect x="570" y="190" width="310" height="100" fill="#8B5CF6" opacity="0.1" stroke="#8B5CF6" stroke-width="2" rx="8"/>
-    <text x="725" y="225" class="level-title" fill="#6D28D9">6: Transformational</text>
-    <text x="725" y="250" class="level-desc">Operating model changes. AI enables new structures, roles, and business models.</text>
+    <!-- Arrow from Level 5 down to Level 6 -->
+    <path d="M 900 200 L 900 240" stroke="#D1D5DB" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
 
-    <!-- Arrow from level 5 to level 6 -->
-    <path d="M 815 170 L 725 190" stroke="#D1D5DB" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+    <!-- Level 6: Transformational - LARGE, spanning bottom -->
+    <rect x="20" y="250" width="960" height="130" class="level-card" fill="#8B5CF6" opacity="0.1" stroke="#8B5CF6" stroke-width="2.5"/>
+
+    <!-- Special badge/icon area for level 6 -->
+    <circle cx="100" cy="315" r="35" fill="#8B5CF6" opacity="0.15" stroke="#8B5CF6" stroke-width="2"/>
+    <text x="100" y="325" class="level-num" fill="#6D28D9">6</text>
+
+    <text x="500" y="280" class="level-title" style="font-size: 16px; font-weight: 700;">Transformational</text>
+    <text x="500" y="300" class="level-desc" style="font-size: 12px;">Operating model changes. AI enables new organizational structures,</text>
+    <text x="500" y="315" class="level-desc" style="font-size: 12px;">roles, service delivery models, and competitive capabilities.</text>
+    <text x="500" y="330" class="level-desc" style="font-size: 12px;">This is where you differentiate from competitors.</text>
 
     <!-- Arrow marker definition -->
     <defs>
-      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
         <polygon points="0 0, 10 3, 0 6" fill="#D1D5DB"/>
       </marker>
     </defs>
