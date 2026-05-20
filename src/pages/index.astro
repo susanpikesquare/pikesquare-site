@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTAButton from '../components/CTAButton.astro';
-import GTMDimensions from '../components/GTMDimensions.astro';
 import { SCHEDULING_URL } from '../lib/site';
 
 const pillars = [
@@ -157,13 +156,8 @@ const moments = [
         We help you get right across all of it.
       </h2>
 
-      <!-- Visual -->
-      <div class="mt-12 mb-20 rounded-2xl border border-ink/10 bg-bg p-8">
-        <GTMDimensions />
-      </div>
-
       <!-- Detailed cards -->
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {pillars.map((pillar) => (
           <article class="rounded-2xl border border-ink/10 bg-bg p-6">
             <h3 class="font-display text-xl font-bold text-deep">{pillar.title}</h3>
