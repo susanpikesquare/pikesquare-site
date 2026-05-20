@@ -1,0 +1,283 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SCHEDULING_URL } from '../../lib/site';
+
+const maturityLevels = [
+  {
+    level: 'Level 1: Hero-Driven',
+    stage: 'Early Stage ($5M-$15M ARR)',
+    description: 'Success depends on exceptional people and their personal effort. Your product champion drives wins. Your customer success hero knows every customer. Your ops person handles everything.',
+    characteristics: [
+      'Tribal knowledge—process lives in people\'s heads',
+      'Custom everything—each deal, onboarding, deal review is different',
+      'High touch—everyone talks to decision makers',
+      'Success = finding and keeping the right people',
+      'Skills-based hiring—you need five-tool players',
+      'Growth potential is capped by hero capacity',
+    ],
+    functions: [
+      {
+        area: 'Customer Success',
+        description: 'Jack and Jane handle each customer personally. Custom onboarding for every account. Success depends on their knowledge and effort.',
+      },
+      {
+        area: 'Sales',
+        description: 'Your top closer wins deals through relationship and intuition. Each rep has their own approach. Pipeline is inconsistent.',
+      },
+      {
+        area: 'Operations',
+        description: 'One person knows the numbers, maintains the CRM, and keeps everything running. When they leave, chaos.',
+      },
+    ],
+    challenge: 'Growth becomes impossible. You can hire more people, but you need more heroes. And heroes are rare and expensive.',
+    nextStep: 'You must decide: keep betting on finding more superstars, or build process to scale with ordinary people.',
+  },
+  {
+    level: 'Level 2: Process-Driven',
+    stage: 'Scale-Up ($15M-$50M ARR)',
+    description: 'You\'ve moved from "Jack handles it" to "here\'s how we handle this." Process replaces heroics. Playbooks replace intuition. Enablement scales talent.',
+    characteristics: [
+      'Standardized playbooks for common situations',
+      'Service tiering—enterprise, professional, self-serve',
+      'Clear escalation paths and defined roles',
+      'Enablement programs—not just onboarding, but systematic training',
+      'Measurement and metrics—you know what\'s working',
+      'Process owned by the org, not individuals',
+      'Specialization—people get really good at one thing',
+      'Hiring for competence, not heroics',
+    ],
+    functions: [
+      {
+        area: 'Customer Success',
+        description: 'Standardized 30-60-90 onboarding playbook. Service tiering for different customer profiles. IM-to-customer ratio improves from 1:1 to 1:6.',
+      },
+      {
+        area: 'Sales',
+        description: 'Consistent sales process. Defined deal stages. Coaching discipline. Pipeline predictable. Reps can be good at hunting OR farming, not both.',
+      },
+      {
+        area: 'Operations',
+        description: 'RevOps function established. Dashboards and metrics. Clear data integrity standards. Documentation so knowledge isn\'t lost when people leave.',
+      },
+    ],
+    challenge: 'Process can feel impersonal and slow compared to hero-driven Stage 1. But it\'s the only way to scale. The trade-off is worth it.',
+    nextStep: 'Build infrastructure, not just playbooks. The companies that win in Stage 2 are the ones investing heavily in enablement, tooling, and measurement.',
+  },
+  {
+    level: 'Level 3: Systems & AI-Augmented',
+    stage: 'Mature Scale ($50M+ ARR)',
+    description: 'Humans set strategy and handle exceptions. Systems and AI handle routine work, scale decisions, and surface insights. Operating model is nearly self-renewing.',
+    characteristics: [
+      'AI-powered workflows and decision support',
+      'Automated customer onboarding—task assignment, tracking, communications',
+      'Predictive analytics—customer health, deal risk, churn signals',
+      'Dynamic playbooks—AI adjusts approach based on customer data',
+      'Self-service at scale—customers can succeed without humans',
+      'People focused on strategy, expansion, exceptions',
+      'Organization is process-before-people',
+      'AI enables continuous improvement',
+    ],
+    functions: [
+      {
+        area: 'Customer Success',
+        description: 'AI-powered onboarding orchestration. Automated health scoring and risk detection. Expansion opportunities automatically surfaced. Humans focus on strategic accounts and exceptions.',
+      },
+      {
+        area: 'Sales',
+        description: 'AI-powered lead scoring and routing. Deal risk scoring. Predictive close date. Sales reps focus on complex deals and relationships; AI handles triage.',
+      },
+      {
+        area: 'Operations',
+        description: 'Real-time dashboards with AI-generated insights. Automated data quality. Workflow automation. RevOps team focuses on strategy, not maintenance.',
+      },
+    ],
+    challenge: 'AI only works if your processes are defined and your data is clean. You cannot automate chaos. Stage 1 and Stage 2 skills are prerequisites.',
+    nextStep: 'The next phase of scaling is not hiring more people—it\'s automating what your people do and letting AI surface new opportunities.',
+  },
+];
+
+const principles = [
+  'People scale companies early. Process scales companies next. Systems and AI scale companies after that.',
+  'You must standardize before you can automate. Chaos cannot be automated.',
+  'Hero capacity is finite. When you exceed it, the failure is catastrophic, not gradual.',
+  'Operating models are stage-dependent. What works at $5M breaks at $50M.',
+  'The companies that scale smoothly recognize inflection points early and redesign before the model breaks.',
+];
+
+const maturityJson = JSON.stringify(maturityLevels);
+---
+
+<BaseLayout title="Operational Maturity: From Heroes to Process to Systems — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Operational Maturity</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        From Heroes to Process to Systems
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        How operating models evolve as companies scale. And why you need to recognize the inflection point before your current model breaks.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <div class="prose prose-sm max-w-none text-muted">
+        <p>
+          Every successful startup is built on heroes. Your product champion. Your customer success genius. Your ops person who somehow keeps everything running. They work 80-hour weeks and care deeply about your success.
+        </p>
+        <p>
+          Heroes get you through the early stage. But hero capacity is finite. When you exceed it, the failure is catastrophic—not gradual. You can handle five deals per hero until you have six. Then suddenly everything breaks at once.
+        </p>
+        <p>
+          The companies that scale smoothly are the ones that recognize this inflection point early and deliberately move from hero-driven operations to process-driven ones. They trade custom everything for standardized playbooks. They move from "Jack handles it" to "here's how we handle this." And eventually, they let systems and AI handle routine work so humans can focus on strategy and exceptions.
+        </p>
+        <p>
+          This evolution happens across all functions—customer success, sales, operations, enablement. It's not optional. It's how companies scale.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Three Levels -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      {
+        maturityLevels.map((level, idx) => (
+          <div class="mb-16 last:mb-0">
+            <div class="rounded-2xl border border-ink/10 bg-white p-8">
+              <p class="text-sm font-semibold uppercase tracking-wider text-accent">Level {idx + 1}</p>
+              <h2 class="mt-2 font-display text-2xl font-bold text-deep">{level.level}</h2>
+              <p class="mt-1 text-lg font-semibold text-accent">{level.stage}</p>
+
+              <div class="mt-6">
+                <p class="text-base leading-relaxed text-muted">{level.description}</p>
+              </div>
+
+              {/* Characteristics */}
+              <div class="mt-8">
+                <h3 class="font-semibold text-deep">What This Looks Like</h3>
+                <ul class="mt-3 space-y-2">
+                  {level.characteristics.map((char) => (
+                    <li class="flex gap-3 text-sm text-muted">
+                      <span class="mt-1 inline-block h-1.5 w-1.5 flex-none bg-accent rounded-full"></span>
+                      {char}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Functions */}
+              <div class="mt-8">
+                <h3 class="font-semibold text-deep">Across Your Functions</h3>
+                <div class="mt-4 space-y-4">
+                  {level.functions.map((func) => (
+                    <div class="rounded-lg border border-ink/10 bg-bg p-4">
+                      <p class="font-semibold text-deep">{func.area}</p>
+                      <p class="mt-2 text-sm text-muted">{func.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Challenge & Next Step */}
+              <div class="mt-8 grid gap-4 md:grid-cols-2">
+                <div class="rounded-lg bg-amber/5 p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wider text-amber">The Challenge</p>
+                  <p class="mt-2 text-sm text-muted">{level.challenge}</p>
+                </div>
+                <div class="rounded-lg bg-accent/5 p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wider text-accent">Next Step</p>
+                  <p class="mt-2 text-sm text-muted">{level.nextStep}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Core Principles -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">The Underlying Principles</h2>
+      <div class="mt-8 space-y-4">
+        {
+          principles.map((principle) => (
+            <div class="rounded-lg border border-ink/10 bg-bg p-6">
+              <p class="text-base leading-relaxed text-muted">
+                <span class="font-semibold text-deep">{principle.split('.')[0]}.</span>
+                {principle.substring(principle.indexOf('.') + 2)}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Why This Matters for AI -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">How AI Readiness Fits In</h2>
+      <div class="mt-8 rounded-2xl border border-accent/20 bg-accent/5 p-8">
+        <p class="text-lg text-muted">
+          <span class="font-semibold text-deep">AI only works if your processes are defined and your data is clean.</span> You cannot automate chaos. You must standardize before you can automate.
+        </p>
+        <p class="mt-4 text-lg text-muted">
+          This is why many AI initiatives fail: organizations try to jump from Level 1 (hero-driven chaos) directly to Level 3 (AI-augmented). That doesn't work. You must first move to Level 2 (process-driven) before AI can meaningfully amplify your operations.
+        </p>
+        <p class="mt-4 text-lg text-muted">
+          The organizations that will win with AI are the ones that have already built standardized processes, clear metrics, clean data, and defined workflows. AI doesn't create order. It amplifies order that already exists.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specific Applications -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">See This In Action</h2>
+      <p class="mt-4 text-lg text-muted">
+        This operational maturity framework applies across all GTM functions. We've written specific deep-dives for:
+      </p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <a href="/resources/cs-scaling" class="group flex flex-col rounded-2xl border border-ink/10 bg-bg p-7 transition hover:border-deep/40 hover:shadow-md">
+          <h3 class="font-display text-lg font-bold text-deep">CS Operating Models at Scale</h3>
+          <p class="mt-3 text-sm text-muted">How customer success onboarding evolves from white-glove to standardized to AI-enabled. Includes the specific break points, cost structures, and operational changes.</p>
+          <span class="mt-4 text-sm font-semibold text-deep group-hover:underline">Read the article →</span>
+        </a>
+        <div class="flex flex-col rounded-2xl border border-ink/10 bg-bg p-7 opacity-50">
+          <h3 class="font-display text-lg font-bold text-deep">Sales Operating Models (Coming)</h3>
+          <p class="mt-3 text-sm text-muted">How sales motion evolves: from relationship-driven to process-driven to AI-augmented pipeline generation.</p>
+          <span class="mt-4 text-sm font-semibold text-muted">Coming soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <h2 class="font-display text-3xl font-bold text-deep md:text-4xl">
+        Which level is your organization in?
+      </h2>
+      <p class="mt-4 text-lg text-muted">
+        Understanding your maturity level is the first step toward intentional scaling. Let's talk about where you are and what's next.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <a
+          href={SCHEDULING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+        >
+          Book a Conversation
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
