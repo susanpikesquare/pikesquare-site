@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SCHEDULING_URL } from '../../lib/site';
+
+const stages = [
+  {
+    name: 'Stage 1: Early Adopter Phase',
+    arr: '$5M–$10M ARR',
+    characteristics: [
+      'White-glove, highly resourced',
+      'Custom asset creation',
+      'Strong executive champions',
+    ],
+    whatWorks: [
+      'Heavy pre-implementation discovery and executive sponsorship',
+      'Custom onboarding assets and training materials tailored to each customer',
+      'Direct involvement from solutions consulting and CS leadership',
+      'High-touch implementation calls, hands-on training, white-glove support',
+    ],
+    whyItWorks: 'Early customers are product evangelists. Investing heavily in their success drives case studies and referrals. Custom assets become proof points and marketing collateral. Direct relationships with decision-makers create expansion and upsell opportunities.',
+    costModel: 'Implementation Manager per customer (or shared 1:2 ratio), Solutions consultant involvement, Marketing/enablement creates custom assets, Executive sponsor participation',
+  },
+  {
+    name: 'Stage 2: The Break Point',
+    arr: '$15M–$25M ARR',
+    characteristics: [
+      'White-glove becomes unsustainable',
+      'Customer profile shifts from early adopters to pragmatists',
+      'Volume of new customers increases 2–3x',
+      'Mix shifts to more skeptical, less self-motivated customers',
+    ],
+    whatBreaks: [
+      'Cannot afford to create custom assets for every customer',
+      'Implementation Manager cannot scale 1:1',
+      'Onboarding costs increase faster than revenue',
+      'Customer experience suffers under strain',
+    ],
+    keyChanges: [
+      {
+        title: 'Service Tiering',
+        details: 'Enterprise: White-glove (1:1 or 1:2 Implementation Manager). Professional: Guided (1:4–1:6 ratio, standardized playbook). Self-serve: Platform-enabled with on-demand training.',
+      },
+      {
+        title: 'Standardized Framework',
+        details: 'Standardized onboarding sequence (30-60-90 day cadence). Pre-built training modules (video, interactive, reference guides). Playbook approach: same core sequence for all, customizable by industry/use case.',
+      },
+      {
+        title: 'Operational Efficiencies',
+        details: 'Collapse redundant roles. Use technology to automate communication and task management. Create on-demand resources (video library, templates, self-service).',
+      },
+    ],
+    financialImpact: 'Implementation costs drop from $50K–$100K per customer to $15K–$30K. Implementation manager can support 4–6 customers instead of 1–2. Revenue per implementation improves significantly.',
+  },
+  {
+    name: 'Stage 3: Mature Scale',
+    arr: '$30M–$50M+ ARR',
+    characteristics: [
+      'AI-enabled operations',
+      'Process-before-people mentality',
+      'Onboarding as demand generation',
+      'Expansion built into day 1',
+    ],
+    keyChanges: [
+      {
+        title: 'AI & Automation',
+        details: 'AI-powered customer health scoring (pre-implementation). Automated onboarding workflows (task assignment, communications, deadline tracking). Chatbot/virtual assistant for common questions. Automated success tracking and reporting.',
+      },
+      {
+        title: 'Advanced Service Models',
+        details: 'Deal Rooms: Dedicated workspace for each customer. CSM-Led (vs. IM-Led): CS manager owns onboarding success. Expansion packages: Built-in day 100 expansion plays. Success as a Service: Customers can purchase additional support modules.',
+      },
+      {
+        title: 'Process Before People',
+        details: 'Clear playbooks and workflows owned by process, not individual skill. Standardized metrics and SLAs for all customers. Technology handles routine communication. People focus on strategic conversations and outcomes.',
+      },
+      {
+        title: 'Onboarding as Revenue Driver',
+        details: 'Strong first-90 adoption drives high NRR and expansion. Onboarding success linked to year-2 renewal and upsell. Track onboarding NRR and ROI by customer segment.',
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout title="How Customer Success Operating Models Break & Scale — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">CS Strategy</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        How Customer Success Operating Models Break & Scale
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        The playbook that works at $5M breaks at $20M. The model that scales to $40M wouldn't survive day one at startup. CS operating models evolve—and if you don't evolve with them, you'll hit a wall.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <div class="prose prose-sm max-w-none text-muted">
+        <p>
+          I've built customer success onboarding programs at every stage of growth—from startup through scale-up. What I've learned is that onboarding isn't one solution. It evolves. The white-glove, highly resourced model that attracts early adopters and creates case studies becomes financially unsustainable when customer volume doubles. The standardized, process-driven model that scales cost-effectively would feel impersonal and slow to your first customers.
+        </p>
+        <p>
+          The key is recognizing when you're at an inflection point and redesigning your CS operating model before the break happens. Most companies don't. They push their Stage 1 model into Stage 2 until the margin collapses, customer experience suffers, and implementation costs spiral. Then they scramble.
+        </p>
+        <p>
+          Here's how to think about CS operating models at three critical stages of growth—and what changes at each one.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stages -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      {
+        stages.map((stage, idx) => (
+          <div class="mb-16 last:mb-0">
+            <div class="rounded-2xl border border-ink/10 bg-white p-8">
+              <p class="text-sm font-semibold uppercase tracking-wider text-accent">Stage {idx + 1}</p>
+              <h2 class="mt-2 font-display text-2xl font-bold text-deep">{stage.name}</h2>
+              <p class="mt-1 text-lg font-semibold text-accent">{stage.arr}</p>
+
+              {/* Characteristics */}
+              <div class="mt-6">
+                <h3 class="font-semibold text-deep">Characteristics</h3>
+                <ul class="mt-3 space-y-2">
+                  {stage.characteristics.map((char) => (
+                    <li class="flex gap-3 text-sm text-muted">
+                      <span class="mt-1 inline-block h-1.5 w-1.5 flex-none bg-accent rounded-full"></span>
+                      {char}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* What Works / What Breaks */}
+              {stage.whatWorks && (
+                <div class="mt-6">
+                  <h3 class="font-semibold text-deep">What Works</h3>
+                  <ul class="mt-3 space-y-2">
+                    {stage.whatWorks.map((item) => (
+                      <li class="flex gap-3 text-sm text-muted">
+                        <span class="mt-1 inline-block h-1.5 w-1.5 flex-none bg-accent rounded-full"></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {stage.whatBreaks && (
+                <div class="mt-6">
+                  <h3 class="font-semibold text-rust">What Breaks</h3>
+                  <ul class="mt-3 space-y-2">
+                    {stage.whatBreaks.map((item) => (
+                      <li class="flex gap-3 text-sm text-muted">
+                        <span class="mt-1 inline-block h-1.5 w-1.5 flex-none bg-rust rounded-full"></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Why It Works / Key Changes */}
+              {stage.whyItWorks && (
+                <div class="mt-6 rounded-lg bg-accent/5 p-4">
+                  <p class="text-sm text-muted">
+                    <span class="font-semibold text-deep">Why it works:</span> {stage.whyItWorks}
+                  </p>
+                </div>
+              )}
+
+              {stage.keyChanges && (
+                <div class="mt-6">
+                  <h3 class="font-semibold text-deep">Key Changes</h3>
+                  <div class="mt-3 space-y-4">
+                    {stage.keyChanges.map((change) => (
+                      <div class="rounded-lg border border-ink/10 bg-bg p-4">
+                        <p class="font-semibold text-deep">{change.title}</p>
+                        <p class="mt-2 text-sm text-muted">{change.details}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Cost Model / Financial Impact */}
+              {stage.costModel && (
+                <div class="mt-6 rounded-lg bg-accent/5 p-4">
+                  <p class="text-sm text-muted">
+                    <span class="font-semibold text-deep">Cost/Resource Model:</span> {stage.costModel}
+                  </p>
+                </div>
+              )}
+
+              {stage.financialImpact && (
+                <div class="mt-6 rounded-lg bg-accent/5 p-4">
+                  <p class="text-sm text-muted">
+                    <span class="font-semibold text-deep">Financial Impact:</span> {stage.financialImpact}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- The Key Insight -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">The Key Insight</h2>
+      <div class="mt-6 rounded-2xl border border-accent/20 bg-accent/5 p-8">
+        <p class="text-lg text-muted">
+          <span class="font-semibold text-deep">Each stage solves a different problem.</span> Stage 1 is about proving product value and creating advocates. Stage 2 is about scaling cost-effectively without losing quality. Stage 3 is about automation, expansion, and making onboarding a revenue driver.
+        </p>
+        <p class="mt-4 text-lg text-muted">
+          Most companies fail because they try to run Stage 1 playbooks into Stage 2, or they swing too hard toward standardization too early and lose the magic that made Stage 1 work.
+        </p>
+        <p class="mt-4 text-lg text-muted">
+          The companies that scale smoothly are the ones that redesign their CS operating model <span class="font-semibold text-deep">before</span> the current one breaks.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <h2 class="font-display text-3xl font-bold text-deep md:text-4xl">
+        Is your CS operating model designed for your stage?
+      </h2>
+      <p class="mt-4 text-lg text-muted">
+        Take the CS Scaling Diagnostic to understand which stage you're in and what's about to break.
+      </p>
+      <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center sm:items-center">
+        <a
+          href="/cs-diagnostic"
+          class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+        >
+          Take the Diagnostic
+        </a>
+        <a
+          href={SCHEDULING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full border border-deep px-7 py-3 text-base font-semibold text-deep transition hover:bg-deep/5"
+        >
+          Book a Call
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

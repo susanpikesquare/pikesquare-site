@@ -1,0 +1,383 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// CS Diagnostic questions
+const diagnosticQuestions = [
+  {
+    area: 'Customer Volume & Onboarding Workload',
+    areaKey: 'volume',
+    questions: [
+      {
+        id: 'volume_1',
+        question: 'How many new customers are you onboarding per quarter?',
+        options: [
+          '1-5 customers per quarter',
+          '6-15 customers per quarter',
+          '16-30 customers per quarter',
+          'More than 30 customers per quarter',
+        ],
+      },
+      {
+        id: 'volume_2',
+        question: 'How is your customer volume trending year-over-year?',
+        options: [
+          'Flat or declining',
+          'Growing 20-50% annually',
+          'Growing 50-100% annually',
+          'Growing >100% annually (rapid scaling)',
+        ],
+      },
+    ],
+  },
+  {
+    area: 'Onboarding Model & Resourcing',
+    areaKey: 'model',
+    questions: [
+      {
+        id: 'model_1',
+        question: 'What is your typical Implementation Manager to customer ratio?',
+        options: [
+          '1 IM per 1-2 customers (white-glove)',
+          '1 IM per 3-5 customers (hybrid)',
+          '1 IM per 6-10 customers (standardized)',
+          '1 IM per 10+ customers or self-serve model',
+        ],
+      },
+      {
+        id: 'model_2',
+        question: 'How customized is your onboarding for each customer?',
+        options: [
+          'Highly customized—unique assets and playbooks for each customer',
+          'Mostly standardized with some customization by vertical',
+          'Standardized playbook with minimal customization',
+          'Fully self-serve platform with no human-led onboarding',
+        ],
+      },
+    ],
+  },
+  {
+    area: 'Cost & Sustainability',
+    areaKey: 'cost',
+    questions: [
+      {
+        id: 'cost_1',
+        question: 'What is your typical implementation cost per customer?',
+        options: [
+          '$50K-$100K per customer',
+          '$30K-$50K per customer',
+          '$15K-$30K per customer',
+          '<$15K per customer',
+        ],
+      },
+      {
+        id: 'cost_2',
+        question: 'Is your current CS operating model sustainable as you scale?',
+        options: [
+          'Highly sustainable—margins are strong',
+          'Mostly sustainable—some margin pressure',
+          'Margin pressure is increasing—model is straining',
+          'Unsustainable—we\'re losing margin or burning cash on CS',
+        ],
+      },
+    ],
+  },
+  {
+    area: 'Customer Experience & Outcomes',
+    areaKey: 'experience',
+    questions: [
+      {
+        id: 'experience_1',
+        question: 'How predictable is customer success and adoption?',
+        options: [
+          'Very predictable—most customers achieve clear ROI in first 90 days',
+          'Mostly predictable—most customers succeed, some need extra support',
+          'Hit or miss—success depends heavily on customer effort',
+          'Unpredictable—many customers struggle or churn',
+        ],
+      },
+      {
+        id: 'experience_2',
+        question: 'How does customer satisfaction trend with company growth?',
+        options: [
+          'Improving—NPS and retention are both strong',
+          'Stable—we\'re maintaining customer satisfaction',
+          'Declining—customers report slower support, less personalization',
+          'Declining significantly—onboarding delays or poor experiences',
+        ],
+      },
+    ],
+  },
+  {
+    area: 'Processes, Tools & Automation',
+    areaKey: 'operations',
+    questions: [
+      {
+        id: 'operations_1',
+        question: 'How standardized and documented is your onboarding process?',
+        options: [
+          'Ad-hoc and undocumented—every IM runs their own playbook',
+          'Partially documented—core steps exist but lots of variation',
+          'Well documented—standardized playbook with clear handoffs',
+          'Fully automated—playbook built into technology and workflows',
+        ],
+      },
+      {
+        id: 'operations_2',
+        question: 'How much of your onboarding is automated vs. manual?',
+        options: [
+          'Mostly manual—heavy human involvement in every step',
+          'Mixed—some automated communication, mostly manual touchpoints',
+          'Mostly automated—templates, workflows, self-service portals',
+          'Highly automated—AI-powered workflows, chatbots, self-service',
+        ],
+      },
+    ],
+  },
+];
+
+// Stage descriptions
+const stageDescriptions = {
+  stage1: {
+    name: 'Stage 1: Early Adopter Phase',
+    arr: '$5M–$10M ARR',
+    description: 'You\'re in white-glove mode. High-touch, customized, winning customers through excellence. Cost is high per customer, but so is impact.',
+  },
+  stage2: {
+    name: 'Stage 2: The Break Point',
+    arr: '$15M–$25M ARR',
+    description: 'Your Stage 1 model is becoming unsustainable. Customer volume is up 2-3x. Margins are shrinking. You need tiering, standardization, and process.',
+  },
+  stage3: {
+    name: 'Stage 3: Mature Scale',
+    arr: '$30M–$50M+ ARR',
+    description: 'You\'ve solved scale. AI-enabled operations, process-before-people, onboarding as a revenue driver. Expansion and efficiency are built in.',
+  },
+};
+
+// Impact descriptions by area
+const areaImpacts = {
+  volume: 'High customer volume is the biggest trigger for model change. When you go from 5 to 20 customers per quarter, your Stage 1 approach breaks immediately.',
+  model: 'Your IM-to-customer ratio is the clearest indicator of which stage you\'re in. A 1:1 ratio doesn\'t scale. Tiering is unavoidable.',
+  cost: 'If implementation costs are rising faster than revenue, your model is unsustainable. You need to drop cost per customer by 50%+ without dropping quality.',
+  experience: 'Customer experience shouldn\'t suffer as you scale, but it often does in Stage 2. The shift from white-glove to standardized feels impersonal.',
+  operations: 'You can\'t scale white-glove delivery with people alone. Automation and process are non-negotiable in Stage 2 and 3.',
+};
+
+const diagnosticJson = JSON.stringify(diagnosticQuestions);
+const stageDescriptionsJson = JSON.stringify(stageDescriptions);
+const areaImpactsJson = JSON.stringify(areaImpacts);
+---
+
+<BaseLayout title="CS Scaling Diagnostic — PikeSquare">
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <h1 class="font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        CS Scaling Diagnostic
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Understand which stage you're in—and what's about to break. Answer 10 quick questions about your current onboarding model.
+      </p>
+    </div>
+  </section>
+
+  <!-- Diagnostic Content -->
+  <section id="diagnostic-content">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <!-- Form -->
+      <form id="diagnostic-form" class="space-y-12" novalidate>
+        {
+          diagnosticQuestions.map((area, areaIdx) => (
+            <div class="rounded-2xl border border-ink/10 bg-white p-8">
+              <p class="text-xs font-semibold uppercase tracking-wider text-accent">
+                Area {areaIdx + 1} of 5
+              </p>
+              <h2 class="mt-2 font-display text-2xl font-bold text-deep">{area.area}</h2>
+
+              <div class="mt-8 space-y-8">
+                {area.questions.map((q) => (
+                  <fieldset class="space-y-3">
+                    <legend class="text-base font-semibold text-deep">{q.question}</legend>
+                    <div class="space-y-2">
+                      {q.options.map((option, optIdx) => (
+                        <label class="flex gap-3 cursor-pointer group">
+                          <input
+                            type="radio"
+                            name={q.id}
+                            value={optIdx}
+                            class="mt-1 accent-deep"
+                            required
+                          />
+                          <span class="text-sm text-muted group-hover:text-ink transition">
+                            {option}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+
+        <div id="form-error" class="hidden rounded-lg border border-rust/30 bg-rust/5 p-4 text-sm text-rust">
+          Please answer all questions to see your results.
+        </div>
+
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <button
+            type="submit"
+            class="rounded-full bg-deep px-7 py-3 text-base font-semibold text-white transition hover:bg-accent"
+          >
+            See My Results
+          </button>
+          <button
+            type="reset"
+            class="text-sm font-semibold text-muted underline-offset-4 hover:text-ink hover:underline"
+          >
+            Start Over
+          </button>
+        </div>
+      </form>
+
+      <!-- Results Section -->
+      <section id="results" class="hidden mt-16 border-t border-ink/10 pt-16">
+        <p class="text-sm font-semibold uppercase tracking-wider text-accent">Your Results</p>
+        <h2 class="mt-3 font-display text-3xl font-bold text-deep">
+          Where You Are—And What's Next
+        </h2>
+        <p class="mt-4 max-w-2xl text-lg text-muted">
+          Based on your answers, here's which stage you're in and what's most critical to address.
+        </p>
+
+        <!-- Stage indicator -->
+        <div id="stage-card" class="mt-10 rounded-2xl border border-ink/10 bg-accent/5 p-8">
+          <!-- Filled by JavaScript -->
+        </div>
+
+        <!-- Area breakdown -->
+        <div id="results-areas" class="mt-12 space-y-6">
+          <!-- Filled by JavaScript -->
+        </div>
+
+        <!-- Key Insight -->
+        <div class="mt-12 rounded-2xl border border-deep/20 bg-deep/5 p-8">
+          <p class="text-sm font-semibold uppercase tracking-wider text-accent">The Key Insight</p>
+          <p class="mt-4 text-lg text-muted">
+            <span class="font-semibold text-deep">Your CS operating model must evolve as you scale.</span> The playbook that works at Stage 1 becomes unsustainable at Stage 2. If you're in the break point, delaying change costs you margin and customer experience. The companies that scale smoothly proactively redesign their CS model before the current one breaks.
+          </p>
+        </div>
+
+        <!-- Final CTA -->
+        <div class="mt-12 rounded-2xl border border-deep/20 bg-deep p-8 text-white">
+          <h3 class="font-display text-2xl font-bold">Ready to design the right model for your stage?</h3>
+          <p class="mt-3 max-w-2xl text-deep-soft">
+            Book a call to discuss your specific stage, what's working, and what needs to change.
+          </p>
+          <div class="mt-6">
+            <a
+              href="https://calendly.com/pikesquare/consultation"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-deep transition hover:bg-accent hover:text-white"
+            >
+              Book a Call
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline define:vars={{ diagnosticJson, stageDescriptionsJson, areaImpactsJson }}>
+  const diagnosticQuestions = JSON.parse(diagnosticJson);
+  const stageDescriptions = JSON.parse(stageDescriptionsJson);
+  const areaImpacts = JSON.parse(areaImpactsJson);
+
+  const diagnosticForm = document.getElementById('diagnostic-form');
+  const resultsSection = document.getElementById('results');
+  const stageCard = document.getElementById('stage-card');
+  const resultsAreas = document.getElementById('results-areas');
+
+  // Form submission
+  diagnosticForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(diagnosticForm);
+    const answers = Object.fromEntries(formData);
+
+    // Validate all questions answered
+    const allQuestionIds = diagnosticQuestions.flatMap(area => area.questions.map(q => q.id));
+    const answered = allQuestionIds.every(id => answers[id] !== undefined);
+
+    if (!answered) {
+      document.getElementById('form-error').classList.remove('hidden');
+      return;
+    }
+
+    // Calculate scores by area
+    const scores = {};
+    diagnosticQuestions.forEach(area => {
+      let areaScore = 0;
+      area.questions.forEach(q => {
+        const answerIdx = parseInt(answers[q.id]);
+        areaScore += answerIdx;
+      });
+      scores[area.areaKey] = areaScore / area.questions.length;
+    });
+
+    // Determine overall stage based on scores
+    const avgScore = Object.values(scores).reduce((a, b) => a + b, 0) / Object.values(scores).length;
+    let stage = 'stage1';
+    if (avgScore >= 1.5 && avgScore < 2.5) {
+      stage = 'stage2';
+    } else if (avgScore >= 2.5) {
+      stage = 'stage3';
+    }
+
+    // Display results
+    displayResults(scores, stage);
+  });
+
+  function displayResults(scores, stage) {
+    // Show stage card
+    const stageInfo = stageDescriptions[stage];
+    stageCard.innerHTML = `
+      <div>
+        <h3 class="font-display text-2xl font-bold text-deep">${stageInfo.name}</h3>
+        <p class="mt-2 text-lg font-semibold text-accent">${stageInfo.arr}</p>
+        <p class="mt-4 text-lg text-muted">${stageInfo.description}</p>
+      </div>
+    `;
+
+    // Show area breakdown
+    resultsAreas.innerHTML = '';
+
+    diagnosticQuestions.forEach((area, idx) => {
+      const score = scores[area.areaKey];
+      const gapLevel = score < 1 ? 'Critical' : score < 2 ? 'Significant' : 'Minor';
+      const gapColor = score < 1 ? 'rust' : score < 2 ? 'amber' : 'accent';
+
+      const html = `
+        <div class="rounded-2xl border border-ink/10 bg-white p-7">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-display text-xl font-bold text-deep">${area.area}</h3>
+              <p class="mt-2 text-sm text-muted">${areaImpacts[area.areaKey]}</p>
+            </div>
+            <div class="ml-4 text-right">
+              <p class="text-xs font-semibold uppercase tracking-wider text-${gapColor}">${gapLevel}</p>
+              <p class="mt-1 text-2xl font-bold text-deep">${(score * 100).toFixed(0)}%</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      resultsAreas.innerHTML += html;
+    });
+
+    // Show results section
+    resultsSection.classList.remove('hidden');
+    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
