@@ -1,0 +1,308 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SCHEDULING_URL } from '../lib/site';
+
+const aiDimensions = [
+  {
+    id: 'A',
+    name: 'Individual Productivity',
+    description: 'How team members use AI for their own work—writing, research, brainstorming, meeting prep.',
+    examples: ['Sales reps using AI to draft emails', 'Demand gen teams using AI to write ad copy', 'CS teams using AI for response templates'],
+  },
+  {
+    id: 'B',
+    name: 'Team Enablement & Execution',
+    description: 'AI-powered tools and systems that help teams execute together—prospecting, campaigns, coaching.',
+    examples: ['AI-powered prospecting lists', 'Campaign creation and optimization', 'AI sales coaching and QBR prep'],
+  },
+  {
+    id: 'C',
+    name: 'Workflow Automation & Orchestration',
+    description: 'AI automating routine workflows—CRM updates, task routing, follow-ups, onboarding.',
+    examples: ['Automated lead scoring and routing', 'CRM data enrichment', 'Customer onboarding workflows'],
+  },
+  {
+    id: 'D',
+    name: 'Operational Intelligence & Insights',
+    description: 'AI surface insights from your data—churn analysis, customer health, pipeline risk, win/loss.',
+    examples: ['Churn prediction and risk scoring', 'Customer health dashboards', 'Pipeline forecasting'],
+  },
+  {
+    id: 'E',
+    name: 'Decision Support & Prediction',
+    description: 'AI predicting outcomes and recommending actions—expansion prediction, deal risk, next-best action.',
+    examples: ['Expansion opportunity scoring', 'Deal risk prediction', 'Next-best action recommendations'],
+  },
+  {
+    id: 'F',
+    name: 'Customer & Employee Experience',
+    description: 'AI enhancing experience for customers and team—AI assistants, personalized learning, digital support.',
+    examples: ['AI customer support chatbots', 'Personalized learning paths', 'AI-powered customer success assistants'],
+  },
+  {
+    id: 'G',
+    name: 'Operating Model Transformation',
+    description: 'AI enabling new operating models—service tier redesign, new roles, new offerings.',
+    examples: ['Shift from high-touch to AI-enabled CS', 'New service tiers powered by AI', 'Expanded offerings through automation'],
+  },
+];
+
+const maturityLevels = [
+  {
+    level: 1,
+    name: 'Experimental',
+    description: 'Individual ad hoc use. No standards, no governance, no clear ROI.',
+    characteristics: [
+      'Team members experimenting on their own',
+      'No standardized tools or prompts',
+      'Ad hoc, inconsistent results',
+      'No metrics or tracking',
+    ],
+  },
+  {
+    level: 2,
+    name: 'Emerging',
+    description: 'Team adoption with basic standards. Shared prompts and playbooks emerging. Light governance.',
+    characteristics: [
+      'Shared best practices and prompt libraries',
+      'Team-level adoption of specific tools',
+      'Basic governance or guidelines',
+      'Early ROI measurement',
+    ],
+  },
+  {
+    level: 3,
+    name: 'Operationalized',
+    description: 'Embedded in workflows. Standardized, documented, owned by process not people.',
+    characteristics: [
+      'AI embedded in standard workflows',
+      'Clear ownership and accountability',
+      'Documented processes and SLAs',
+      'Consistent metrics and reporting',
+    ],
+  },
+  {
+    level: 4,
+    name: 'Integrated',
+    description: 'Cross-functional orchestration. Shared intelligence and coordinated workflows.',
+    characteristics: [
+      'Cross-team coordination and insights',
+      'Shared data and knowledge',
+      'Coordinated execution across functions',
+      'Strategic alignment to business outcomes',
+    ],
+  },
+  {
+    level: 5,
+    name: 'Predictive & Adaptive',
+    description: 'AI-driven recommendations and dynamic intelligence. AI adjusts based on outcomes.',
+    characteristics: [
+      'AI makes predictions and recommendations',
+      'Dynamic workflows based on AI insights',
+      'Automated optimization and adjustment',
+      'Continuous learning and improvement',
+    ],
+  },
+  {
+    level: 6,
+    name: 'Transformational',
+    description: 'Operating model changes. AI-native workflows. New structures and capabilities.',
+    characteristics: [
+      'Operating model redesigned around AI',
+      'AI-native workflows and processes',
+      'New roles and organizational structures',
+      'New revenue models or service offerings',
+    ],
+  },
+];
+---
+
+<BaseLayout title="AI Operational Maturity — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">AI Maturity Framework</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        Understand Your AI Maturity
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Most teams think they're at one AI maturity level. But that's not how it works. You're probably advanced in some dimensions and still experimental in others. Here's how to think about it—and where to evolve.
+      </p>
+    </div>
+  </section>
+
+  <!-- The 2-Axis Framework -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <div class="prose prose-sm max-w-none text-muted">
+        <p>
+          AI maturity is not linear. You don't progress from Level 1 to Level 6 as a company. Instead, you progress <span class="font-semibold text-deep">independently across seven different dimensions</span>.
+        </p>
+        <p>
+          You might be Level 5 in Individual Productivity (your team is fluent with AI tools) but only Level 1 in Operating Model Transformation (you haven't redesigned how you work). You might be Level 3 in Workflow Automation (standardized CRM updates and lead scoring) but Level 1 in Decision Support (no predictive capabilities yet).
+        </p>
+        <p>
+          This matters because it changes your strategy. You don't build AI capabilities uniformly. You build where they move the needle for your business.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Seven Dimensions -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Dimension A–G</p>
+      <h2 class="mt-3 font-display text-2xl font-bold text-deep">Where AI Applies in Your GTM</h2>
+      <div class="mt-10 space-y-6">
+        {aiDimensions.map((dim) => (
+          <div class="rounded-2xl border border-ink/10 bg-white p-8">
+            <div class="flex items-start gap-4">
+              <div class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 text-accent font-bold flex-none">
+                {dim.id}
+              </div>
+              <div class="flex-1">
+                <h3 class="font-display text-xl font-bold text-deep">{dim.name}</h3>
+                <p class="mt-2 text-base leading-relaxed text-muted">{dim.description}</p>
+                <div class="mt-4">
+                  <p class="text-xs font-semibold uppercase tracking-wider text-muted">Examples</p>
+                  <ul class="mt-2 space-y-1">
+                    {dim.examples.map((example) => (
+                      <li class="flex gap-2 text-sm text-muted">
+                        <span class="mt-1.5 inline-block h-1 w-1 flex-none bg-accent rounded-full" />
+                        {example}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- The Six Maturity Levels -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Levels 1–6</p>
+      <h2 class="mt-3 font-display text-2xl font-bold text-deep">How Advanced Are You in Each?</h2>
+      <div class="mt-10 space-y-6">
+        {maturityLevels.map((level) => (
+          <div class="rounded-2xl border border-ink/10 bg-bg p-8">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex-1">
+                <div class="flex items-center gap-3">
+                  <div class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent text-white text-sm font-bold">
+                    {level.level}
+                  </div>
+                  <h3 class="font-display text-lg font-bold text-deep">{level.name}</h3>
+                </div>
+                <p class="mt-2 text-base leading-relaxed text-muted">{level.description}</p>
+                <div class="mt-4">
+                  <p class="text-xs font-semibold uppercase tracking-wider text-muted">Characteristics</p>
+                  <ul class="mt-2 space-y-1">
+                    {level.characteristics.map((char) => (
+                      <li class="flex gap-2 text-sm text-muted">
+                        <span class="mt-1.5 inline-block h-1 w-1 flex-none bg-accent rounded-full" />
+                        {char}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Together -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">Putting It Together</h2>
+      <div class="mt-8 rounded-2xl border border-accent/20 bg-accent/5 p-8">
+        <p class="text-lg text-muted">
+          <span class="font-semibold text-deep">Your AI Maturity Profile is unique.</span> You might score like this:
+        </p>
+        <div class="mt-6 space-y-3 rounded-lg bg-white p-6">
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-semibold text-deep">A. Individual Productivity</span>
+            <span class="text-sm font-bold text-accent">Level 4</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-semibold text-deep">B. Team Enablement</span>
+            <span class="text-sm font-bold text-accent">Level 2</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-semibold text-deep">C. Workflow Automation</span>
+            <span class="text-sm font-bold text-accent">Level 3</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-semibold text-deep">D. Operational Intelligence</span>
+            <span class="text-sm font-bold text-accent">Level 1</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-semibold text-deep">E. Decision Support</span>
+            <span class="text-sm font-bold text-accent">Level 1</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-semibold text-deep">F. Customer & Employee Experience</span>
+            <span class="text-sm font-bold text-accent">Level 2</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-semibold text-deep">G. Operating Model Transformation</span>
+            <span class="text-sm font-bold text-accent">Level 1</span>
+          </div>
+        </div>
+        <p class="mt-6 text-base text-muted">
+          This tells a story: your team is fluent with AI tools for their own work, but you haven't built standardized, cross-functional capabilities yet. Your next bets should be in Operational Intelligence and Decision Support—the places where AI moves the needle for revenue.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Strategy -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">What This Means for Your Strategy</h2>
+      <div class="mt-8 space-y-4">
+        <div class="rounded-lg border border-ink/10 bg-bg p-4">
+          <p class="font-semibold text-deep">Don't build AI uniformly.</p>
+          <p class="mt-2 text-sm text-muted">Build where it moves the needle. If your biggest problem is unpredictable pipelines, invest in Decision Support and Operational Intelligence. If it's team productivity, invest in Individual Productivity and Team Enablement.</p>
+        </div>
+        <div class="rounded-lg border border-ink/10 bg-bg p-4">
+          <p class="font-semibold text-deep">You'll stay unbalanced for a while.</p>
+          <p class="mt-2 text-sm text-muted">And that's fine. The goal isn't to be Level 6 across all dimensions. It's to be strategically advanced where it matters to your business.</p>
+        </div>
+        <div class="rounded-lg border border-ink/10 bg-bg p-4">
+          <p class="font-semibold text-deep">Foundation matters.</p>
+          <p class="mt-2 text-sm text-muted">You can't jump to Level 6 in Decision Support without first being Level 3+ in Workflow Automation and Operational Intelligence. You need clean data and standardized workflows first.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <h2 class="font-display text-3xl font-bold text-deep md:text-4xl">
+        What's your AI maturity profile?
+      </h2>
+      <p class="mt-4 text-lg text-muted">
+        Understanding where you are across each dimension is the first step toward building the right AI capabilities for your business.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <a
+          href={SCHEDULING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent hover:text-white"
+        >
+          Book a Conversation
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

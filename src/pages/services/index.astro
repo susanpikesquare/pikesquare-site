@@ -3,88 +3,74 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTAButton from '../../components/CTAButton.astro';
 import { SCHEDULING_URL } from '../../lib/site';
 
-// Five top-level engagement categories. Each has a one-line frame, an
-// engagement shape, and a list of concrete examples — most of which link
-// to a detail page.
+// Six engagement categories aligned with GTM + AI
 const categories = [
   {
     title: 'Advisory & Fractional Leadership',
-    blurb: 'We work alongside you as GTM leader — strategy, decisions, or interim ownership. You get someone who has actually held the role.',
+    blurb: 'We work alongside you as GTM leader — advising on strategy, decisions, or stepping into interim leadership roles. You get someone who has actually held the roles.',
     shape: 'Retainer or fractional seat',
     items: [
-      { label: 'Advisory Retainer (Susan or Steve)' },
-      { label: 'Fractional GTM Leadership (CRO, VP Sales, VP CS, RevOps)' },
-      { label: 'CEO / board pattern-matching' },
+      { label: 'GTM Advisory Retainer' },
+      { label: 'Fractional GTM, Sales, CS, or RevOps leadership' },
+      { label: 'Executive pattern-matching and board prep' },
     ],
   },
   {
     title: 'Strategy & Diagnostics',
-    blurb: "We dig into what's working and what's not. You get a clear, realistic picture and a plan to fix it.",
-    shape: 'Fixed scope',
+    blurb: 'We audit what\'s working and what\'s not across your GTM machine—demand gen, sales, CS, operations. You get a clear diagnosis and a roadmap to fix it.',
+    shape: 'Fixed-scope engagements',
     items: [
-      { label: 'GTM Diagnostics & Plan' },
+      { label: 'GTM Execution Health Diagnostic' },
+      { label: 'AI Adoption & Maturity Assessment' },
       { label: 'CS Operating Model Assessment' },
-      { label: 'Scale-up readiness review' },
-      { label: 'Board / fundraise GTM prep' },
-      { label: 'ICP and target-buyer redesign' },
+      { label: 'Positioning & ICP Redesign' },
+      { label: 'Fundraise GTM Readiness' },
     ],
   },
   {
     title: 'Customer Success & Scaling',
-    blurb: 'Build CS operating models that scale with you. From white-glove onboarding at early stage to AI-enabled, process-driven ops at scale.',
-    shape: 'Retainer or project-based',
+    blurb: 'Design CS operating models that evolve with you. From white-glove at $5M to standardized and AI-enabled at $50M+.',
+    shape: 'Project-based or retainer',
     items: [
       { label: 'CS Operating Model Design' },
-      { label: 'Onboarding Process & Playbook Build' },
+      { label: 'Onboarding Playbook & Process Build' },
       { label: 'Service Tiering Strategy' },
       { label: 'CS Automation & Workflow Design' },
-      { label: 'Expansion & Upsell Program Design' },
-      { label: 'Customer Success Metrics & SLAs' },
+      { label: 'CS Metrics, SLAs, and Health Scoring' },
+    ],
+  },
+  {
+    title: 'AI for GTM',
+    blurb: 'Put AI to work across your GTM machine—demand gen, sales, and CS. From auditing your stack to operationalizing AI capabilities to training your teams.',
+    shape: 'Audit, build, enable, or advise',
+    items: [
+      { label: 'AI Stack Audit & Roadmap' },
+      { label: 'AI Adoption Strategy & Operationalization' },
+      { label: 'AI Workflow Build & Automation' },
+      { label: 'AI Enablement & Team Training' },
+      { label: 'AI-Powered Decision Support Systems' },
     ],
   },
   {
     title: 'Programs & Builds',
-    blurb: 'Sales kickoffs, pitch decks, enablement, processes — we build them with your team so you can actually run them.',
+    blurb: 'Sales kickoffs, pitch decks, messaging, processes. We build them with your team so you can actually run them.',
     shape: 'Project-based',
     items: [
-      { label: 'Sales Kickoffs & Enablement Programs' },
+      { label: 'Sales Kickoff & SKO Program' },
       { label: 'Sales Pitch Deck Build' },
-      { label: 'RevOps & GTM Effectiveness' },
-      { label: 'Custom app builds' },
-    ],
-  },
-  {
-    title: 'Quick-turn Projects',
-    blurb: 'Specific work you need done — pitch deck refresh, messaging audit, tools review, training. Fast turnaround, fixed price.',
-    shape: 'Async, fixed price',
-    items: [
-      { label: 'Pitch Deck Refresh' },
-      { label: 'Messaging Audit' },
-      { label: 'Data Sheet / One-Pager' },
-      { label: 'GTM Tools Audit' },
-      { label: 'Training Module' },
-    ],
-  },
-  {
-    title: 'AI Services',
-    blurb: 'Put AI to work on your revenue problems — dig into the data you already have, build custom tools, train your team to use them.',
-    shape: 'Audit, build, train, or speak',
-    items: [
-      { label: 'AI Stack Audit' },
-      { label: 'AI Data Surfacing' },
-      { label: 'AI Enablement & Training' },
-      { label: 'AI for Sales Kickoffs' },
-      { label: 'AI-Augmented Sales Pitch Decks' },
+      { label: 'GTM Messaging & Positioning' },
+      { label: 'Sales Process & Playbook Design' },
+      { label: 'Demand Gen Strategy & Campaign Build' },
     ],
   },
   {
     title: 'Speaking & Workshops',
-    blurb: 'Keynotes at your sales kickoff or conference. Workshops for your leadership team to work through GTM strategy together.',
-    shape: 'Per-engagement, prep + delivery included',
+    blurb: 'Keynotes on GTM and AI. Leadership workshops to think through strategy together. Panel facilitation.',
+    shape: 'Per-engagement, prep included',
     items: [
-      { label: 'Sales kickoff and conference keynotes' },
-      { label: 'AI in the modern revenue org (keynote)' },
-      { label: 'Executive workshops on GTM strategy' },
+      { label: 'GTM and AI keynotes' },
+      { label: 'Executive strategy workshops' },
+      { label: 'GTM Scaling workshops' },
       { label: 'Panel and fireside facilitation' },
     ],
   },
