@@ -3,107 +3,101 @@
 ---
 
 <div class="w-full overflow-x-auto">
-  <svg viewBox="0 0 1100 550" xmlns="http://www.w3.org/2000/svg" class="w-full min-w-full">
+  <svg viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg" class="w-full min-w-full">
     <defs>
       <style>
-        .heatmap-title { font-size: 18px; font-weight: 700; fill: #1F2937; }
-        .heatmap-subtitle { font-size: 12px; fill: #6B7280; }
-        .heatmap-label { font-size: 11px; font-weight: 600; fill: #1F2937; }
-        .heatmap-level { font-size: 10px; font-weight: 600; fill: #1F2937; text-anchor: middle; }
+        .heatmap-title { font-size: 26px; font-weight: 700; fill: #1F2937; }
+        .heatmap-subtitle { font-size: 14px; fill: #6B7280; }
+        .heatmap-label { font-size: 13px; font-weight: 600; fill: #1F2937; }
+        .heatmap-level { font-size: 14px; font-weight: 700; fill: #1F2937; text-anchor: middle; }
+        .heatmap-level-label { font-size: 12px; fill: #6B7280; text-anchor: middle; }
       </style>
     </defs>
 
     <!-- Title -->
-    <text x="50" y="35" class="heatmap-title">Your AI Maturity Profile</text>
-    <text x="50" y="50" class="heatmap-subtitle">Uneven maturity across dimensions tells you where to invest next</text>
+    <text x="60" y="45" class="heatmap-title">Your AI Maturity Profile</text>
+    <text x="60" y="65" class="heatmap-subtitle">Uneven maturity across dimensions tells you where to invest next</text>
 
     <!-- Column headers (levels) -->
-    <text x="180" y="80" class="heatmap-level">1</text>
-    <text x="220" y="80" class="heatmap-level">2</text>
-    <text x="260" y="80" class="heatmap-level">3</text>
-    <text x="300" y="80" class="heatmap-level">4</text>
-    <text x="340" y="80" class="heatmap-level">5</text>
-    <text x="380" y="80" class="heatmap-level">6</text>
-    <text x="240" y="100" class="heatmap-subtitle" style="font-size: 10px;">Maturity Level</text>
+    <text x="240" y="110" class="heatmap-level">1</text>
+    <text x="315" y="110" class="heatmap-level">2</text>
+    <text x="390" y="110" class="heatmap-level">3</text>
+    <text x="465" y="110" class="heatmap-level">4</text>
+    <text x="540" y="110" class="heatmap-level">5</text>
+    <text x="615" y="110" class="heatmap-level">6</text>
+    <text x="420" y="130" class="heatmap-level-label">Maturity Level</text>
 
     <!-- Row: A. Individual Productivity -->
-    <text x="50" y="140" class="heatmap-label">A. Individual</text>
-    <text x="50" y="152" class="heatmap-label">Productivity</text>
-    <rect x="160" y="130" width="40" height="35" fill="#EF4444" opacity="0.3" stroke="#EF4444" stroke-width="1"/>
-    <rect x="200" y="130" width="40" height="35" fill="#F59E0B" opacity="0.3" stroke="#F59E0B" stroke-width="1"/>
-    <rect x="240" y="130" width="40" height="35" fill="#10B981" opacity="0.3" stroke="#10B981" stroke-width="1"/>
-    <rect x="280" y="130" width="40" height="35" fill="#3B82F6" opacity="1" stroke="#3B82F6" stroke-width="2"/>
-    <rect x="320" y="130" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="360" y="130" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <text x="980" y="152" font-size="12" font-weight="600" fill="#3B82F6">L4</text>
+    <text x="60" y="175" class="heatmap-label">A. Individual Productivity</text>
+    <rect x="220" y="160" width="75" height="55" fill="#EF4444" opacity="0.3" stroke="#EF4444" stroke-width="1.5" rx="4"/>
+    <rect x="305" y="160" width="75" height="55" fill="#F59E0B" opacity="0.3" stroke="#F59E0B" stroke-width="1.5" rx="4"/>
+    <rect x="390" y="160" width="75" height="55" fill="#10B981" opacity="0.3" stroke="#10B981" stroke-width="1.5" rx="4"/>
+    <rect x="475" y="160" width="75" height="55" fill="#3B82F6" opacity="1" stroke="#3B82F6" stroke-width="3" rx="4"/>
+    <rect x="560" y="160" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="645" y="160" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <text x="1050" y="192" font-size="14" font-weight="700" fill="#3B82F6">L4</text>
 
     <!-- Row: B. Team Enablement -->
-    <text x="50" y="195" class="heatmap-label">B. Team</text>
-    <text x="50" y="207" class="heatmap-label">Enablement</text>
-    <rect x="160" y="185" width="40" height="35" fill="#EF4444" opacity="0.3" stroke="#EF4444" stroke-width="1"/>
-    <rect x="200" y="185" width="40" height="35" fill="#F59E0B" opacity="1" stroke="#F59E0B" stroke-width="2"/>
-    <rect x="240" y="185" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="280" y="185" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="320" y="185" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="360" y="185" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <text x="980" y="207" font-size="12" font-weight="600" fill="#F59E0B">L2</text>
+    <text x="60" y="265" class="heatmap-label">B. Team Enablement</text>
+    <rect x="220" y="250" width="75" height="55" fill="#EF4444" opacity="0.3" stroke="#EF4444" stroke-width="1.5" rx="4"/>
+    <rect x="305" y="250" width="75" height="55" fill="#F59E0B" opacity="1" stroke="#F59E0B" stroke-width="3" rx="4"/>
+    <rect x="390" y="250" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="475" y="250" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="560" y="250" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="645" y="250" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <text x="1050" y="282" font-size="14" font-weight="700" fill="#F59E0B">L2</text>
 
     <!-- Row: C. Workflow Automation -->
-    <text x="50" y="250" class="heatmap-label">C. Workflow</text>
-    <text x="50" y="262" class="heatmap-label">Automation</text>
-    <rect x="160" y="240" width="40" height="35" fill="#EF4444" opacity="0.3" stroke="#EF4444" stroke-width="1"/>
-    <rect x="200" y="240" width="40" height="35" fill="#F59E0B" opacity="0.3" stroke="#F59E0B" stroke-width="1"/>
-    <rect x="240" y="240" width="40" height="35" fill="#10B981" opacity="1" stroke="#10B981" stroke-width="2"/>
-    <rect x="280" y="240" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="320" y="240" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="360" y="240" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <text x="980" y="262" font-size="12" font-weight="600" fill="#10B981">L3</text>
+    <text x="60" y="355" class="heatmap-label">C. Workflow Automation</text>
+    <rect x="220" y="340" width="75" height="55" fill="#EF4444" opacity="0.3" stroke="#EF4444" stroke-width="1.5" rx="4"/>
+    <rect x="305" y="340" width="75" height="55" fill="#F59E0B" opacity="0.3" stroke="#F59E0B" stroke-width="1.5" rx="4"/>
+    <rect x="390" y="340" width="75" height="55" fill="#10B981" opacity="1" stroke="#10B981" stroke-width="3" rx="4"/>
+    <rect x="475" y="340" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="560" y="340" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="645" y="340" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <text x="1050" y="372" font-size="14" font-weight="700" fill="#10B981">L3</text>
 
     <!-- Row: D. Operational Intelligence -->
-    <text x="50" y="305" class="heatmap-label">D. Operational</text>
-    <text x="50" y="317" class="heatmap-label">Intelligence</text>
-    <rect x="160" y="295" width="40" height="35" fill="#EF4444" opacity="1" stroke="#EF4444" stroke-width="2"/>
-    <rect x="200" y="295" width="40" height="35" fill="#F59E0B" opacity="0.3" stroke="#F59E0B" stroke-width="1"/>
-    <rect x="240" y="295" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="280" y="295" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="320" y="295" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="360" y="295" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <text x="980" y="317" font-size="12" font-weight="600" fill="#EF4444">L1</text>
+    <text x="60" y="445" class="heatmap-label">D. Operational Intelligence</text>
+    <rect x="220" y="430" width="75" height="55" fill="#EF4444" opacity="1" stroke="#EF4444" stroke-width="3" rx="4"/>
+    <rect x="305" y="430" width="75" height="55" fill="#F59E0B" opacity="0.3" stroke="#F59E0B" stroke-width="1.5" rx="4"/>
+    <rect x="390" y="430" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="475" y="430" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="560" y="430" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="645" y="430" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <text x="1050" y="462" font-size="14" font-weight="700" fill="#EF4444">L1</text>
 
     <!-- Row: E. Decision Support -->
-    <text x="50" y="360" class="heatmap-label">E. Decision</text>
-    <text x="50" y="372" class="heatmap-label">Support</text>
-    <rect x="160" y="350" width="40" height="35" fill="#EF4444" opacity="1" stroke="#EF4444" stroke-width="2"/>
-    <rect x="200" y="350" width="40" height="35" fill="#F59E0B" opacity="0.3" stroke="#F59E0B" stroke-width="1"/>
-    <rect x="240" y="350" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="280" y="350" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="320" y="350" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="360" y="350" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <text x="980" y="372" font-size="12" font-weight="600" fill="#EF4444">L1</text>
+    <text x="60" y="535" class="heatmap-label">E. Decision Support</text>
+    <rect x="220" y="520" width="75" height="55" fill="#EF4444" opacity="1" stroke="#EF4444" stroke-width="3" rx="4"/>
+    <rect x="305" y="520" width="75" height="55" fill="#F59E0B" opacity="0.3" stroke="#F59E0B" stroke-width="1.5" rx="4"/>
+    <rect x="390" y="520" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="475" y="520" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="560" y="520" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="645" y="520" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <text x="1050" y="552" font-size="14" font-weight="700" fill="#EF4444">L1</text>
 
     <!-- Row: F. Customer Experience -->
-    <text x="50" y="415" class="heatmap-label">F. Customer &amp;</text>
-    <text x="50" y="427" class="heatmap-label">Employee Exp</text>
-    <rect x="160" y="405" width="40" height="35" fill="#EF4444" opacity="0.3" stroke="#EF4444" stroke-width="1"/>
-    <rect x="200" y="405" width="40" height="35" fill="#F59E0B" opacity="1" stroke="#F59E0B" stroke-width="2"/>
-    <rect x="240" y="405" width="40" height="35" fill="#10B981" opacity="0.3" stroke="#10B981" stroke-width="1"/>
-    <rect x="280" y="405" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="320" y="405" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="360" y="405" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <text x="980" y="427" font-size="12" font-weight="600" fill="#F59E0B">L2</text>
+    <text x="60" y="625" class="heatmap-label">F. Customer &amp; Employee Exp</text>
+    <rect x="220" y="610" width="75" height="55" fill="#EF4444" opacity="0.3" stroke="#EF4444" stroke-width="1.5" rx="4"/>
+    <rect x="305" y="610" width="75" height="55" fill="#F59E0B" opacity="1" stroke="#F59E0B" stroke-width="3" rx="4"/>
+    <rect x="390" y="610" width="75" height="55" fill="#10B981" opacity="0.3" stroke="#10B981" stroke-width="1.5" rx="4"/>
+    <rect x="475" y="610" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="560" y="610" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="645" y="610" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <text x="1050" y="642" font-size="14" font-weight="700" fill="#F59E0B">L2</text>
 
     <!-- Row: G. Operating Model (SPECIAL) -->
-    <text x="50" y="470" class="heatmap-label" style="font-weight: 700; fill: #6D28D9;">G. Operating Model</text>
-    <text x="50" y="482" class="heatmap-label" style="font-weight: 700; fill: #6D28D9;">Transformation</text>
-    <rect x="160" y="460" width="40" height="35" fill="#EF4444" opacity="1" stroke="#EF4444" stroke-width="2"/>
-    <rect x="200" y="460" width="40" height="35" fill="#F59E0B" opacity="0.3" stroke="#F59E0B" stroke-width="1"/>
-    <rect x="240" y="460" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="280" y="460" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="320" y="460" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <rect x="360" y="460" width="40" height="35" fill="#6B7280" opacity="0.15" stroke="#D1D5DB" stroke-width="1"/>
-    <text x="980" y="482" font-size="12" font-weight="600" fill="#EF4444">L1</text>
+    <text x="60" y="715" class="heatmap-label" style="font-weight: 700; fill: #6D28D9;">G. Operating Model Transform</text>
+    <rect x="220" y="700" width="75" height="55" fill="#EF4444" opacity="1" stroke="#EF4444" stroke-width="3" rx="4"/>
+    <rect x="305" y="700" width="75" height="55" fill="#F59E0B" opacity="0.3" stroke="#F59E0B" stroke-width="1.5" rx="4"/>
+    <rect x="390" y="700" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="475" y="700" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="560" y="700" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <rect x="645" y="700" width="75" height="55" fill="#6B7280" opacity="0.1" stroke="#D1D5DB" stroke-width="1.5" rx="4"/>
+    <text x="1050" y="732" font-size="14" font-weight="700" fill="#EF4444">L1</text>
 
     <!-- Legend -->
-    <text x="500" y="520" font-size="11" font-weight="600" fill="#6B7280">Color intensity shows maturity level. Uneven profiles highlight investment opportunities.</text>
+    <text x="60" y="780" font-size="13" font-weight="600" fill="#6B7280">Color intensity shows maturity level. Solid border = strategic focus area.</text>
   </svg>
 </div>
