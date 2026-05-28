@@ -51,6 +51,37 @@ const apps: App[] = [
     ],
   },
 ];
+
+// Other apps we've built beyond the GTM tools above — lighter treatment.
+// Drop logos at /showcase/<name>-logo.png and (optional) screenshots at
+// /showcase/<name>-screen.png, then fill in `logo` / `image` / `url` below.
+type Project = {
+  name: string;
+  tagline: string;
+  logo?: string;
+  image?: string;
+  url?: string;
+};
+
+const moreProjects: Project[] = [
+  {
+    name: 'Uncorkd',
+    tagline: "A social app for wine lovers to track, rate, and share what they're drinking.",
+    logo: '/showcase/uncorkd-logo.png',
+    url: 'https://www.uncorkdwine.app/',
+  },
+  {
+    name: 'Keepswell',
+    tagline: 'An SMS-first social journaling solution with a companion app — capture moments and share life with the people you love.',
+    logo: '/showcase/keepswell-logo.png',
+    url: 'https://keepswell.com/',
+  },
+  {
+    name: 'HomeHero',
+    tagline: 'A home and chores management app — chores made easier.',
+    logo: '/showcase/homehero-logo.png',
+  },
+];
 ---
 
 <BaseLayout title="Showcase — PikeSquare">
@@ -58,10 +89,10 @@ const apps: App[] = [
   <section class="border-b border-ink/10">
     <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
       <h1 class="font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
-        Custom tools we've built.
+        Selected work.
       </h1>
       <p class="mt-6 max-w-2xl text-lg text-muted">
-        These examples show what's possible when you combine GTM expertise with the right tools. We can build similar tools for you, or help your team build them.
+        A sample of what we've built — custom apps and websites, plus specific sales and CS tools — from our own practice. We can build similar for you, or train your team to build their own.
       </p>
     </div>
   </section>
@@ -104,6 +135,51 @@ const apps: App[] = [
                 </div>
               )}
             </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- More apps -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">More from our studio</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-deep">
+        Other apps we've built.
+      </h2>
+      <p class="mt-4 max-w-2xl text-base text-muted">
+        Beyond GTM, we ship real, working apps fast — across consumer, social, and client work.
+      </p>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          moreProjects.map((p) => (
+            <article class="flex flex-col rounded-2xl border border-ink/10 bg-bg p-6">
+              {p.logo ? (
+                <img src={p.logo} alt={`${p.name} logo`} class="h-12 w-auto max-w-[200px] self-start object-contain" loading="lazy" />
+              ) : (
+                <h3 class="font-display text-xl font-bold text-deep">{p.name}</h3>
+              )}
+              {p.image && (
+                <img
+                  src={p.image}
+                  alt={`${p.name} screenshot`}
+                  class="mt-4 w-full rounded-lg border border-ink/10"
+                  loading="lazy"
+                />
+              )}
+              <p class="mt-4 text-base text-ink">{p.tagline}</p>
+              {p.url && (
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-4 text-sm font-semibold text-deep underline-offset-4 hover:underline"
+                >
+                  Visit →
+                </a>
+              )}
+            </article>
           ))
         }
       </div>
