@@ -1,0 +1,205 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SCHEDULING_URL } from '../../lib/site';
+
+const stages = [
+  { stage: 'Stage 1', probability: '20%' },
+  { stage: 'Stage 2', probability: '35%' },
+  { stage: 'Stage 3', probability: '50%' },
+  { stage: 'Stage 4', probability: '80%' },
+  { stage: 'Stage 5', probability: '98%' },
+];
+
+const steadyState = [
+  { value: '242', label: 'Total Pipeline', detail: 'deals across all five stages' },
+  { value: '100', label: 'Expected Yield', detail: 'closed/won deals' },
+  { value: '2.4x', label: 'Pipeline Multiple', detail: 'total ÷ expected yield' },
+  { value: '41%', label: 'Blended Close Rate', detail: 'expected ÷ total pipeline' },
+];
+
+const healthScenarios = [
+  {
+    name: 'Healthy',
+    rate: '41%',
+    detail: '242 total | 100 weighted',
+    note: 'Pipeline is well balanced. On track for targets.',
+  },
+  {
+    name: 'Weak Early Stage',
+    rate: '38%',
+    detail: '242 total | 92 weighted',
+    note: 'Overweighted in early stages. Focus on deal progression and quality.',
+  },
+  {
+    name: 'Optimistic',
+    rate: '45%',
+    detail: '242 total | 108 weighted',
+    note: 'Overweighted in late stages. May overachieve short-term, but you need more pipeline behind it.',
+  },
+];
+---
+
+<BaseLayout title="Pipeline Generation vs Coverage — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Pipeline Mechanics</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        Pipeline Generation vs Coverage
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Two different numbers run your pipeline: how much you generate flowing in, and how much you need standing at any moment. Confuse them and you'll either starve the funnel or drown in low-probability deals.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <div class="prose prose-sm max-w-none text-muted">
+        <p>
+          Revenue leaders obsess over pipeline — but "pipeline" hides two distinct ideas. <span class="font-semibold text-deep">Generation</span> is a flow: how many new opportunities you create each month. <span class="font-semibold text-deep">Coverage</span> is a stock: how many opportunities sit in your funnel at any given moment. You need to manage both, and they're driven by different math.
+        </p>
+        <p>
+          The model below assumes a clean, well-understood funnel: a six-month sales cycle, consistent demand generation, and deals that either advance or close-lost each month. Once you understand the mechanics on a simple model, you can apply the same logic to your real numbers.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stages & close rates -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">Sales Stages &amp; Close Rates</h2>
+      <p class="mt-4 text-base leading-relaxed text-muted">
+        Every stage carries a probability of closing. For every 100 deals created at Stage 1, you expect to close 20. The same logic lets you project progression: of 100 Stage 1 deals, roughly 25 will reach Stage 4.
+      </p>
+      <div class="mt-8 grid gap-3 sm:grid-cols-5">
+        {
+          stages.map((s) => (
+            <div class="rounded-xl border border-ink/10 bg-white p-5 text-center">
+              <p class="text-sm font-semibold text-deep">{s.stage}</p>
+              <p class="mt-2 font-display text-2xl font-bold text-accent">{s.probability}</p>
+              <p class="mt-1 text-xs text-muted">probability to close</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthy pipeline -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">What a Healthy Pipeline Looks Like</h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-lg border border-ink/10 bg-bg p-5">
+          <p class="font-semibold text-deep">6-month sales cycle</p>
+          <p class="mt-2 text-sm text-muted">Deals take roughly half a year to close.</p>
+        </div>
+        <div class="rounded-lg border border-ink/10 bg-bg p-5">
+          <p class="font-semibold text-deep">100 new Stage 1 deals / month</p>
+          <p class="mt-2 text-sm text-muted">Consistent demand generation feeds the top.</p>
+        </div>
+        <div class="rounded-lg border border-ink/10 bg-bg p-5">
+          <p class="font-semibold text-deep">Predictable progression</p>
+          <p class="mt-2 text-sm text-muted">Deals advance or close-lost every month.</p>
+        </div>
+        <div class="rounded-lg border border-ink/10 bg-bg p-5">
+          <p class="font-semibold text-deep">Builds to steady state</p>
+          <p class="mt-2 text-sm text-muted">Starting from zero, maintain 100 new deals/month for five months and the pipeline reaches a predictable shape and yield.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steady state -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">Steady-State Pipeline &amp; Expected Yield</h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          steadyState.map((s) => (
+            <div class="rounded-2xl border border-ink/10 bg-white p-6 text-center">
+              <p class="font-display text-3xl font-bold text-deep">{s.value}</p>
+              <p class="mt-2 text-sm font-semibold text-accent">{s.label}</p>
+              <p class="mt-1 text-xs text-muted">{s.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="mt-6 rounded-lg border border-ink/10 bg-bg p-6 text-sm text-muted">
+        <span class="font-semibold text-deep">Yield across stages:</span> Stage 1: 20% of 100 = 20 · Stage 2: 35% of 57 = 20 · Stage 3: 50% of 40 = 20 · Stage 4: 80% of 25 = 20 · Stage 5: 98% of 20 = 20. <span class="font-semibold text-deep">Total expected closes: 100 deals.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two metrics -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">Two Critical Pipeline Metrics</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-accent/20 bg-accent/5 p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-accent">Pipeline Generation Rate</p>
+          <p class="mt-2 font-display text-2xl font-bold text-deep">~5x Rule</p>
+          <p class="mt-3 text-sm text-muted">
+            To close 100 deals you need to create roughly 500 over the cycle — 100/month × 5 months × 20% Stage 1 close rate. You always need about <span class="font-semibold text-deep">5x pipeline flowing in the front end</span>, regardless of your blended close rate.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-accent/20 bg-accent/5 p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-accent">Pipeline Coverage Multiple</p>
+          <p class="mt-2 font-display text-2xl font-bold text-deep">2.4x – 2.6x</p>
+          <p class="mt-3 text-sm text-muted">
+            At any moment you need ~242 deals in the funnel to hit 100 closes with a healthy shape and 41% blended close rate. This is your <span class="font-semibold text-deep">minimum safety stock</span>: too low means short-term pain, too high means over-investing in low-probability deals.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Assessing health -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">Assessing Pipeline Health</h2>
+      <p class="mt-4 text-base leading-relaxed text-muted">
+        Divide your weighted pipeline by your total pipeline. The ratio tells you whether your funnel is balanced — or quietly skewed early or late.
+      </p>
+      <div class="mt-8 space-y-4">
+        {
+          healthScenarios.map((h) => (
+            <div class="rounded-2xl border border-ink/10 bg-white p-6">
+              <div class="flex items-baseline justify-between gap-4">
+                <p class="font-display text-lg font-bold text-deep">{h.name}</p>
+                <p class="font-display text-2xl font-bold text-accent">{h.rate}</p>
+              </div>
+              <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-muted">{h.detail}</p>
+              <p class="mt-3 text-sm text-muted">{h.note}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <h2 class="font-display text-3xl font-bold text-deep md:text-4xl">
+        Is your pipeline the right size and shape?
+      </h2>
+      <p class="mt-4 text-lg text-muted">
+        We can pressure-test your generation rate, coverage multiple, and funnel shape against your targets — and tell you where the gap is. Let's talk.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <a
+          href={SCHEDULING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+        >
+          Book a Conversation
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

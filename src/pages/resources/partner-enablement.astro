@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SCHEDULING_URL } from '../../lib/site';
+
+const partnerTypes = [
+  {
+    name: 'Resellers',
+    model: 'Re-sell directly to end customers, typically at 20–30% margins.',
+  },
+  {
+    name: 'Implementation Partners',
+    model: 'Deploy with enterprise customers via a co-sell model, with professional-services revenue sharing of 15–25%.',
+  },
+  {
+    name: 'Technology Partners',
+    model: 'Integrate with complementary platforms via API partnerships; revenue sharing on referral and integration fees.',
+  },
+  {
+    name: 'Strategic Sales Partners',
+    model: 'Large organizations with go-to-market influence and customer reach; strategic revenue sharing and co-marketing.',
+  },
+];
+
+const phases = [
+  {
+    phase: 'Starting',
+    when: 'Months 1–2',
+    points: ['Partner onboarding and business review', 'Core product training and certification'],
+  },
+  {
+    phase: 'Emerging',
+    when: 'Months 3–4',
+    points: ['Advanced features and use cases', 'Sales training and deal-support programs launch'],
+  },
+  {
+    phase: 'Accelerating',
+    when: 'Months 5+',
+    points: ['Strategic account planning and enterprise expansion', 'Dedicated partner success manager and quarterly business reviews'],
+  },
+];
+
+const structure = [
+  { type: 'Resellers', cadence: '3-week onboarding, monthly QBRs, self-service partner portal.' },
+  { type: 'Implementation Partners', cadence: '6-week onboarding, bi-weekly syncs, dedicated support team.' },
+  { type: 'Technology Partners', cadence: 'Technical implementation planning, API documentation, integration support.' },
+  { type: 'Strategic Sales Partners', cadence: 'Executive kickoff, quarterly business planning, dedicated account team.' },
+];
+
+const building = [
+  {
+    title: 'Onboarding & success planning',
+    detail: 'Week 1 kickoff and business review for executive alignment on objectives and metrics; weeks 2–3 product training, certification, and sandbox access.',
+  },
+  {
+    title: 'Goal & target alignment',
+    detail: 'Set targets by partner type — e.g. resellers: 10 new customers and $5M pipeline in year one; strategic partners: 2 strategic accounts and $10M+ pipeline growth.',
+  },
+  {
+    title: 'Product & service education',
+    detail: 'A core curriculum (platform, architecture, GTM modules, hands-on scenarios) plus role-specific tracks for sales engineers and account managers.',
+  },
+  {
+    title: 'Sales & marketing training',
+    detail: 'Discovery and qualification frameworks, competitive positioning, deal management — plus co-branded case studies, webinars, and thought leadership.',
+  },
+  {
+    title: 'Enablement portal & tools',
+    detail: 'A self-service training library with certification tracking, deal registration, collateral, and a support channel with office hours.',
+  },
+];
+
+const operating = [
+  {
+    title: 'Deal tracking & support',
+    detail: 'Deal registration required ~30 days before anticipated close; deal-desk support for complex pricing; a defined post-deal success and handoff process.',
+  },
+  {
+    title: 'Support & SLAs',
+    detail: 'Committed technical-support SLAs, partner success managers assigned by tier and geography, and quarterly business reviews with performance analysis.',
+  },
+  {
+    title: 'Feedback & evolution',
+    detail: 'Quarterly NPS surveys, a partner advisory board, and recognition for top performers — with program updates shipped quarterly based on what you hear.',
+  },
+];
+---
+
+<BaseLayout title="Building a Partner Enablement Program — PikeSquare">
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">Partner Enablement</p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        Building a Partner Enablement Program
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        What to consider when you build a structured program for partner success across channels — the partner types, the phased rollout, and the operating cadence that makes it stick.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <div class="prose prose-sm max-w-none text-muted">
+        <p>
+          A partner channel only produces revenue if partners are genuinely enabled — onboarded, trained, supported, and held to clear targets. The most common failure mode is treating every partner the same. A reseller, an implementation partner, a technology partner, and a strategic partner each need a different motion, a different cadence, and different goals.
+        </p>
+        <p>
+          The framework below covers the decisions worth making up front: who your partners are and how they make money, how to phase the rollout, how to tailor the program by partner type, what to put inside it, and how to run it once it's live.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner types -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">Start With Partner Types</h2>
+      <p class="mt-4 text-base leading-relaxed text-muted">
+        Each partner type has a different economic model — which drives how you enable and reward them.
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {
+          partnerTypes.map((p) => (
+            <div class="rounded-2xl border border-ink/10 bg-white p-6">
+              <p class="font-display text-lg font-bold text-deep">{p.name}</p>
+              <p class="mt-2 text-sm text-muted">{p.model}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Phased rollout -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">Roll It Out in Phases</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {
+          phases.map((p) => (
+            <div class="rounded-2xl border border-ink/10 bg-bg p-6">
+              <p class="text-xs font-semibold uppercase tracking-wider text-accent">{p.when}</p>
+              <p class="mt-1 font-display text-xl font-bold text-deep">{p.phase}</p>
+              <ul class="mt-4 space-y-2">
+                {p.points.map((pt) => (
+                  <li class="flex gap-3 text-sm text-muted">
+                    <span class="mt-1.5 inline-block h-1.5 w-1.5 flex-none rounded-full bg-accent" />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Tailor by type -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">Tailor the Program to Each Type</h2>
+      <div class="mt-8 space-y-4">
+        {
+          structure.map((s) => (
+            <div class="rounded-lg border border-ink/10 bg-white p-5">
+              <p class="font-semibold text-deep">{s.type}</p>
+              <p class="mt-1 text-sm text-muted">{s.cadence}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- What every program needs -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">What Every Program Needs</h2>
+      <div class="mt-8 space-y-4">
+        {
+          building.map((b) => (
+            <div class="rounded-2xl border border-ink/10 bg-bg p-6">
+              <p class="font-display text-lg font-bold text-deep">{b.title}</p>
+              <p class="mt-2 text-sm text-muted">{b.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Operating cadence -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-deep">Run It With a Real Operating Cadence</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {
+          operating.map((o) => (
+            <div class="rounded-2xl border border-ink/10 bg-white p-6">
+              <p class="font-display text-base font-bold text-deep">{o.title}</p>
+              <p class="mt-2 text-sm text-muted">{o.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <h2 class="font-display text-3xl font-bold text-deep md:text-4xl">
+        Building or rebuilding a partner program?
+      </h2>
+      <p class="mt-4 text-lg text-muted">
+        We can help you design the partner tiers, enablement curriculum, and operating cadence — and stand it up. Let's talk.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <a
+          href={SCHEDULING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+        >
+          Book a Conversation
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
