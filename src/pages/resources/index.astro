@@ -1,11 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTAButton from '../../components/CTAButton.astro';
-import { resources, getAllFunctions, getResourcesByFunction, searchResources } from '../../lib/resources-data';
+import { resources, type Resource } from '../../lib/resources-data';
 import { SCHEDULING_URL } from '../../lib/site';
 
-const allFunctions = getAllFunctions();
-const resourcesJson = JSON.stringify(resources);
+// Only surface resources that actually lead somewhere — a real Drive file,
+// an external link, or an on-site page. Placeholder "example-*" Drive links
+// are hidden until a real link is added. Filter buttons are derived from the
+// visible set so none point at an empty result.
+const hasValidLink = (r: Resource) =>
+  (!!r.driveLink && !r.driveLink.includes('example-')) || !!r.externalLink || !!r.internalLink;
+const visibleResources = resources.filter(hasValidLink);
+const allFunctions = Array.from(new Set(visibleResources.flatMap((r) => r.functions))).sort();
+const resourcesJson = JSON.stringify(visibleResources);
 const functionsJson = JSON.stringify(allFunctions);
 ---
 
@@ -165,7 +172,11 @@ const functionsJson = JSON.stringify(allFunctions);
                           ? `<a href="${r.externalLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-deep underline-offset-4 hover:underline">
                               Open →
                             </a>`
-                          : ''
+                          : r.internalLink
+                            ? `<a href="${r.internalLink}" class="inline-flex items-center gap-2 text-sm font-semibold text-deep underline-offset-4 hover:underline">
+                                ${r.linkLabel || 'Open'} →
+                              </a>`
+                            : ''
                     }
                   </div>
                 </article>

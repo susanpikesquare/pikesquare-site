@@ -12,6 +12,8 @@ export interface Resource {
   type: ResourceType;
   driveLink?: string; // Google Drive link to the file
   externalLink?: string; // Alternative external link (like Google Slides)
+  internalLink?: string; // Link to an on-site page or tool
+  linkLabel?: string; // Custom CTA label (used with internalLink)
   tags: string[]; // searchable keywords
 }
 
@@ -23,6 +25,8 @@ export const resources: Resource[] = [
     description: 'Rate yourself on six core GTM dimensions. Five minutes. See where you stand and what gaps are holding you back.',
     functions: ['GTM Strategy'],
     type: 'assessment',
+    internalLink: '/assessments',
+    linkLabel: 'Take the assessment',
     tags: ['assessment', 'gtm', 'readiness', 'diagnostic', 'self-evaluation'],
   },
   {
@@ -31,6 +35,8 @@ export const resources: Resource[] = [
     description: 'Understand your AI maturity across data, adoption, strategy, team, revenue, and governance. Find your biggest opportunities.',
     functions: ['GTM Strategy'],
     type: 'assessment',
+    internalLink: '/assessments',
+    linkLabel: 'Take the assessment',
     tags: ['assessment', 'ai', 'readiness', 'diagnostic', 'adoption'],
   },
 
@@ -202,7 +208,8 @@ export const resources: Resource[] = [
     description: 'How operating models evolve as companies scale. Why hero-driven organizations fail. The three stages from people-driven to process-driven to AI-augmented.',
     functions: ['GTM Strategy'],
     type: 'guide',
-    driveLink: 'https://drive.google.com/file/d/example-opmaturity-id/view',
+    internalLink: '/resources/operational-maturity',
+    linkLabel: 'Read the guide',
     tags: ['scaling', 'operations', 'processes', 'maturity', 'gtm'],
   },
   {
@@ -211,7 +218,8 @@ export const resources: Resource[] = [
     description: 'A deep-dive into CS scaling. Why your Stage 1 model breaks at Stage 2. The specific changes, costs, and timing you need to plan for.',
     functions: ['Customer Success', 'GTM Strategy'],
     type: 'guide',
-    driveLink: 'https://drive.google.com/file/d/example-cs-scaling-id/view',
+    internalLink: '/resources/cs-scaling',
+    linkLabel: 'Read the guide',
     tags: ['cs', 'scaling', 'operating-model', 'growth-stage'],
   },
 ];
