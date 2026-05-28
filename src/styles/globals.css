@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   /* PikeSquare brand palette (FINAL 2022-09-10) */

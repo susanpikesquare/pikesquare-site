@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SCHEDULING_URL } from '../../lib/site';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, description, publishedDate, linkedinUrl } = entry.data;
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+
+<BaseLayout title={`${title} — PikeSquare`}>
+  <!-- Hero -->
+  <section class="border-b border-ink/10">
+    <div class="mx-auto max-w-3xl px-6 pb-12 pt-20">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent">
+        {fmtDate(publishedDate)}
+      </p>
+      <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
+        {title}
+      </h1>
+      {description && <p class="mt-6 text-lg text-muted">{description}</p>}
+    </div>
+  </section>
+
+  <!-- Body -->
+  <section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-3xl px-6 py-16">
+      <div
+        class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-deep prose-p:text-muted prose-li:text-muted prose-strong:text-ink prose-a:text-accent prose-a:font-semibold"
+      >
+        <Content />
+      </div>
+
+      {
+        linkedinUrl && (
+          <p class="mt-12 border-t border-ink/10 pt-6">
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm font-semibold text-deep underline-offset-4 hover:underline"
+            >
+              Originally published on LinkedIn →
+            </a>
+          </p>
+        )
+      }
+
+      <p class="mt-8">
+        <a href="/insights" class="text-sm font-semibold text-muted underline-offset-4 hover:text-deep hover:underline">
+          ← All insights
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <h2 class="font-display text-3xl font-bold text-deep md:text-4xl">
+        Want to talk through this for your team?
+      </h2>
+      <div class="mt-8 flex justify-center">
+        <a
+          href={SCHEDULING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
+        >
+          Book a Conversation
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
