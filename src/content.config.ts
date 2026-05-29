@@ -5,7 +5,7 @@ const articles = defineCollection({
   loader: glob({ pattern: '**/*.mdoc', base: './src/content/articles' }),
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional().default(''),
     publishedDate: z.coerce.date(),
     author: z.string().optional(),
     functions: z.array(z.string()).default([]),
@@ -17,7 +17,7 @@ const resources = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/resources' }),
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional().default(''),
     type: z.enum(['template', 'guide']).default('template'),
     functions: z.array(z.string()).default([]),
     link: z.string().optional(),

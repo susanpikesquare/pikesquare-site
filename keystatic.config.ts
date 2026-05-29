@@ -42,6 +42,7 @@ export default config({
           label: 'Summary',
           description: 'One or two sentences shown in the library list and previews.',
           multiline: true,
+          validation: { length: { min: 1 } },
         }),
         publishedDate: fields.date({
           label: 'Published date',
@@ -87,6 +88,7 @@ export default config({
           label: 'Description',
           description: 'One or two sentences shown on the card.',
           multiline: true,
+          validation: { length: { min: 1 } },
         }),
         type: fields.select({
           label: 'Type',
