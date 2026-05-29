@@ -58,6 +58,7 @@ const apps: App[] = [
 type Project = {
   name: string;
   tagline: string;
+  role?: string;
   logo?: string;
   image?: string;
   url?: string;
@@ -67,18 +68,21 @@ const moreProjects: Project[] = [
   {
     name: 'Uncorkd',
     tagline: "A social app for wine lovers to track, rate, and share what they're drinking.",
+    role: 'Full app development, beta launch, and commercial model development.',
     logo: '/showcase/uncorkd-logo.png',
     url: 'https://www.uncorkdwine.app/',
   },
   {
     name: 'Keepswell',
     tagline: 'An SMS-first social journaling solution with a companion app — capture moments and share life with the people you love.',
+    role: 'A personal hobby project.',
     logo: '/showcase/keepswell-logo.png',
     url: 'https://keepswell.com/',
   },
   {
     name: 'HomeHero',
     tagline: 'A home and chores management app — chores made easier.',
+    role: 'Client project — supporting web and iOS app development.',
     logo: '/showcase/homehero-logo.png',
   },
 ];
@@ -171,6 +175,11 @@ const moreProjects: Project[] = [
                 />
               )}
               <p class="mt-4 text-base text-ink">{p.tagline}</p>
+              {p.role && (
+                <p class="mt-3 text-sm text-muted">
+                  <span class="font-semibold text-deep">What we did:</span> {p.role}
+                </p>
+              )}
               {p.url && (
                 <a
                   href={p.url}
