@@ -13,6 +13,8 @@ export default defineConfig({
   adapter: vercel(),
   redirects: {
     '/admin': '/keystatic',
+    '/insights': '/resources',
+    '/insights/[slug]': '/resources/[slug]',
   },
   integrations: [react(), markdoc(), keystatic()],
   vite: {

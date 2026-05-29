@@ -1,19 +1,55 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTAButton from '../../components/CTAButton.astro';
-import { resources, type Resource } from '../../lib/resources-data';
-import { SCHEDULING_URL } from '../../lib/site';
+import { getCollection } from 'astro:content';
 
-// Only surface resources that actually lead somewhere — a real Drive file,
-// an external link, or an on-site page. Placeholder "example-*" Drive links
-// are hidden until a real link is added. Filter buttons are derived from the
-// visible set so none point at an empty result.
-const hasValidLink = (r: Resource) =>
-  (!!r.driveLink && !r.driveLink.includes('example-')) || !!r.externalLink || !!r.internalLink;
-const visibleResources = resources.filter(hasValidLink);
-const allFunctions = Array.from(new Set(visibleResources.flatMap((r) => r.functions))).sort();
-const resourcesJson = JSON.stringify(visibleResources);
-const functionsJson = JSON.stringify(allFunctions);
+type Item = {
+  title: string;
+  description: string;
+  type: 'Article' | 'Guide' | 'Template';
+  functions: string[];
+  href: string;
+  external: boolean;
+  linkLabel: string;
+  date: number;
+};
+
+const articleEntries = await getCollection('articles');
+const resourceEntries = await getCollection('resources');
+
+const articles: Item[] = articleEntries.map((a) => ({
+  title: a.data.title,
+  description: a.data.description,
+  type: 'Article',
+  functions: a.data.functions ?? [],
+  href: `/resources/${a.id}`,
+  external: false,
+  linkLabel: 'Read the article',
+  date: a.data.publishedDate.getTime(),
+}));
+
+const resources: Item[] = resourceEntries.map((r) => {
+  const internal = r.data.internalLink?.trim();
+  const external = !internal && !!r.data.link?.trim();
+  return {
+    title: r.data.title,
+    description: r.data.description,
+    type: r.data.type === 'guide' ? 'Guide' : 'Template',
+    functions: r.data.functions ?? [],
+    href: internal || r.data.link?.trim() || '',
+    external,
+    linkLabel: r.data.linkLabel?.trim() || (external ? 'Open' : 'View'),
+    date: 0,
+  } satisfies Item;
+});
+
+const items = [...articles, ...resources]
+  .filter((i) => i.href)
+  .sort((a, b) => b.date - a.date);
+
+const topics = Array.from(new Set(items.flatMap((i) => i.functions))).sort();
+const itemsJson = JSON.stringify(items);
+const topicsJson = JSON.stringify(topics);
 ---
 
 <BaseLayout title="Resources — PikeSquare">
@@ -22,52 +58,49 @@ const functionsJson = JSON.stringify(allFunctions);
     <div class="mx-auto max-w-4xl px-6 pb-16 pt-20">
       <p class="text-sm font-semibold uppercase tracking-wider text-accent">Resources</p>
       <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-deep md:text-5xl">
-        Templates, guides, and frameworks.
+        Articles, guides, and templates.
       </h1>
       <p class="mt-6 max-w-2xl text-lg text-muted">
-        Free resources to help you think through GTM challenges and implement solutions. Start with a template, adapt it to your context.
+        Our points of view and the practical tools behind them. Filter by what you're looking for — read an article, follow a guide, or grab a template.
       </p>
     </div>
   </section>
 
-  <!-- Search & Filter -->
+  <!-- Search & filters -->
   <section class="border-b border-ink/10 bg-white">
-    <div class="mx-auto max-w-6xl px-6 py-16">
-      <!-- Search Bar -->
-      <div class="mb-8">
-        <input
-          id="search-input"
-          type="text"
-          placeholder="Search templates, guides, frameworks..."
-          class="w-full rounded-full border border-ink/15 bg-white px-6 py-3 text-base text-deep placeholder-muted focus:border-deep focus:outline-none focus:ring-2 focus:ring-deep/10"
-        />
+    <div class="mx-auto max-w-6xl px-6 py-12">
+      <input
+        id="search-input"
+        type="text"
+        placeholder="Search articles, guides, templates..."
+        class="w-full rounded-full border border-ink/15 bg-white px-6 py-3 text-base text-deep placeholder-muted focus:border-deep focus:outline-none focus:ring-2 focus:ring-deep/10"
+      />
+
+      <div class="mt-6">
+        <p class="text-xs font-semibold uppercase tracking-wider text-muted">Type</p>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <button data-type="all" class="type-btn rounded-full border-2 border-deep bg-deep px-4 py-1.5 text-sm font-semibold text-white transition">All</button>
+          <button data-type="Article" class="type-btn rounded-full border-2 border-ink/20 bg-transparent px-4 py-1.5 text-sm font-semibold text-deep transition hover:border-deep">Articles</button>
+          <button data-type="Guide" class="type-btn rounded-full border-2 border-ink/20 bg-transparent px-4 py-1.5 text-sm font-semibold text-deep transition hover:border-deep">Guides</button>
+          <button data-type="Template" class="type-btn rounded-full border-2 border-ink/20 bg-transparent px-4 py-1.5 text-sm font-semibold text-deep transition hover:border-deep">Templates</button>
+        </div>
       </div>
 
-      <!-- Function Filter Buttons -->
-      <div class="flex flex-wrap gap-3">
-        <button
-          data-filter="all"
-          class="filter-btn active rounded-full border-2 border-deep bg-deep px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent hover:border-accent"
-        >
-          All Resources
-        </button>
-        {
-          allFunctions.map((func) => (
-            <button
-              data-filter={func}
-              class="filter-btn rounded-full border-2 border-ink/20 bg-transparent px-4 py-2 text-sm font-semibold text-deep transition hover:border-deep hover:bg-bg"
-            >
-              {func}
-            </button>
-          ))
-        }
+      <div class="mt-5">
+        <p class="text-xs font-semibold uppercase tracking-wider text-muted">Topic</p>
+        <div id="topic-filters" class="mt-2 flex flex-wrap gap-2">
+          <button data-topic="all" class="topic-btn rounded-full border-2 border-deep bg-deep px-4 py-1.5 text-sm font-semibold text-white transition">All</button>
+          {
+            topics.map((t) => (
+              <button data-topic={t} class="topic-btn rounded-full border-2 border-ink/20 bg-transparent px-4 py-1.5 text-sm font-semibold text-deep transition hover:border-deep">
+                {t}
+              </button>
+            ))
+          }
+        </div>
       </div>
 
-      <!-- Clear filters button (hidden by default) -->
-      <button
-        id="clear-filters"
-        class="hidden mt-4 text-sm font-semibold text-muted underline-offset-4 hover:text-deep hover:underline"
-      >
+      <button id="clear-filters" class="mt-5 hidden text-sm font-semibold text-muted underline-offset-4 hover:text-deep hover:underline">
         Clear filters and search
       </button>
     </div>
@@ -76,28 +109,21 @@ const functionsJson = JSON.stringify(allFunctions);
   <!-- Results -->
   <section class="border-b border-ink/10">
     <div class="mx-auto max-w-6xl px-6 py-16">
-      <!-- No results message -->
       <div id="no-results" class="hidden rounded-2xl border border-ink/10 bg-bg p-8 text-center">
-        <p class="text-lg text-muted">
-          No resources found. Try adjusting your search or filters.
-        </p>
+        <p class="text-lg text-muted">Nothing matches yet. Try a different type, topic, or search.</p>
       </div>
-
-      <!-- Results by function -->
-      <div id="results-container" class="space-y-12">
-        <!-- JS will populate this -->
-      </div>
+      <div id="results" class="grid gap-6 md:grid-cols-2"></div>
     </div>
   </section>
 
-  <!-- Bottom CTA -->
+  <!-- CTA -->
   <section>
     <div class="mx-auto max-w-3xl px-6 py-20 text-center">
       <h2 class="font-display text-3xl font-bold tracking-tight text-deep md:text-4xl">
         Looking for something specific?
       </h2>
       <p class="mt-4 text-lg text-muted">
-        Let's talk about what you need. We can build custom templates for your team or help you adapt these to your context.
+        Tell us what you need — we can adapt a template to your context or build a custom one for your team.
       </p>
       <div class="mt-8 flex justify-center">
         <CTAButton />
@@ -106,157 +132,98 @@ const functionsJson = JSON.stringify(allFunctions);
   </section>
 </BaseLayout>
 
-<script is:inline define:vars={{ resourcesJson, functionsJson }}>
-  const allResources = JSON.parse(resourcesJson);
-  const allFunctions = JSON.parse(functionsJson);
-
+<script is:inline define:vars={{ itemsJson, topicsJson }}>
+  const items = JSON.parse(itemsJson);
   const searchInput = document.getElementById('search-input');
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const resultsContainer = document.getElementById('results-container');
-  const noResultsMsg = document.getElementById('no-results');
+  const typeBtns = document.querySelectorAll('.type-btn');
+  const topicBtns = document.querySelectorAll('.topic-btn');
+  const results = document.getElementById('results');
+  const noResults = document.getElementById('no-results');
   const clearBtn = document.getElementById('clear-filters');
 
-  let currentFilter = 'all';
-  let currentSearch = '';
+  let type = 'all';
+  let topic = 'all';
+  let q = '';
 
-  function renderResults() {
-    const filtered = filterAndSearch(allResources, currentFilter, currentSearch);
+  const esc = (s) =>
+    String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  function setActive(btns, attr, value) {
+    btns.forEach((b) => {
+      const on = b.getAttribute(attr) === value;
+      b.classList.toggle('border-deep', on);
+      b.classList.toggle('bg-deep', on);
+      b.classList.toggle('text-white', on);
+      b.classList.toggle('border-ink/20', !on);
+      b.classList.toggle('bg-transparent', !on);
+      b.classList.toggle('text-deep', !on);
+    });
+  }
+
+  function render() {
+    const filtered = items.filter(
+      (i) =>
+        (type === 'all' || i.type === type) &&
+        (topic === 'all' || i.functions.includes(topic)) &&
+        (!q ||
+          i.title.toLowerCase().includes(q) ||
+          i.description.toLowerCase().includes(q) ||
+          i.functions.some((f) => f.toLowerCase().includes(q))),
+    );
 
     if (filtered.length === 0) {
-      resultsContainer.innerHTML = '';
-      noResultsMsg.classList.remove('hidden');
-      clearBtn.classList.add('hidden');
-      return;
-    }
-
-    noResultsMsg.classList.add('hidden');
-
-    // Group by function for display
-    const grouped = {};
-    filtered.forEach(resource => {
-      resource.functions.forEach(func => {
-        if (!grouped[func]) grouped[func] = [];
-        grouped[func].push(resource);
-      });
-    });
-
-    // Render grouped results
-    let html = '';
-    Object.keys(grouped)
-      .sort()
-      .forEach(func => {
-        html += `
-          <div>
-            <h3 class="font-display text-2xl font-bold text-deep mb-6">${func}</h3>
-            <div class="grid gap-6 md:grid-cols-2">
-              ${grouped[func]
-                .map(
-                  r => `
-                <article class="flex flex-col rounded-2xl border border-ink/10 bg-white p-7 transition hover:border-deep/40 hover:shadow-md">
-                  <div class="flex items-start justify-between gap-4">
-                    <div class="flex-1">
-                      <h4 class="font-display text-lg font-bold text-deep">${r.title}</h4>
-                      <p class="mt-2 text-sm text-muted">${r.description}</p>
-                    </div>
-                    <span class="mt-1 inline-flex flex-shrink-0 rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-                      ${r.type}
-                    </span>
-                  </div>
-                  <div class="mt-4 pt-4 border-t border-ink/10">
-                    ${
-                      r.driveLink
-                        ? `<a href="${r.driveLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-deep underline-offset-4 hover:underline">
-                            Download PDF →
-                          </a>`
-                        : r.externalLink
-                          ? `<a href="${r.externalLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-deep underline-offset-4 hover:underline">
-                              Open →
-                            </a>`
-                          : r.internalLink
-                            ? `<a href="${r.internalLink}" class="inline-flex items-center gap-2 text-sm font-semibold text-deep underline-offset-4 hover:underline">
-                                ${r.linkLabel || 'Open'} →
-                              </a>`
-                            : ''
-                    }
-                  </div>
-                </article>
-              `
-                )
-                .join('')}
-            </div>
-          </div>
-        `;
-      });
-
-    resultsContainer.innerHTML = html;
-
-    // Show clear button if search or non-default filter is active
-    if (currentSearch || currentFilter !== 'all') {
-      clearBtn.classList.remove('hidden');
+      results.innerHTML = '';
+      noResults.classList.remove('hidden');
     } else {
-      clearBtn.classList.add('hidden');
+      noResults.classList.add('hidden');
+      results.innerHTML = filtered
+        .map((i) => {
+          const target = i.external ? ' target="_blank" rel="noopener noreferrer"' : '';
+          const tags = i.functions.map((f) => `<span class="text-xs text-muted">${esc(f)}</span>`).join('<span class="text-muted">·</span>');
+          return `
+            <article class="flex flex-col rounded-2xl border border-ink/10 bg-white p-7 transition hover:border-deep/40 hover:shadow-md">
+              <div class="flex items-start justify-between gap-4">
+                <span class="inline-flex rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">${esc(i.type)}</span>
+                ${i.functions.length ? `<div class="flex flex-wrap items-center gap-1.5 text-right">${tags}</div>` : ''}
+              </div>
+              <h3 class="mt-4 font-display text-lg font-bold text-deep">${esc(i.title)}</h3>
+              <p class="mt-2 flex-1 text-sm text-muted">${esc(i.description)}</p>
+              <a href="${esc(i.href)}"${target} class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-deep underline-offset-4 hover:underline">${esc(i.linkLabel)} →</a>
+            </article>`;
+        })
+        .join('');
     }
+
+    clearBtn.classList.toggle('hidden', type === 'all' && topic === 'all' && !q);
   }
 
-  function filterAndSearch(items, filter, search) {
-    let result = items;
-
-    // Apply function filter
-    if (filter !== 'all') {
-      result = result.filter(r => r.functions.includes(filter));
-    }
-
-    // Apply search
-    if (search) {
-      const q = search.toLowerCase();
-      result = result.filter(
-        r =>
-          r.title.toLowerCase().includes(q) ||
-          r.description.toLowerCase().includes(q) ||
-          r.tags.some(tag => tag.toLowerCase().includes(q))
-      );
-    }
-
-    return result;
-  }
-
-  // Event listeners
-  searchInput.addEventListener('input', e => {
-    currentSearch = e.target.value;
-    renderResults();
+  searchInput.addEventListener('input', (e) => {
+    q = e.target.value.toLowerCase();
+    render();
   });
-
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Update active state
-      filterButtons.forEach(b => {
-        b.classList.remove('border-deep', 'bg-deep', 'text-white');
-        b.classList.add('border-ink/20', 'bg-transparent', 'text-deep');
-      });
-      btn.classList.add('border-deep', 'bg-deep', 'text-white');
-      btn.classList.remove('border-ink/20', 'bg-transparent', 'text-deep');
-
-      currentFilter = btn.dataset.filter;
-      renderResults();
-    });
-  });
-
+  typeBtns.forEach((b) =>
+    b.addEventListener('click', () => {
+      type = b.getAttribute('data-type');
+      setActive(typeBtns, 'data-type', type);
+      render();
+    }),
+  );
+  topicBtns.forEach((b) =>
+    b.addEventListener('click', () => {
+      topic = b.getAttribute('data-topic');
+      setActive(topicBtns, 'data-topic', topic);
+      render();
+    }),
+  );
   clearBtn.addEventListener('click', () => {
-    currentSearch = '';
-    currentFilter = 'all';
+    type = 'all';
+    topic = 'all';
+    q = '';
     searchInput.value = '';
-
-    // Reset button states
-    filterButtons.forEach(b => {
-      b.classList.remove('border-deep', 'bg-deep', 'text-white');
-      b.classList.add('border-ink/20', 'bg-transparent', 'text-deep');
-    });
-    filterButtons[0].classList.add('border-deep', 'bg-deep', 'text-white');
-    filterButtons[0].classList.remove('border-ink/20', 'bg-transparent', 'text-deep');
-
-    renderResults();
+    setActive(typeBtns, 'data-type', 'all');
+    setActive(topicBtns, 'data-topic', 'all');
+    render();
   });
 
-  // Initial render
-  renderResults();
+  render();
 </script>

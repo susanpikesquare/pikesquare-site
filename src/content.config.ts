@@ -12,4 +12,17 @@ const articles = defineCollection({
   }),
 });
 
-export const collections = { articles };
+const resources = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/resources' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    type: z.enum(['template', 'guide']).default('template'),
+    functions: z.array(z.string()).default([]),
+    link: z.string().optional(),
+    internalLink: z.string().optional(),
+    linkLabel: z.string().optional(),
+  }),
+});
+
+export const collections = { articles, resources };
