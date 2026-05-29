@@ -15,6 +15,8 @@ const functionOptions = [
   { label: 'Demand Generation', value: 'Demand Generation' },
   { label: 'GTM Strategy', value: 'GTM Strategy' },
   { label: 'Cross-Functional', value: 'Cross-Functional' },
+  // For non-GTM, editorial / point-of-view pieces.
+  { label: 'Perspectives', value: 'Perspectives' },
 ];
 
 export default config({
@@ -62,7 +64,15 @@ export default config({
           label: 'LinkedIn URL',
           description: 'Optional — link back to the original LinkedIn post.',
         }),
-        content: fields.markdoc({ label: 'Body' }),
+        content: fields.markdoc({
+          label: 'Body',
+          options: {
+            image: {
+              directory: 'public/images/articles',
+              publicPath: '/images/articles/',
+            },
+          },
+        }),
       },
     }),
     resources: collection({
