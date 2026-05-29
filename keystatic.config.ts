@@ -45,6 +45,14 @@ export default config({
           label: 'Published date',
           defaultValue: { kind: 'today' },
         }),
+        author: fields.select({
+          label: 'Author',
+          options: [
+            { label: 'Steve', value: 'Steve' },
+            { label: 'Susan', value: 'Susan' },
+          ],
+          defaultValue: 'Steve',
+        }),
         functions: fields.multiselect({
           label: 'Topics',
           description: 'Which GTM areas this article relates to.',

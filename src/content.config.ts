@@ -7,6 +7,7 @@ const articles = defineCollection({
     title: z.string(),
     description: z.string(),
     publishedDate: z.coerce.date(),
+    author: z.string().optional(),
     functions: z.array(z.string()).default([]),
     linkedinUrl: z.string().optional(),
   }),
