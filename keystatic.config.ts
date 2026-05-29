@@ -1,10 +1,11 @@
 import { config, fields, collection } from '@keystatic/core';
 
-// Local filesystem in dev (no login needed); GitHub in production so edits
-// commit to the repo and Vercel redeploys.
+// Local filesystem in dev (no login needed); Keystatic Cloud in production —
+// Cloud handles auth and commits to the connected GitHub repo. Editors log in
+// at /admin via Keystatic Cloud (invite teammates in the Cloud dashboard).
 const storage =
   process.env.NODE_ENV === 'production'
-    ? ({ kind: 'github', repo: 'susanpikesquare/pikesquare-site' } as const)
+    ? ({ kind: 'cloud' } as const)
     : ({ kind: 'local' } as const);
 
 const functionOptions = [
@@ -18,6 +19,7 @@ const functionOptions = [
 
 export default config({
   storage,
+  cloud: { project: 'pikesquare/pikesquare-site' },
   ui: {
     brand: { name: 'PikeSquare' },
   },
