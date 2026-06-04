@@ -2,8 +2,15 @@
 
 Source of truth for how PikeSquare looks, sounds, and shows up. Use this
 when writing for the site, designing a deck, briefing a contractor, or
-sending an email signature. A visual version of this page lives at
-[pikesquare.co/brand](https://pikesquare.co/brand).
+sending an email signature.
+
+**Downloadable, shareable versions:**
+
+- 📄 [PikeSquare-Brand-Guide.pdf](public/brand/PikeSquare-Brand-Guide.pdf) — polished PDF for sharing with designers, vendors, or as a static reference.
+- 🖼️ [PikeSquare-Brand-Guide.pptx](public/brand/PikeSquare-Brand-Guide.pptx) — editable PowerPoint deck. Doubles as a starting template for new PikeSquare decks.
+
+This markdown file stays in sync with both — when the brand changes, edit
+here AND regenerate the two files.
 
 ## Who we are
 
