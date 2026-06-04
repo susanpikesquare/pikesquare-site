@@ -4,13 +4,29 @@ Source of truth for how PikeSquare looks, sounds, and shows up. Use this
 when writing for the site, designing a deck, briefing a contractor, or
 sending an email signature.
 
-**Downloadable, shareable versions:**
+**Downloadable, shareable files:**
 
-- 📄 [PikeSquare-Brand-Guide.pdf](public/brand/PikeSquare-Brand-Guide.pdf) — polished PDF for sharing with designers, vendors, or as a static reference.
-- 🖼️ [PikeSquare-Brand-Guide.pptx](public/brand/PikeSquare-Brand-Guide.pptx) — editable PowerPoint deck. Doubles as a starting template for new PikeSquare decks.
+| File | Purpose |
+|---|---|
+| 📄 [PikeSquare-Brand-Guide.pdf](public/brand/PikeSquare-Brand-Guide.pdf) | Polished PDF for sharing with designers, vendors, contractors. Static reference. |
+| 🎨 [PikeSquare-Brand-Guide.pptx](public/brand/PikeSquare-Brand-Guide.pptx) | The brand guide in PowerPoint form — same content, editable. |
+| 🪶 [PikeSquare-Deck-Template.pptx](public/brand/PikeSquare-Deck-Template.pptx) | **Use this for every client presentation.** 10 ready-made slide types: title, agenda, section divider, content, two-column compare, three-pillar, big-stat, quote, process, closing. Brand baked in. |
 
-This markdown file stays in sync with both — when the brand changes, edit
-here AND regenerate the two files.
+### Using the deck template
+
+**PowerPoint** — open `PikeSquare-Deck-Template.pptx`, then **File → Save As…** (or duplicate the file first) so you don't overwrite the template. Delete the slides you don't need; duplicate the ones you do.
+
+**Google Slides** — upload the same `.pptx` to Google Drive, right-click → **Open with → Google Slides**, then **File → Make a copy** to start a new deck. Google Slides imports the layouts and colors cleanly. The Inter font isn't always pre-installed in PowerPoint but IS in Google Slides; in PowerPoint it'll fall back to a system sans-serif (Calibri / Aptos) until Inter is installed.
+
+**Rules of thumb for using the template:**
+
+- Every slide has placeholder text in `[ brackets ]` — replace them, don't leave them.
+- The footer ("Confidential · Prepared for [Client]") is on the master — update it once and it appears on every slide.
+- Delete slides you don't need rather than working around them. A 7-slide deck that says one clear thing beats a 30-slide deck that doesn't.
+- The brand bullets are the small orange squares, not standard dots. They're already on the content / two-column / three-pillar slides.
+
+This markdown file stays in sync with all three downloads — when the
+brand changes, edit here AND regenerate the files.
 
 ## Who we are
 
