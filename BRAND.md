@@ -167,7 +167,7 @@ Plain, no banner image. Use this format:
 Susan McGovern Bamberger
 Co-founder · PikeSquare
 info@pikesquare.co · pikesquare.co
-Book a meeting: https://cal.com/pikesquare/30min
+Contact us: https://pikesquare.co/contact
 ```
 
 ## Where the brand lives in code
