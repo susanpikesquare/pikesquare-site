@@ -57,7 +57,7 @@ pikesquare-site/
 │   │   └── BaseLayout.astro      # Page chrome wrapper
 │   ├── pages/                    # File-based routing
 │   │   ├── about.astro
-│   │   ├── contact.astro         # Form, currently pointing at a Formspree placeholder
+│   │   ├── contact.astro         # Contact form (POSTs to /api/contact, which emails submissions)
 │   │   ├── how-we-work.astro
 │   │   ├── index.astro           # ← Home, fully built
 │   │   ├── insights/index.astro
@@ -132,15 +132,21 @@ For any deep links you want to preserve (old blog posts, etc.), add 301 redirect
 
 ## Forms
 
-The contact page form (`src/pages/contact.astro`) is wired to a Formspree placeholder. To activate:
+The contact page (`src/pages/contact.astro`) collects name, company, contact
+details, and what the visitor needs help with. On submit it POSTs to the
+serverless route `src/pages/api/contact.ts`, which emails the submission to the
+addresses in `RECIPIENTS` at the top of that file (currently the two site
+owners). Delivery uses [Resend](https://resend.com). To activate:
 
-1. Sign up free at <https://formspree.io>
-2. Create a new form, copy the endpoint URL
-3. Paste it into `FORMSPREE_ENDPOINT` at the top of `contact.astro`
+1. Sign up at <https://resend.com> and verify the `pikesquare.co` domain (so the
+   `FROM` address in `contact.ts` can send).
+2. Create an API key.
+3. Add it to the Vercel project as an environment variable named
+   `RESEND_API_KEY` (Project → Settings → Environment Variables), then redeploy.
 
-Submissions arrive in your email. Free tier handles 50 submissions/month.
-
-**Alternative:** swap the entire form for a Calendly inline embed — skip the email round-trip and let people book directly.
+To change who receives submissions, edit the `RECIPIENTS` array in
+`src/pages/api/contact.ts`. Until `RESEND_API_KEY` is set, the form returns a
+friendly error asking visitors to email directly.
 
 ## Working with Claude Code
 
