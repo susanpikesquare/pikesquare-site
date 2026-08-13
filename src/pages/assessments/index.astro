@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTAButton from '../../components/CTAButton.astro';
-import { SCHEDULING_URL } from '../../lib/site';
 
 // GTM Assessment Pillars
 const gtmPillars = [
@@ -466,16 +465,14 @@ const gtmAIDimensionsJson = JSON.stringify(gtmAIDimensions);
               Ready to close these gaps?
             </h3>
             <p class="mt-3 max-w-2xl text-deep-soft">
-              Book a call to talk through what you're seeing. We'll help you prioritize which gaps to fix first and show you what that engagement looks like.
+              Get in touch to talk through what you're seeing. We'll help you prioritize which gaps to fix first and show you what that engagement looks like.
             </p>
             <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
-                href={SCHEDULING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/contact"
                 class="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-base font-semibold text-deep shadow-sm transition hover:bg-accent hover:text-white"
               >
-                Book a meeting
+                Get in touch
               </a>
               <a
                 href="/services"
@@ -623,16 +620,14 @@ const gtmAIDimensionsJson = JSON.stringify(gtmAIDimensions);
               Ready to accelerate your AI adoption?
             </h3>
             <p class="mt-3 max-w-2xl text-deep-soft">
-              Book a call to discuss your AI strategy. We'll help you prioritize which dimensions to tackle first and how to get your team on board.
+              Get in touch to discuss your AI strategy. We'll help you prioritize which dimensions to tackle first and how to get your team on board.
             </p>
             <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
-                href={SCHEDULING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/contact"
                 class="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-base font-semibold text-deep shadow-sm transition hover:bg-accent hover:text-white"
               >
-                Book a meeting
+                Get in touch
               </a>
               <a
                 href="/services"

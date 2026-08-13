@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { SCHEDULING_URL } from '../../lib/site';
 
 const stages = [
   { stage: 'Stage 1', probability: '20%' },
@@ -195,12 +194,10 @@ const healthScenarios = [
       </p>
       <div class="mt-8 flex justify-center">
         <a
-          href={SCHEDULING_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/contact"
           class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent"
         >
-          Book a Conversation
+          Get in touch
         </a>
       </div>
     </div>

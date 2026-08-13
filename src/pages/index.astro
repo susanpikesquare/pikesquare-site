@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTAButton from '../components/CTAButton.astro';
-import { SCHEDULING_URL } from '../lib/site';
 
 const pillars = [
   {
@@ -208,12 +207,10 @@ const moments = [
       </p>
       <div class="mt-8 flex justify-center">
         <a
-          href={SCHEDULING_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/contact"
           class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent hover:text-white"
         >
-          Book a meeting
+          Get in touch
         </a>
       </div>
       <p class="mt-6 text-sm text-muted">

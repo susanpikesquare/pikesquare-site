@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AIMaturityHeatmap from '../components/AIMaturityHeatmap.astro';
 import MaturityLevelsProgression from '../components/MaturityLevelsProgression.astro';
-import { SCHEDULING_URL } from '../lib/site';
 
 const aiDimensions = [
   {
@@ -339,12 +338,10 @@ const maturityLevels = [
       </p>
       <div class="mt-8 flex justify-center">
         <a
-          href={SCHEDULING_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/contact"
           class="inline-flex items-center justify-center rounded-full bg-deep px-7 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-accent hover:text-white"
         >
-          Book a Conversation
+          Get in touch
         </a>
       </div>
     </div>

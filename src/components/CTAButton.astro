@@ -1,6 +1,4 @@
 ---
-import { SCHEDULING_URL } from '../lib/site';
-
 interface Props {
   href?: string;
   label?: string;
@@ -8,8 +6,8 @@ interface Props {
 }
 
 const {
-  href = SCHEDULING_URL,
-  label = 'Book a 30-min meeting',
+  href = '/contact',
+  label = 'Get in touch',
   variant = 'primary',
 } = Astro.props;
 
